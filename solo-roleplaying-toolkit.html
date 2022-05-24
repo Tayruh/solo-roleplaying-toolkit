@@ -3393,7 +3393,7 @@
 
 					display(
 						"<p>" + getOptions("Modifier", "strive-mod", values, 0) + "</p>" +
-						"<p>" + getOptions("Light/Dark", "strive-advantage", values, 0) + "</p>" +
+						"<p>" + getOptions("Reserve", "strive-advantage", values, 0) + "</p>" +
 						"<p>" + getOptions("Hindrance", "strive-disadvantage", values, 0) + "</p>" +
 						getLink("Check", "solo.showStrive()")
 					);
@@ -6796,8 +6796,7 @@
 					<br>
 					<details><summary><b>Strive</b></summary>
 						<p>Determine the success of a character action.</p>
-						<p><b>Note:</b> The rules as written state that you roll for advantage with Light/Dark die, you roll for disadvantage for Hindrances, and in both cases you add their respective die count to the pool. It doesn't state what happens when you have a Hindrance but would like to spend a Light/Dark die; nor does it state that doing so is disallowed.</p>
-						<p>This tool makes the assumption that they were meant to cancel each other out, one for one. This allows you to spend Light/Dark die to buy off Hindrances and lessen or cancel their affect, or even roll for advantage if you spend more Light/Dark die than you have Hindrances.</p>
+						<p>Reserve dice and hindrance dice cancel each other out, one for one. If reserve dice remain, you roll with advantage; if hindrance dice remain, you roll with disadvantage; if neither remain, you roll straight.</p>
 					</details>
 					<br>
 					<details><summary><b>Oracle</b></summary>
@@ -6895,7 +6894,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.05.12 tayruh</p>
+				<p>version: 2022.05.20 tayruh</p>
 			</div>
 		</div>
 	</body>
