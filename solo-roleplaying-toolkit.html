@@ -305,8 +305,7 @@
 				};
 
 				var getLink = function(name, action, quote) {
-					if (!quote) quote = '"';
-
+					if (quote === undefined) quote = '"';
 					return '<p><a onclick=' + quote + action + quote + ">" + name + '</a></p>';
 				};
 
@@ -1066,6 +1065,52 @@
 					}
 				};
 
+				var IF = {
+					"qualifiers": ["Nor. There’s a fundamental flaw in your framing; re-frame the question or roll a random event.", "But. A drawback to a success or a silver lining on a setback.", "So. A consequence that follows, carried through to the logical extreme.", "And. An immediate, short-term bonus or penalty.", "Because. A callback to an earlier event, situation, or fear.", "As. A background or remote event; weave it in later if necessary."],
+					"seeds": ["fire", "ice", "water", "earth", "air", "metal", "love", "empathy", "desire", "hatred", "scorn", "fear", "tree", "flesh", "beast", "home", "device", "history", "dusk", "rebirth", "sun", "moon", "stars", "future", "resolve", "vow", "reticence", "grief", "bravery", "loyalty", "eerie", "angelic", "human", "demonic", "other", "eternity"],
+					"conflicts": ["wants what they can’t have", "hiding from a duty or dread", "struggles against their nature", "is protecting something", "is being hunted", "controls an unpredictable force"],
+					"sacrifices": ["My heart & their heart", "My dream & their dream", "My weapon & their footing", "My footing & their weapon", "My plans & their needs", "My needs & their plan", "My birthright & my freedom", "My life & their future"],
+					"what they do": {
+						"Look at it another way.": [["The actor pauses to assess.", "The actor pauses to consider a new approach."], ["An aspect of the situation that is uncertain is different than you assumed."]],
+						"Reverse course.": [["Whatever the actor is doing, they reverse it, perhaps due to a lack of confidence, will, or heart.", "Whatever the actor is doing, they reverse it, perhaps due to sudden realization."], ["Reveal a reversal by someone.", "Reveal a reversal circumstances."]],
+						"Start over.": [["The actor gives up on their course of action.", "The actor gives up on their goal entirely."], ["A new threat interrupts, taking precedence.", "A new situation develops, taking precedence."]],
+						"More of that.": [["The actor continues what they were doing.", "The actor doubles down on what they were doing."], ["Call back to an earlier event.", "Exaggerate what’s going on now."]],
+						"Explore premise.": [["The actor reveals or shows off part of their premise.", "The actor makes a dramatic decision or reveal based on it."], ["Linger on a detail or situation, exploring it.", "Explore the ramifications of an established premise."]],
+						"Explore the hidden.": [["An actor has a flashback or opens up about a past experience.", "An actor declares a hidden feeling or emotion."], ["Reveal an unexpected nuance or surprising wrinkle.", "Introduce a new element or actor."]]
+					},
+					"moods": ["playful (enjoying a passion)", "serious (pursuing long-term goals)", "power (trying to win or control)", "sympathy (trying to build)", "conforming (fitting in)", "rebellious (creating, making a change)", "self (taking care of my needs)", "other (thinking about our needs)", "apathy (who cares?)", "disgruntlement (why does it matter?)", "roll again and intensify the results"],
+					"framings": [
+						["an antagonist is here", ["they tempt you", "they lash out", "they react poorly to your act", "they betray a secret", "they reveal a devastating success", "they strike without mercy"]],
+					 	["a threat presents", ["a near miss or glancing blow", "a parry, or indecisive exchange", "a loss of position or advantage", "a supporting character falls", "a solid blow or setback", "a serious, direct blow"]],
+						["a threat approaches", ["foreshadowing", "subtle signs of it", "a minor character is skittish", "obvious signs of it", "a minor character acts", "a minor character sacrifices"]],
+						["a friendly actor is here", ["they reveal a problem", "they tempt you", "they react poorly to a reveal", "they lash out", "they reveal a secret", "they betray you"]],
+						["you're free & alone", ["you see a problem brewing", "you discover a secret", "you find an opportunity", "you lose something", "you are injured", "a threat looms"]],
+						["you're in captivity", ["you spot a chance to escape", "you make a companion or ally", "you are mistreated", "you discover a new enemy", "you are gloated at or taunted", "you are dragged to a worse place"]]
+					],
+					"directives": ["show a flaw", "advance a main character’s goals", "show a strength", "advance a non-protagonist’s goals", "build atmosphere", "describe the world"],
+					"factors": [
+						["Protagonist. The current POV character, or a main character.", ["Premise. The character’s fundamental concept.", "Motifs. The themes and personal motifs of the character.", "History. Their backstory becomes relevant or important somehow."]],
+						["Location. Where and when the story is taking place.", ["Tangible. The physical nature of the location.", "Motifs. The themes and imagery that tell the story of this place.", "Common Event. An event that you'd expect, given the area and current framing."]], 
+						["Actor. A non-POV character (preferentially major).", ["As Expected. The actor acts as one would expect them to.", "Transform. As Expected, but instead compare, contrast, or exaggerate it.", "Reveal. The actor reveals a hidden resource, facet, gift, loyalty, emotion, etc."]],
+						["Narrative. The plot of the current story.", ["Overarching Plot. The meta plot, or bigger picture.", "Immediate Plot. The current task the character is engaged in.", "Callback. A loose or unfinished plot thread from earlier."]], 
+						["Events. An event occurs that needs to be addressed.", ["World. It is broad in scope, or not targeted directly at the main characters; bring in world motifs.", "Personal. It is related to, targeted at, or directly caused by a main character.", "Skill Check. Test a random skill or ability of a character."]],
+						["Alteration. Something is not as expected.", ["Interrupt. Whatever is going on, it is interrupted or cut short.", "Twist. Something is not what it seems, or a twist is revealed.", "Curve Ball. A repeating in-joke, or an absurdity or coincidence."]]
+					],
+					"stakes": {
+						"Precision / Delicacy": ["[Lion] a flaw hinders / a flaw ruins", "[Anchor] a weakness revealed / a weakness exploited", "[Memory] a bad dream / a danger, recognized", "[Shadows] a fear is realized / a worst fear is realized", "[Satyr] control slips / control is lost", "[Unicorn] an illusion is destroyed / innocence is lost"],
+						"Suitability / Aptitude": ["[Birds] a disabling trap, a deadly trap", "[Fool] kicked in the teeth / kicked in the head", "[Armor] slowed / dragged down", "[Mirror] temporary exile / exile with a price", "[Palace] a useful item is lost / a vital item lost", "[Moon] it malfunctions / it breaks"],
+						"Planning / Preparation": ["[Stars] trust is damaged / trust is broken", "[Veil] a secret discovered / a secret revealed", "[Tower] an ally falters / an ally fails", "[Cross] an ally endangered / an ally is lost", "[Knowledge] a lie is told / a lie is revealed", "[Harvest] an unexpected flirtation / a seduction"],
+						"Endurance / Repetition": ["[Serpent] you are tricked / you are betrayed", "[Succubus] succumb to temptation / forced to act", "[Sun] an unwelcome truth / a devastating truth", "[Vigor] a failure of strength / a humiliation", "[Summer] a passion inflamed, exhaustion", "[Fox] a tactic anticipated / a sudden reversal"],
+						"Skill / Training": ["[Chance] an unlucky break, the worst outcome", "[Empress] something notices / it comes to see", "[Messenger] an inconvenient arrival / a dangerous arrival", "[Air] loss of face / a reduction of status", "[Winter] a necessary sacrifice / a painful sacrifice", "[Bear] a beating / a breaking"],
+						"Spirit / Will": ["[Water] a serious wound / a devastating wound", "[Spring] something is tainted/ something rots away", "[Phoenix] partly changed/ utterly changed", "[Rose] beauty marred / beauty ruined", "[Vampire] a craving disturbs / a hunger consumes", "[Fairy] a curse is laid / a curse takes effect"]
+					},
+					"focus": ["introduction", "leaving", "giving", "delivery", "acceptance", "discovery", "exposure", "loss", "separation", "death", "abandonment", "deceit", "trickery", "lashing", "out", "success", "triumph", "passage", "defeat", "fall", "failure", "reversal", "awakening", "learning", "initiation", "ritual", "removal", "rejection", "breaking", "wounding", "insulting", "healing", "mending", "joining", "rebirth", "renewal", "return"],
+					"scene types": ["respite; rest, dalliance", "interrupt; unexpected twist", "as expected; subplot", "as expected; main plot", "as expected; feature an actor", "montage or oddity"],
+					"positive conditions": ["Freeing yourself from limitation", "Taking appropriate action", "Listening to your feelings and intuitions", "Nurturing yourself and others", "Teaching or guiding others", "Being in love", "Breaking through barriers", "Imposing restrictions on yourself for your own benefit", "Identifying an important goal", "Seeing growth opportunities in unpleasant events", "Bringing an unpleasant phase of life to an end", "Bringing opposites together", "Appreciating the luxuries that life has to offer", "Breaking out of old, confining habits and mindsets", "Hoping for the best", "Receiving a wake-up call", "Being inspired", "Putting a plan into motion", "Calmly expressing a dissenting opinion", "Refusing to be silenced through fear or intimidation", "Taking swift action", "Sticking with it for the duration", "Holding your own in extreme circumstances", "Leaping at a new opportunity", "Putting old things together in new and exciting ways", "Trusting your feelings", "Being drawn to someone because of positive qualities", "Acknowledging loss, moving on", "Donating your time and talents to others", "Wanting something better", "Being delighted with your own achievements", "Showing your emotions freely", "Being deeply committed to a cause", "Keeping a stiff upper lip", "Allowing yourself to be moved by the plight of others", "Refusing to make a decision without getting the facts", "Making the best of a bad situation", "Seeing the signs that you've reached your limits", "Being brave enough to see things as they really are", "Pursuing a course of study", "Acting in your own best interest", "Exercising tact or using diplomacy", "Finishing a project", "Saving for a rainy day", "Recognizing your needs and acting to fulfill them", "Giving to a charity", "Coming up with unexpected solutions", "Continuing against all odds", "Celebrating your physical and financial blessings", "Fulfilling promises & obligations"],
+					"negative conditions": ["Being gullible and naive", "Inflating your own ego", "Being aloof", "Overindulging", "Using experience to manipulate or misguide others", "Allowing passion to rule you", "Resting on laurels", "Indulging weakness, even when you know it will hurt someone", "Being untrue to yourself and your values", "Obsessing on death and dying", "Going to extremes", "Putting excessive emphasis on appearances", "Clinging to traditions that repress growth", "Stealing or lying", "Burning bridges", "Denying unpleasant truths", "Wallowing in despair", "Misrepresenting your intentions", "Having a chip on your shoulder", "Making yourself a martyr", "Basing your entire self-image on what others think", "Blundering forward without skill or information", "Being distracted, or distracting others from the goal", "Hiding your feelings", "Failing to honor well-established traditions and limits", "Allowing yourself to become rigid and unemotional", "Applying ruthless, cruelly pragmatic, or twisted logic", "Micromanaging", "Rejecting evidence that conflicts with beliefs", "Failing to think things through", "Taking advantage of others", "Refusing to accept that things have changed", "Tacitly ignoring bad behavior", "Torturing yourself with regrets", "Accepting defeat prematurely", "Pretending to a skill, talent, or training you don’t have", "Stating your opinions as fact", "Hiding or ignoring intuitive insights", "Insisting on having the last word", "Feeling trapped and lashing out", "Throwing caution to the winds", "Indulging in gluttony or greed", "Taking unnecessary risks", "Riding roughshod over others’ feelings or expectations", "Doing one thing while desiring another", "Satisfying yourself at the expense of others", "Making unfair decisions based on a hidden agenda", "Believing that everything that exists can be touched, counted, or measured", "Stirring the pot just to see what will happen", "Beating yourself up for your mistakes"],
+					"beats": ["The hero as the story begins, unaware of change to come.", "The hero receives or controls a resource that holds the key to the story's primary challenge.", "An unexpected event contains seeds of discord with potential to disrupt the hero's everyday world.", "A nurturing figure reminds the hero of the core values that are their essence.", "A stern figure seeks to control or restrain the hero by reminding of responsibilities and obligations.", "A mentor teaches the hero the secrets they need to succeed.", "The hero encounters a love interest or must choose between what they love and doing what is right.", "With an eye toward solving the central problem, the hero commits to a quest. ", "On the verge of giving up, the hero withdraws, seeking clarity in isolation. They may receive advice.", "An unforeseen event, completely out of the hero's control, changes everything.", "Decisions made in the past have unexpected present consequences.", "One of the hero's allies is discovered to be working secretly for the antagonist.", "The hero believes all is lost.", "A helper or valued ally dies or is believed dead.", "The hero learns to moderate impulses or habits that limit their ability to solve the central problem.", "The hero realizes that their own perceptions or actions are the cause of the story's primary problem.", "In a moment of intense crisis, the hero apparently loses all.", "After darkness, comes dawn! Just as the situation looks bleakest, the hero discovers a way to move forward.", "With nothing left to lose, the hero commits to a reckless course of action as a last-ditch effort to reach their goal.", "The hero is victorious.", "Having earned a victory, the hero sees themselves differently.", "Others see the hero in a new, flattering light.", "The hero lives happily ever after.", "The hero is given the chance to join a quest.", "The hero is confronted with an alternative but valuable goal.", "The hero's plans are set and launched into motion.", "The hero suffers from boredom or temptation.", "The hero takes a stand and says, \"Enough is enough!\"", "The hero scores a small victory, boosting their spirits, but angering the opposition.", "The hero is attacked by the minions of their adversary.", "The hero comes face to face with their adversary.", "The hero's adaptability is tested with unforeseen circumstances. ", "The hero continues to strive for the goal, despite bad odds.", "The hero attempts a task they are not well-suited for, with disastrous results.", "The hero's doubts about themselves are dispelled by a positive experience.", "The hero leads the effort to reach a common goal.", "The hero must persuade others to follow their lead.", "Amid indecision, the hero takes control and gives orders.", "The hero meets a love interest or discovers their true calling.", "The hero improves their lot by joining like-minded folks.", "The hero's actions show how they really feel.", "Right or wrong, the hero refuses to re-evaluate their feelings about an important person or issue.", "Defying conventional wisdom, the hero lends support to a hopeless cause.", "Shocked by loss, the hero considers giving up the quest.", "The hero's judgment is distorted by memories of loss.", "The hero is hindered by unreasonable expectations or unfounded fears.", "The hero insists on remaining true to their original vision.", "The hero finds their everyday life unrewarding; they set off to find their destiny.", "The hero expresses confidence.", "The hero completes a task, but is denied the promised payment.", "The hero finds a relationship more fulfilling or intense than expected.", "The hero has a \"fish out of water\" experience, leaving them feeling uncertain and awkward.", "Prompted by strong emotion, the hero launches into action.", "The hero plays on sympathy to gain an advantage, or uses love to get cooperation.", "The hero behaves selfishly or badly, out of a sense of anger, grief, or insecurity.", "The hero must suppress or control an emotional response to complete a difficult task.", "The hero must make a decision that will determine their ultimate fate.", "The hero must defend their decisions.", "The hero rejects critical info and makes a bad decision.", "The hero sees the error of their ways and changes course. ", "The hero seeks quiet thought before taking action.", "Others are shocked or angered by the hero's apparently irrational actions.", "The hero must take an action that will cause pain for their loved ones.", "The hero comes up with a creative solution to handle a complication.", "The hero has an opportunity to win using dishonest means.", "The hero agonizes over a past mistake.", "The hero must call on their ingenuity to escape a trap.", "The hero must acknowledge that all is apparently lost.", "The hero must humbly apply themselves to a mentor", "The hero's remarkable abilities make enemies.", "The hero must deliver news that is difficult for others to receive with grace.", "The hero must confront the less desirable aspects of their personality.", "The hero must choose a side and stick with it, regardless of the consequences.", "At the last minute, the hero stumbles on a resource that will enable triumph.", "The hero weighs the impact their course will have on everyone involved.", "The hero achieves a result that no other characters have been able to attain.", "The hero must carefully manage a resource (time, money, people) to succeed.", "The hero refuses to see how they can be aided by others.", "The hero wins by cooperating instead of competing.", "The hero looks back on what they have achieved and sees it in a new light.", "The hero is shown to be the very best at what they do.", "The hero outlines a detailed action plan, step-by-step.", "The hero is placed in a position for which they are completely unqualified.", "The hero is offered an attractive bribe.", "The hero turns down an extravagant reward for their good work.", "The hero must compensate for or learn from an earlier mistake.", "The hero takes a tentative first step toward a new solution.", "The hero must avoid being lulled into complacency by temptation. ", "The hero must spurn tradition in order to succeed.", "An event hints at the hero's hidden strength, which they will use (or choose not to use) to resolve the story.", "An event hints at the hero's hidden strength, which they will use (or choose not to use) to resolve the story.", "A physical or emotional weakness hinders the hero's progress.", "A physical or emotional weakness hinders the hero's progress.", "The hero's ability, knowledge, or personal suitability is found lacking.", "The hero's ability, knowledge, or personal suitability is found lacking.", "We see a demonstration of the hero's special gifts.", "We see a demonstration of the hero's special gifts.", "The hero demonstrates a weakness, flaw, or personal failing.", "The hero demonstrates a weakness, flaw, or personal failing.", "A fundamental misapprehension is revealed. Consider the situation in a new light, frame it differently, or rethink it entirely."]
+				};
+				
 				var themes = {
 					"Standard": {
 						7: "Remote Event", 28: "NPC Action", 35: "New NPC", 45: "Move Toward a Thread", 52: "Move Away From a Thread",
@@ -2095,11 +2140,11 @@
 					if (score < 10 && score > 6) {
 						$("#succeed-link").addEventListener("click", function() {
 							$("#succeed-link").outerHTML = "succeed";
-							fadeIn("succeed", 0, "</p><p><b>Succeed:</b> deliver on a danger; play a soft Move or follow through on a previous soft Move with a hard Move.");
+							fadeIn("#succeed", 0, "</p><p><b>Succeed:</b> deliver on a danger; play a soft Move or follow through on a previous soft Move with a hard Move.");
 						});
 						$("#bonus-link").addEventListener("click", function() {
 							$("#bonus-link").outerHTML = "bonus";
-							fadeIn("bonus", 0, "</p><p><b>Bonus:</b> gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.");
+							fadeIn("#bonus", 0, "</p><p><b>Bonus:</b> gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.");
 						});
 					};
 				};
@@ -2353,6 +2398,121 @@
 					}
 				};
 
+				
+
+				///////////////////////////////////////////////////////////////////
+				/* IF menu */
+				
+				var showOutcome = function() {
+					var getRolls = function(num) {
+						var rolls =  getDiceRolls(num + "d6").rolls;
+						
+						var a, index1, index2;
+						var first = 0;
+						var second = 0;
+						for (a = 0; a < rolls.length; ++a) {
+							if (rolls[a] > first) {
+								index1 = a;
+								first = rolls[a];
+							}
+						}
+						for (a = 0; a < rolls.length; ++a) {
+							if (rolls[a] > second && a !== index1) {
+								index2 = a;
+								second = rolls[a];
+							}
+						}
+						return [first, second, index1 + 1, index2 + 1];
+					};
+
+					var dice = getRolls(2 + parseInt($("#facts").value));
+					
+					var output = "<p><b>Outcome:</b> ";
+					if (dice[0] === 6) output += "Your protagonist gets what they want.";
+					else if (dice[0] === 5) output += "You get what you want.";
+					else output += "A bad outcome occurs.";
+					output +=  " (" + dice[2] + ")</p>";
+
+					display(output + "<p><b>Qualifier:</b> " + IF["qualifiers"][dice[1] - 1] + " (" + dice[3] + ")</p>");
+				};
+
+				var showOutcomeList = function() {
+					display(
+						"<p>" + getOptions("Facts", "facts", [0, 1, 2, 3, 4, 5], 0) + "</p>" +
+						getLink("Check", "solo.showOutcome()")
+					);
+				};
+
+
+				var showIFOracle = function() {
+					var factor = randomItem(IF["stakes"]);
+
+					display(
+						"<p><b>Factor:</b> " + factor + "</p>" +
+						"<p><b>Stakes:</b> " + randomItem(IF["stakes"][factor]) + "</p>" +
+						"<p><b>Focus:</b> " + randomItem(IF["focus"]) + "</p>"
+					);
+				};
+
+
+				var showWhatTheyDo = function(target) {
+					if (target === "random") target = random(0, 1);
+					else target = (target === "actor") ? 0 : 1;
+
+					var type = randomItem(IF["what they do"]);
+					var action = randomItem(IF["what they do"][type][target]);
+
+					display("<p><b>Action:</b> " + type + " " + action + "</p>");
+				};
+
+				var showWhatTheyDoList = function() {
+					display(
+						getLinks(
+							["Actor", "solo.showWhatTheyDo('actor')"],
+							["Event", "solo.showWhatTheyDo('event')"],
+							["Random", "solo.showWhatTheyDo('random')"]
+						)
+					);
+				};
+
+
+				var showIFFraming = function(key) {
+					if (key === undefined) key = random(0, IF["framings"].length - 1);
+
+					display("<p><b>Framing:</b> " + IF["framings"][key][0] + "; " + randomItem(IF["framings"][key][1]) + "</p>");
+				};
+
+				var showIFFramingList = function() {
+					var a;
+					var links = "";
+
+					for (a = 0; a < IF["framings"].length; ++a) {
+						links += getLink(IF["framings"][a][0], "solo.showIFFraming(" + a + ")");
+					}
+					links += getLink("random", "solo.showIFFraming()");
+
+					display(links);
+				};
+
+				var showIFScene = function() {
+					var frame, a, b;
+					var frames = [];
+					var types = ["Impetus", "Background", "Focus"];
+
+					var output = "<p><b>Directive:</b> " + randomItem(IF["directives"]);
+					do {
+						a = random(0, 5);
+						b = random(0, 2);
+						frame = a + ":" + b;
+						if (frames.indexOf(frame) !== -1) continue;
+						frames.push(frame);
+						output += "<p><b>" + types.pop() + "</b>: " + IF["factors"][a][0] + " - " + IF["factors"][a][1][b] + "</p>";
+					}
+					while (frames.length < 3);
+
+					display(output);
+				};
+				
 				
 				///////////////////////////////////////////////////////////////////
 				/* Motif menu */
@@ -3959,8 +4119,22 @@
 					else if (type === "Enemy Strength") meaning = checkMeaning(calypso["enemy"]["strength"]);
 					else if (type === "Formidable Condition") meaning = checkMeaning(calypso["enemy"]["simple"]);
 
+					// IF
+					else if (type === "IF seeds") meaning = checkMeaning(IF["seeds"], IF["seeds"], false, " / ");
+					else if (type === "IF conflicts") meaning = randomItem(IF["conflicts"]);
+					else if (type === "IF sacrifices") meaning = randomItem(IF["sacrifices"]);
+					else if (type === "IF moods") meaning = randomItem(IF["moods"]);
+					else if (type === "IF directives") meaning = randomItem(IF["directives"]);
+					else if (type === "IF factors") {
+						meaning = randomItem(IF["factors"]);
+						meaning = meaning[0] + "</p><p>" + randomItem(meaning[1]);
+					}
+					else if (type === "IF scene types") meaning = randomItem(IF["scene types"]);
+					else if (type === "IF positive condition") meaning = randomItem(IF["positive conditions"]);
+					else if (type === "IF negative condition") meaning = randomItem(IF["negative conditions"]);
+					else if (type === "IF beats") meaning = randomItem(IF["beats"]);
+
 					// mythic
-					// else if (type === "Mythic Clue") meaning = checkMeaning(mythic_meaning["clues"], mythic_meaning["clues"]);
 					else if (type === "Mythic Suspect") meaning = checkMeaning(mysteries["suspects"], mysteries["suspects"]);
 					else if (type === "Mythic Descriptor") meaning = checkMeaning(mythic_meaning["descriptor1"], mythic_meaning["descriptor2"]);
 					else if (type === "Mythic Action") meaning = checkMeaning(mythic_meaning["action1"], mythic_meaning["action2"]);
@@ -4589,6 +4763,16 @@
 				solo.showFramework = showFramework;
 				solo.showFrameworkList = showFrameworkList;
 
+				// IF
+				solo.showOutcome = showOutcome;
+				solo.showOutcomeList = showOutcomeList;
+				solo.showIFOracle = showIFOracle;
+				solo.showWhatTheyDo = showWhatTheyDo;
+				solo.showWhatTheyDoList = showWhatTheyDoList;
+				solo.showIFFraming = showIFFraming;
+				solo.showIFFramingList = showIFFramingList;
+				solo.showIFScene = showIFScene;
+
 				// motif
 				solo.showStoryEngine = showStoryEngine;
 				solo.showStoryEngineList = showStoryEngineList;
@@ -4947,6 +5131,7 @@
 										<option value="CRGE">CRGE - UNE</option>
 										<option value="Motif">MOTIF</option>
 										<option value="Calypso">CALYPSO</option>
+										<option value="IF">IF</option>
 									</select>
 									</summary>
 									<div id="system-data"></div>
@@ -5064,6 +5249,31 @@
 					<p><a onclick="solo.showFrameworkList('beats')">Beats Frame</a><p></p>
 					<p><a onclick="solo.showFrameworkList('point based')">Point-Based Frame</a><p></p>
 					<p><a onclick="solo.showFrameworkList('cyclic')">Cyclic Frame</a><p></p>
+				</details>
+			</div>
+
+			<div id="IF">
+				<p><a onclick="solo.showOutcomeList()">Outcome</a></p>
+				<p><a onclick="solo.showMeaning('Sacrifice:IF sacrifices')">Sacrifice</a></p>
+				<p><a onclick="solo.showIFOracle()">Oracle</a></p>
+				<p><a onclick="solo.showMeaning('Seed:IF seeds')">Seed</a></p>
+				<hr>
+				<p><a onclick="solo.showWhatTheyDoList()">What They Do</a></p>
+				<p><a onclick="solo.showMeaning('Mood:IF moods')">Mood</a></p>
+				<p><a onclick="solo.showMeaning('Conflict:IF conflicts')">Conflict Spark</a></p>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'if-scenes-desc')"><b>Scenes</b></summary>
+					<p><a onclick="solo.showMeaning('Scene Type:IF scene types')">Scene Type</a></p>
+					<p><a onclick="solo.showIFFramingList()">Framing</a></p>
+					<p><a onclick="solo.showIFScene()">Scene</a></p>
+					<p><a onclick="solo.showMeaning('Directive:IF directives')">Directive</a></p>
+					<p><a onclick="solo.showMeaning('Factor:IF factors')">Factor</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'if-brain-fuel-desc')"><b>Brain Fuel</b></summary>
+					<p><a onclick="solo.showMeaning('Condition:IF positive condition')">Positive Condition</a></p>
+					<p><a onclick="solo.showMeaning('Condition:IF negative condition')">Negative Condition</a></p>
+					<p><a onclick="solo.showMeaning('Condition:IF beats')">Beat</a></p>
 				</details>
 			</div>
 
@@ -5542,7 +5752,7 @@
 			</div>
 
 			<div id="calypso-framework-desc">
-				<p>This sections is dedicated to using the Frameworks defined in <i>Calypso</i> to help shape your narrative.</p>
+				<p>This section is dedicated to using the Frameworks defined in <i>Calypso</i> to help shape your narrative.</p>
 				<details><summary>Details</summary>
 					<br>
 					<details><summary><b>Scenario</b></summary>
@@ -5579,6 +5789,90 @@
 				</details>
 			</div>
 
+			<div id="if-desc">
+				<p>This section is dedicated to tools related to <i>If</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Outcome</b></summary>
+						<p>Determine the success of an action based on Facts and Factors associated with a character.</p>
+						<p>The numbers following the result text are the dice which were chosen for that result, not their value. This helps determine which Factors were responsible for the Outcome and Qualifier of the action. The highest rolled die is always assigned to the Outcome, and the second highest die is assigned to the Qualifier.</p>
+					</details>
+					<br>
+					<details><summary><b>Sacrifice</b></summary>
+						<p>Determine what your character is willing to sacrifice for something else.</p>
+						<p>Sacrifices can be used to turn a negative Outcome into a positive one, or push already positive Outcome into an even more beneficial one.
+					</details>
+					<br>
+					<details><summary><b>Oracle</b></summary>
+						<p>The Oracle is more like a muse, helping to determine the answer to complex questions.</p>
+						<p>You can either take the Stakes verbatim, or you can use one of its verb in combination with the Focus to help answer a question. The Factors are designed to be used alongside the Outcome roll, assigning one Factor to each die.</p>
+					</details>
+					<br>
+					<details><summary><b>Seed</b></summary>
+						<p>Generate seeds for a story prompt by comparing or contrasting the two words provided.</p>
+					</details>
+					<br>
+					<details><summary><b>What They Do</b></summary>
+						<p>Determine an action that an actor performs or an event that takes place.</p>
+					</details>
+					<br>
+					<details><summary><b>Mood</b></summary>
+						<p>Determine an actor's mood.</p>
+					</details>
+					<br>
+					<details><summary><b>Conflict Spark</b></summary>
+						<p>Determine the cause of a conflict.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="if-scenes-desc">
+				<p>This section is dedicated to generating scenes.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Scene Type</b></summary>
+						<p>Determine the type of scene and its focus.</p>
+					</details>
+					<br>
+					<details><summary><b>Framing</b></summary>
+						<p>Frame the context of a scene based on conditions.</p>
+						<p>The list is organized in descending order of dramatic tension. Therefore you would generally want to use the item closest to the top in which its conditions are met by the current context of the story.</p>
+					</details>
+					<br>
+					<details><summary><b>Scene</b></summary>
+						<p>Generate a full scene frame.</p>
+					</details>
+					<br>
+					<details><summary><b>Directive</b></summary>
+						<p>Generate a directive for the scene.</p>
+					</details>
+					<br>
+					<details><summary><b>Factor</b></summary>
+						<p>Generate focus factor for the scene.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="if-brain-fuel-desc">
+				<p>This section is dedicated to generating story prompts and ideas.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Positive Condition</b></summary>
+						<p>Generate positive character traits or outcomes to actions.</p>
+						<p>Additionally the condition can be use metaphorically or concentrate on only the verb as part of a muse to answer questions. Feel free to contrast with a negative condition for a deeper meaning.</p>
+					</details>
+					<br>
+					<details><summary><b>Negative Condition</b></summary>
+						<p>Generate negative character traits or outcomes to actions.</p>
+						<p>Additionally the condition can be use metaphorically or concentrate on only the verb as part of a muse to answer questions. Feel free to contrast with a positive condition for a deeper meaning.</p>
+					</details>
+					<br>
+					<details><summary><b>Beat</b></summary>
+						<p>Generate a story beat.</p>
+					</details>
+				</details>
+			</div>
+
 			<div id="credits">
 				<p>The following are the sources from which the oracles are taken:</p>
 
@@ -5594,6 +5888,7 @@
 					<li><i>Adventure Crafter</i> by Tana Pigeon</li>
 					<li><i>Location Crafter</i> by Tana Pigeon</li>
 					<li><i>Calypso</i> by Tam H.</li>
+					<li><i>If</i> by Tam H.</li>
 					<li><i>CRGE: Conjectural Roleplaying GM Emulator</i> by Zach Best</li>
 					<li><i>UNE: Universal NPC Emulator</i> by Zach Best</li>
 					<li><i>BOLD: Book of Legends and Deeds</i> by Zach Best</li>
@@ -5605,16 +5900,20 @@
 					<li><i>Quick Dilemma Generator</i> by Colin Wilson, Tony Pi</li>
 					<li><i>Querent: The Cartomancer's Tome</i> by McKenzie Shea, Kayla Miskiv, Maggie DeCapua, Sage Burns</li>
 					<li><i>1000+ NPC Traits</i> by Johnn Four</li>
-					<li><i>GM Mastery: NPC Essentials</i> by Johnn Four</li>
 					<li><i>SOLO</i> by Paul Elliott</li>
 					<li><i>Scarlet Heroes</i> by Kevin Crawford</li>
+				</ul>
+				
+				<p>The following are the sources provide content for the muse meaning tables:</p>
+				<ul>
+					<li><i>GM Mastery: NPC Essentials</i> by Johnn Four</li>
 					<li><i>Solo Investigator's Handbook</i> by Paul Bimler</li>
 					<li><i>Grammar Fuel: Genres</i> by Ken Wickham</li>
 					<li><i>The Covetous Poet's Adventure Creator and Solo GM Guidebook</i> by Frank Lee</li>
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.06.03 tayruh</p>
+				<p>version: 2022.06.05 tayruh</p>
 			</div>
 		</div>
 	</body>
