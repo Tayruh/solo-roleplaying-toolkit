@@ -262,6 +262,19 @@
 					return (val instanceof Array || Array.isArray(val));
 				};
 
+				var enumArray = function(start, end) {
+					if (end === undefined) {
+						end = start;
+						start = 0;
+					}
+
+					var a;
+					var arr = [];
+					for (a = start; a <= end; ++a) { arr.push(a); }
+
+					return arr;
+				};
+
 				var getElement = function(id) {
 					return (typeof id === 'string' || id instanceof String) ? document.getElementById(id.replace(/^\s*#?\s*([a-zA-Z_-]+)\s*$/, "$1")) : id;
 				};
@@ -1554,8 +1567,8 @@
 				var mythic_meaning = {
 					"descriptor1": ["Abnormally", "Adventurously", "Aggressively", "Angrily", "Anxiously", "Awkwardly", "Beautifully", "Bleakly", "Boldly", "Bravely", "Busily", "Calmly", "Carefully",  "Carelessly", "Cautiously", "Ceaselessly", "Cheerfully", "Combatively", "Coolly", "Crazily", "Curiously", "Daintily", "Dangerously", "Defiantly", "Deliberately",  "Delightfully", "Dimly", "Efficiently", "Energetically", "Enormously", "Enthusiastically", "Excitedly", "Fearfully", "Ferociously", "Fiercely", "Foolishly", "Fortunately",  "Frantically", "Freely", "Frighteningly", "Fully", "Generously", "Gently", "Gladly", "Gracefully", "Gratefully", "Happily", "Hastily", "Healthily", "Helpfully", "Helplessly",  "Hopelessly", "Innocently", "Intensely", "Interestingly", "Irritatingly", "Jovially", "Joyfully", "Judgementally", "Kindly", "Kookily", "Lazily", "Lightly", "Loosely", "Loudly",  "Lovingly", "Loyally", "Majestically", "Meaningfully", "Mechanically", "Miserably", "Mockingly", "Mysteriously", "Naturally", "Neatly", "Nicely", "Oddly", "Offensively",  "Officially", "Partially", "Peacefully", "Perfectly", "Playfully", "Politely", "Positively", "Powerfully", "Quaintly", "Quarrelsomely", "Quietly", "Roughly", "Rudely", "Ruthlessly",  "Slowly", "Softly", "Swiftly", "Threateningly", "Very", "Violently", "Wildly", "Yieldingly"],
 					"descriptor2": ["Abandoned", "Abnormal", "Amusing", "Ancient", "Aromatic", "Average", "Beautiful", "Bizarre", "Classy", "Clean", "Cold", "Colorful", "Creepy", "Cute", "Damaged", "Dark", "Defeated",  "Delicate", "Delightful", "Dirty", "Disagreeable", "Disgusting", "Drab", "Dry", "Dull", "Empty", "Enormous", "Exotic", "Faded", "Familiar", "Fancy", "Fat", "Feeble", "Feminine",  "Festive", "Flawless", "Fresh", "Full", "Glorious", "Good", "Graceful", "Hard", "Harsh", "Healthy", "Heavy", "Historical", "Horrible", "Important", "Interesting", "Juvenile",  "Lacking", "Lame", "Large", "Lavish", "Lean", "Less", "Lethal", "Lonely", "Lovely", "Macabre", "Magnificent", "Masculine", "Mature", "Messy", "Mighty", "Military", "Modern",  "Extravagant", "Mundane", "Mysterious", "Natural", "Nondescript", "Odd", "Pale", "Petite", "Poor", "Powerful", "Quaint", "Rare", "Reassuring", "Remarkable", "Rotten", "Rough",  "Ruined", "Rustic", "Scary", "Simple", "Small", "Smelly", "Smooth", "Soft", "Strong", "Tranquil", "Ugly", "Valuable", "Warlike", "Warm", "Watery", "Weak", "Young"],
-					"action1": ["Attainment", "Starting", "Neglect", "Fight", "Recruit", "Triumph", "Violate", "Oppose", "Malice", "Communicate", "Persecute", "Increase", "Decrease", "Abandon", "Gratify",  "Inquire", "Antagonize", "Move", "Waste", "Truce", "Release", "Befriend", "Judge", "Desert", "Dominate", "Procrastinate", "Praise", "Separate", "Take", "Break", "Heal",  "Delay", "Stop", "Lie", "Return", "Imitate", "Struggle", "Inform", "Bestow", "Postpone", "Expose", "Haggle", "Imprison", "Release", "Celebrate", "Develop", "Travel",  "Block", "Harm", "Debase", "Overindulge", "Adjourn", "Adversity", "Kill", "Disrupt", "Usurp", "Create", "Betray", "Agree", "Abuse", "Oppress", "Inspect", "Ambush", "Spy",  "Attach", "Carry", "Open", "Carelessness", "Ruin", "Extravagance", "Trick", "Arrive", "Propose", "Divide", "Refuse", "Mistrust", "Deceive", "Cruelty", "Intolerance", "Trust",  "Excitement", "Activity", "Assist", "Care", "Negligence", "Passion", "Work", "Control", "Attract", "Failure", "Pursue", "Vengeance", "Proceedings", "Dispute", "Punish",  "Guide", "Transform", "Overthrow", "Oppress", "Change"],
-					"action2": ["Goals", "Dreams", "Environment", "Outside", "Inside", "Reality", "Allies", "Enemies", "Evil", "Good", "Emotions", "Opposition", "War", "Peace", "Innocent", "Love", "Spirit",  "Intellect", "Ideas", "Joy", "Messages", "Energy", "Balance", "Tension", "Friendship", "Physical", "Project", "Pleasures", "Pain", "Possessions", "Benefits", "Plans", "Lies",  "Expectations", "Legal", "Bureaucracy", "Business", "Path", "News", "Exterior", "Advice", "Plot", "Competition", "Prison", "Illness", "Food", "Attention", "Success", "Failure",  "Travel", "Jealousy", "Dispute", "Home", "Investment", "Suffering", "Wishes", "Tactics", "Stalemate", "Randomness", "Misfortune", "Death", "Disruption", "Power", "Burden",  "Intrigues", "Fears", "Ambush", "Rumor", "Wounds", "Extravagance", "Representative", "Adversities", "Opulence", "Liberty", "Military", "Mundane", "Trials", "Masses", "Vehicle",  "Art", "Victory", "Dispute", "Riches", "Normal", "Technology", "Hope", "Magic", "Illusions", "Portals", "Danger", "Weapons", "Animals", "Weather", "Elements", "Nature", "Masses",  "Leadership", "Fame", "Anger", "Information"],
+					"action1": ["Abandon", "Abuse", "Activity", "Adjourn", "Adversity", "Agree", "Ambush", "Antagonize", "Arrive", "Assist", "Attach", "Attainment", "Attract", "Befriend", "Bestow", "Betray", "Block", "Break", "Care", "Carelessness", "Carry", "Celebrate", "Change", "Communicate", "Control", "Create", "Cruelty", "Debase", "Deceive", "Decrease", "Delay", "Desert", "Develop", "Dispute", "Disrupt", "Divide", "Dominate", "Excitement", "Expose", "Extravagance", "Failure", "Fight", "Free", "Gratify", "Guide", "Haggle", "Harm", "Heal", "Imitate", "Imprison", "Increase", "Inform", "Inquire", "Inspect", "Intolerance", "Judge", "Kill", "Lie", "Malice", "Mistrust", "Move", "Neglect", "Negligence", "Open", "Oppose", "Oppress", "Overindulge", "Overthrow", "Passion", "Persecute", "Postpone", "Praise", "Proceedings", "Procrastinate", "Propose", "Punish", "Pursue", "Recruit", "Refuse", "Release", "Return", "Ruin", "Separate", "Spy", "Starting", "Stop", "Struggle", "Suppress", "Take", "Transform", "Travel", "Trick", "Triumph", "Truce", "Trust", "Usurp", "Vengeance", "Violate", "Waste", "Work"],
+					"action2": ["Adversities", "Advice", "Allies", "Ambush", "Anger", "Animals", "Art", "Attention", "Balance", "Benefits", "Burden", "Bureaucracy", "Business ", "Competition", "Conflict", "Danger", "Death", "Dispute", "Disruption", "Dreams", "Elements", "Emotions", "Enemies", "Energy", "Environment", "Evil ", "Expectations", "Exterior", "Extravagance", "Failure", "Fame", "Fears", "Food", "Friendship", "Goals", "Good", "Home", "Hope", "Ideas", "Illness", "Illusions", "Information", "Innocent", "Inside", "Intellect", "Intrigues", "Investment", "Jealousy", "Joy", "Leadership", "Legal", "Liberty", "Lies", "Love", "Magic", "Masses", "Messages", "Military", "Misfortune", "Mundane", "Nature", "News", "Normal", "Opposition", "Opulence", "Outside", "Pain", "Path", "Peace", "Physical", "Plans", "Pleasures", "Plot", "Portals", "Possessions", "Power", "Prison", "Project", "Public", "Randomness", "Reality", "Representative", "Riches", "Rumor", "Spirit", "Stalemate", "Success", "Suffering", "Tactics", "Technology", "Tension", "Travel", "Trials", "Vehicle", "Victory", "War", "Weapons", "Weather", "Wishes", "Wounds"],
 					"adventure tone": ["Action", "Activity", "Adventurous", "Adversity", "Aggressive", "Amusing", "Anxious", "Attainment", "Average", "Bizarre", "Bleak", "Bold", "Busy", "Calm", "Cheerful", "Colorful", "Combative", "Competitive", "Conflict", "Crazy", "Creepy", "Dangerous", "Dark", "Emotional", "Energetic", "Epic", "Evil", "Exotic", "Exterior", "Failure", "Fame", "Familiar", "Fearful", "Festive", "Fierce", "Fortunate", "Frantic", "Fresh", "Frightening", "Glorious", "Goals", "Hard", "Harsh", "Heavy", "Historical", "Hopeful", "Horrible", "Horror", "Important", "Inquire",  "Inspect", "Intellect", "Intense", "Interesting", "Intrigue", "Lavish", "Legal", "Lethal", "Light", "Macabre", "Magnificent", "Majestic", "Mature", "Meaningful", "Mechanical", "Messy",  "Military", "Misfortune", "Mistrust", "Modern", "Mundane", "Mystery", "Natural", "Normal", "Odd", "Personal", "Physical", "Power", "Pursuit", "Quaint", "Random", "Rare", "Reassuring",  "Remarkable", "Rough", "Rustic", "Scary", "Simple", "Slow", "Social", "Strong", "Struggle", "Tension", "Travel", "Trials", "Vengeance", "Very", "Violent", "Warlike", "Wild"],
 					"animal actions": ["Abandon", "Abnormal", "Aggressive", "Angry", "Anxious", "Assist", "Attack", "Befriend", "Bestow", "Bizarre", "Bold", "Break", "Busy", "Calm", "Careful", "Careless", "Cautious",  "Ceaseless", "Change", "Combative", "Curious", "Dangerous", "Deliberate", "Disinterested", "Disrupt", "Distracted", "Dominate", "Energetic", "Excited", "Exotic", "Familiar",  "Fearful", "Feeble", "Ferocious", "Fierce", "Fight", "Flee", "Follow", "Food", "Frantic", "Friendship", "Frightening", "Generous", "Gentle", "Graceful", "Harm", "Hasty", "Helpful",  "Helpless", "Hungry", "Hunt", "Ignore", "Imitate", "Implore", "Imprison", "Inspect", "Intense", "Irritating", "Juvenile", "Lazy", "Leave", "Lethal", "Loud", "Loyal", "Messy", "Mistrust",  "Move", "Mundane", "Mysterious", "Natural", "Neglect", "Normal", "Observe", "Odd", "Oppose", "Playful", "Protect", "Pursue", "Quiet", "Reassuring", "Release", "Return", "Scary",  "Simple", "Slow", "Strange", "Struggle", "Swift", "Tactics", "Take", "Threatening", "Tranquil", "Transform", "Trick", "Trust", "Violent", "Warn", "Waste", "Wild", "Yield"],
 					"cavern descriptors": ["Activity", "Ancient", "Animals", "Aromatic", "Art", "Beautiful", "Bizarre", "Bleak", "Blocked", "Boulder", "Bright", "Cliff", "Climb", "Closed", "Cold", "Collapsed", "Colorful", "Cracked",  "Cramped", "Crawl", "Creature", "Creepy", "Crumbling", "Curious", "Damaged", "Dangerous", "Dark", "Difficult", "Dirty", "Discouraging", "Dripping", "Dry", "Echo", "Elements", "Empty",  "Enormous", "Exit", "Exotic", "Fall", "Flora", "Frightening", "Full", "Fungus", "Good", "Hard", "Harm", "Harsh", "Hole", "Huge", "Icy", "Interesting", "Large", "Ledge", "Lethal", "Light",  "Loud", "Magnificent", "Message", "Messy", "Minerals", "Misfortune", "Mist", "Mysterious", "Natural", "Nature", "Normal", "Occupied", "Odd", "Open", "Path", "Plants", "Pool", "Quiet",  "Reassuring", "Remarkable", "Riches", "River", "Rock", "Rough", "Scary", "Simple", "Slippery", "Slope", "Small", "Smelly", "Smooth", "Sounds", "Stalactites", "Strange", "Threatening",  "Tight", "Tranquil", "Treasure", "Unnatural", "Unstable", "Untouched", "Warm", "Waste", "Water", "Windy"],
@@ -1571,6 +1584,7 @@
 					"character traits & flaws": ["Academic", "Additional", "Adversity", "Animal", "Assist", "Attack", "Attract", "Beautiful", "Benefits", "Bestow", "Bizarre", "Block", "Burden", "Combat", "Communicate", "Connection", "Control",  "Create", "Damaged", "Dangerous", "Decrease", "Defense", "Delicate", "Different", "Dominate", "Driven", "Emotion", "Enemy", "Energy", "Environment", "Exotic", "Failure", "Fame", "Familiar", "Fast",  "Feeble", "Flawless", "Focused", "Fortunate", "Friends", "Good", "Healthy", "Illness", "Impaired", "Increase", "Information", "Inspect", "Intellect", "Intense", "Interesting", "Lacking", "Large",  "Leadership", "Legal", "Less", "Lethal", "Limited", "Loyal", "Mental", "Military", "Misfortune", "Missing", "Move", "Multi", "Nature", "Object", "Odd", "Old", "Partial", "Passion", "Perception",  "Physical", "Poor", "Possessions", "Power", "Principles", "Public", "Rare", "Remarkable", "Resistant", "Resource", "Rich", "Sense", "Skill", "Small", "Social", "Specialized", "Spirit", "Strong",  "Suffering", "Technical", "Technology", "Tough", "Travel", "Trouble", "Unusual", "Very", "Weak", "Weapon", "Young"],
 					"city descriptors": ["Activity", "Aggressive", "Aromatic", "Average", "Beautiful", "Bleak", "Block", "Bridge", "Bustling", "Calm", "Chaotic", "Clean", "Cold", "Commerce", "Conflict", "Control", "Crime", "Dangerous",  "Dense", "Developed", "Dirty", "Efficient", "Energy", "Enormous", "Environment", "Exotic", "Extravagant", "Festive", "Flawless", "Frightening", "Government", "Happy", "Harsh", "Healthy", "Helpful",  "Hills", "History", "Illness", "Important", "Impressive", "Industry", "Interesting", "Intrigues", "Isolated", "Lacking", "Lake", "Large", "Lavish", "Leadership", "Liberty", "Loud", "Magnificent",  "Masses", "Meaningful", "Mechanical", "Messy", "Mighty", "Military", "Miserable", "Misfortune", "Modern", "Mountain", "Mundane", "Mysterious", "Nature", "Odd", "Old", "Oppress", "Opulence", "Peace",  "Poor", "Powerful", "Protected", "Public", "Quiet", "Rare", "Reassuring", "Remarkable", "River", "Rough", "Ruined", "Rustic", "Simple", "Small", "Sparse", "Structures", "Struggle", "Success",  "Suffering", "Technology", "Tension", "Travel", "Troubled", "Valuable", "Warm", "Water", "Weak", "Weather", "Wild", "Work"],
 					"clues": ["Abandoned", "Abnormal", "Academic", "Amusing", "Animal", "Aromatic", "Art", "Awkward", "Beautiful", "Bizarre", "Business", "Careless", "Classy", "Clean", "Clothing", "Cold", "Colorful", "Communication", "Complicated", "Container", "Creepy", "Damaged", "Dangerous", "Delicate", "Descriptive", "Detailed", "Dirty", "Disgusting", "Dispute", "Empty", "Exotic", "Extravagant", "Familiar", "Fancy", "Feminine", "Festive", "Food", "Frightening", "Furnishing", "Hard", "Heavy", "Hidden", "Home", "Information", "Intense", "Intrigue", "Investment", "Juvenile", "Large", "Legal", "Lethal", "Lies", "Loud", "Luxury", "Magnificent", "Masculine", "Meaningful", "Mechanical", "Messy", "Military", "Misfortune", "Modern", "Motive", "Mundane", "Mysterious", "Natural", "Neat", "Obscure", "Odd", "Official", "Old", "Partial", "Passion", "Personal", "Plot", "Portal", "Possession", "Powerful", "Quaint", "Rare", "Reassuring", "Ruined", "Rumor", "Scientific", "Simple", "Small", "Soft", "Technology", "Threatening", "Tool", "Travel", "Uncertain", "Valuable", "Vehicle", "Warm", "Waste", "Wealth", "Weapon", "Wet", "Work"],
+					"suspects": ["Afraid", "Aggressive", "Aggrieved", "Angry", "Anxious", "Argumentative", "Assist", "Associate", "Awkward", "Beautiful", "Bizarre", "Bold", "Brave", "Burden", "Business", "Busy", "Calm", "Careful", "Careless", "Classy", "Competition", "Connected", "Conniving", "Corrupt", "Creepy", "Dangerous", "Deceive", "Defiant", "Desperate", "Dispute", "Elusive", "Emotional", "Enemy", "Exotic", "Failure", "Fame", "Family", "Feminine", "Fleeing", "Foolish", "Frantic", "Friend", "Frightening", "Frivolous", "Happy", "Harmful", "Helpful", "Helpless", "Home", "Important", "Information", "Intellect", "Involved", "Jealousy", "Juvenile", "Lazy", "Leadership", "Legal", "Love", "Loyal", "Masculine", "Mature", "Misfortune", "Missing", "Motivated", "Mundane", "Mysterious", "Negligent", "Odd", "Official", "Old", "Passionate", "Poor", "Power", "Privileged", "Professional", "Protective", "Quiet", "Reassuring", "Representative", "Resourceful", "Rough", "Ruthless", "Secretive", "Skilled", "Stealthy", "Strong", "Success", "Suffering", "Suspicious", "Tension", "Threatening", "Unhelpful", "Unknown", "Unusual", "Vengeance", "Wealthy", "Witness", "Work", "Young"],
 					"creature abilities": ["Ambush", "Animate", "Armor", "Arrive", "Attach", "Attack", "Attract", "Bite", "Block", "Blunt", "Break", "Breath", "Carry", "Change", "Climb", "Cold", "Common", "Communicate", "Conceal",  "Contact", "Control", "Create", "Damage", "Dark", "Death", "Deceive", "Decrease", "Defense", "Depower", "Detect", "Disrupt", "Distract", "Dominate", "Drain", "Element", "Energy",  "Enhanced", "Entangle", "Environment", "Exotic", "Extra", "Fear", "Fight", "Fire", "Flight", "Harm", "Heal", "Illness", "Illusion", "Imitate", "Immune", "Imprison", "Increase",  "Intelligent", "Itself", "Kill", "Lethal", "Light", "Limited", "Magic", "Mind", "Move", "Multiple", "Natural", "Normal", "Open", "Others", "Paralyze", "Physical", "Pierce", "Poison",  "Proximity", "Pursue", "Ranged", "Rechargeable", "Resistance", "Self-Sufficient", "Senses", "Skill", "Sleep", "Speed", "Spy", "Stop", "Stun", "Substance", "Summon", "Suppress", "Swim",  "Take", "Telepathy", "Touch", "Transform", "Transformation", "Travel", "Trick", "Uncommon", "Vision", "Vulnerable", "Weak", "Weapon"],
 					"creature descriptors": ["Aggressive", "Agile", "Air", "Alien", "Amorphous", "Animal", "Aquatic", "Armored", "Avian", "Beast", "Beautiful", "Bony", "Bubbling", "Carapace", "Clawed", "Clothed", "Cold", "Colors", "Composite",  "Constructed", "Decayed", "Defensive", "Dripping", "Elemental", "Exotic", "Extra Limbs", "Fangs", "Feminine", "Feral", "Filthy", "Fire", "Fungal", "Furry", "Gaunt", "Glowing", "Group", "Growling",  "Healthy", "Horns", "Humanoid", "Inscribed", "Insect-like", "Insubstantial", "Intelligent", "Intimidating", "Large", "Levitating", "Liquid", "Loud", "Magical", "Mammalian", "Mandibles", "Many-eyed",  "Masculine", "Metallic", "Movement", "Mutant", "Natural", "Nightmarish", "Notable Ears", "Object", "Odorous", "Passive", "Plant", "Pulsating", "Reptilian", "Robotic", "Rooted", "Rough", "Shape",  "Shifting", "Silent", "Simple", "Slender", "Small", "Solid Color", "Solitary", "Spiderlike", "Spiked", "Steaming", "Sticky", "Stinger", "Stone", "Supernatural", "Tail", "Tentacled", "Tongue", "Toothy",  "Transparent", "Tree-like", "Twisted", "Undead", "Unnatural", "Verbal", "Warm", "Weak", "Weapon", "Wings", "Wooden", "Wormish"],
 					"dungeon descriptors": ["Abandoned", "Activity", "Adversity", "Ambush", "Ancient", "Animals", "Aromatic", "Art", "Beautiful", "Bizarre", "Bleak", "Chamber", "Clean", "Closed", "Cold", "Collapsed", "Colorful", "Creature",  "Creepy", "Damaged", "Danger", "Dark", "Dirty", "Door", "Dry", "Elements", "Empty", "Encounter", "Enemies", "Enormous", "Evil ", "Exit", "Exotic", "Extravagant", "Faded", "Familiar", "Fancy", "Fears",  "Foreboding", "Full", "Furnishings", "Gate", "Good", "Harm", "Heavy", "Helpful", "Hole", "Important", "Information", "Interesting", "Large", "Lavish", "Lethal", "Light", "Macabre", "Magnificent",  "Malice", "Meaningful", "Mechanical", "Messages", "Messy", "Mighty", "Military", "Misfortune", "Modern", "Mundane", "Mysterious", "Natural", "Neglect", "Normal", "Object", "Occupied", "Odd", "Open",  "Passage", "Path", "Portal", "Possessions", "Rare", "Reassuring", "Remarkable", "Riches", "Room", "Rough", "Ruined", "Rustic", "Scary", "Simple", "Small", "Smelly", "Sound", "Stairs", "Stonework",  "Technology", "Trap", "Treasure", "Unnatural", "Valuable", "Warm", "Watery"],
@@ -1585,8 +1599,88 @@
 					"sounds": ["Activity", "Agree", "Anger", "Animals", "Approach", "Assist", "Attention", "Attract", "Battle", "Befriend", "Beseeching", "Bizarre", "Busy", "Calm", "Carelessness", "Ceaseless", "Celebrate", "Cheerful",  "Combative", "Communicate", "Crazy", "Creaking", "Creepy", "Cries", "Danger", "Defiant", "Disagreeable", "Dispute", "Distant", "Emotions", "Energetic", "Exotic", "Explosion", "Familiar", "Feminine",  "Ferocious", "Fierce", "Fight", "Footsteps", "Frantic", "Frightening", "Growl", "Help", "Helpful", "Imitate", "Important", "Indistinct", "Industry", "Information", "Innocent", "Inquire", "Intense",  "Interesting", "Irritating", "Juvenile", "Kindly", "Lies", "Loud", "Machinery", "Masculine", "Masses", "Meaningful", "Messages", "Metallic", "Mysterious", "Natural", "Near", "Normal", "Odd", "Praise",  "Propose", "Pursue", "Quietly", "Reassuring", "Remarkable", "Roar", "Rumbling", "Scary", "Scraping", "Shouts", "Simple", "Slowly", "Softly", "Starting", "Stopping", "Strange", "Strong", "Struggle",  "Suffering", "Tapping", "Technology", "Threatening", "Tranquil", "Truce", "Voices", "Warlike", "Warning", "Water", "Weather", "Wild"],
 					"spell effects": ["Animal", "Animate", "Assist", "Attack", "Attract", "Bestow", "Bizarre", "Block", "Break", "Bright", "Burning", "Change", "Cloud", "Cold", "Communicate", "Conceal", "Conjure", "Control", "Counteract",  "Create", "Creature", "Curse", "Damage", "Dark", "Death", "Deceive", "Decrease", "Defense", "Destroy", "Detect", "Diminish", "Disease", "Dominate", "Duplicate", "Earth", "Elements", "Emotion", "Enemies",  "Energy", "Enhance", "Environment", "Exotic", "Expose", "Fire", "Fix", "Food", "Free", "Group", "Guide", "Hamper", "Harm", "Heal", "Helpful", "Ice", "Illusion", "Imbue", "Immunity", "Imprison",  "Information", "Inspect", "Life", "Light", "Limitation", "Liquid", "Loud", "Manipulation", "Mind", "Nature", "Object", "Others", "Pain", "Physical", "Plant", "Poison", "Portal", "Powerful", "Protect",  "Radius", "Ranged", "Resistance", "Restore", "Self", "Senses", "Shield", "Soul", "Strength", "Stun", "Summon", "Time", "Transformation", "Trap", "Travel", "Trigger", "Uncertain", "Undead", "Wall",  "Water", "Weak", "Weapon", "Weather"],
 					"starship descriptors": ["Abnormal", "Activity", "Adversity", "Assist", "Automated", "Average", "Battle", "Beautiful", "Bestow", "Bizarre", "Bleak", "Block", "Bright", "Business ", "Clean", "Cold", "Colorful", "Combative",  "Communicate", "Computer", "Contain", "Controls", "Creepy", "Crew", "Damaged", "Danger", "Dark", "Death", "Defense", "Empty", "Energy", "Engine", "Enormous", "Environment", "Exit", "Exotic", "Exterior",  "Fancy", "Fearful", "Food", "Full", "Health", "Helpful", "Important", "Imprison", "Inform", "Information", "Inquire", "Interesting", "Lacking", "Large", "Lavish", "Leadership", "Lethal", "Loud",  "Magnificent", "Maintenance", "Majestic", "Masses", "Meaningful", "Mechanical", "Messages", "Messy", "Mighty", "Military", "Modern", "Mundane", "Mysterious", "Natural", "Normal", "Odd", "Portal",  "Possessions", "Power", "Powerful", "Prison", "Quiet", "Rare", "Reassuring", "Remarkable", "Room", "Rough", "Ruined", "Scary", "Simple", "Small", "Sounds", "Start", "Stop", "Supplies", "Survival",  "System", "Tactics", "Technology", "Travel", "Valuable", "Vehicle", "Warm", "Weapon", "Work"],
-					"suspects descriptors": ["Afraid", "Aggressive", "Aggrieved", "Angry", "Anxious", "Argumentative", "Assist", "Associate", "Awkward", "Beautiful", "Bizarre", "Bold", "Brave", "Burden", "Business", "Busy", "Calm", "Careful", "Careless", "Classy", "Competition", "Connected", "Conniving", "Corrupt", "Creepy", "Dangerous", "Deceive", "Defiant", "Desperate", "Dispute", "Elusive", "Emotional", "Enemy", "Exotic", "Failure", "Fame", "Family", "Feminine", "Fleeing", "Foolish", "Frantic", "Friend", "Frightening", "Frivolous", "Happy", "Harmful", "Helpful", "Helpless", "Home", "Important", "Information", "Intellect", "Involved", "Jealousy", "Juvenile", "Lazy", "Leadership", "Legal", "Love", "Loyal", "Masculine", "Mature", "Misfortune", "Missing", "Motivated", "Mundane", "Mysterious", "Negligent", "Odd", "Official", "Old", "Passionate", "Poor", "Power", "Privileged", "Professional", "Protective", "Quiet", "Reassuring", "Representative", "Resourceful", "Rough", "Ruthless", "Secretive", "Skilled", "Stealthy", "Strong", "Success", "Suffering", "Suspicious", "Tension", "Threatening", "Unhelpful", "Unknown", "Unusual", "Vengeance", "Wealthy", "Witness", "Work", "Young"]
-				}
+					"suspects descriptors": ["Afraid", "Aggressive", "Aggrieved", "Angry", "Anxious", "Argumentative", "Assist", "Associate", "Awkward", "Beautiful", "Bizarre", "Bold", "Brave", "Burden", "Business", "Busy", "Calm", "Careful", "Careless", "Classy", "Competition", "Connected", "Conniving", "Corrupt", "Creepy", "Dangerous", "Deceive", "Defiant", "Desperate", "Dispute", "Elusive", "Emotional", "Enemy", "Exotic", "Failure", "Fame", "Family", "Feminine", "Fleeing", "Foolish", "Frantic", "Friend", "Frightening", "Frivolous", "Happy", "Harmful", "Helpful", "Helpless", "Home", "Important", "Information", "Intellect", "Involved", "Jealousy", "Juvenile", "Lazy", "Leadership", "Legal", "Love", "Loyal", "Masculine", "Mature", "Misfortune", "Missing", "Motivated", "Mundane", "Mysterious", "Negligent", "Odd", "Official", "Old", "Passionate", "Poor", "Power", "Privileged", "Professional", "Protective", "Quiet", "Reassuring", "Representative", "Resourceful", "Rough", "Ruthless", "Secretive", "Skilled", "Stealthy", "Strong", "Success", "Suffering", "Suspicious", "Tension", "Threatening", "Unhelpful", "Unknown", "Unusual", "Vengeance", "Wealthy", "Witness", "Work", "Young"],
+				};
+
+				// mythic magazine vol.2, 3, 5, and 7.
+				var mythic_location = {
+					"area elements": {
+						"large": { 5: "Expected", 8: "Expected", 10: "Random", 11: "Known, or Random", 12: "Known, or Expected", 13: "Special", 14: "Complete", 15: "Complete", 16: "Expected, PP-6" },
+						"small": { 5: "Expected", 8: "Expected", 10: "Random", 11: "Known, or Random", 12: "Complete", 13: "Known, or Special", 14: "Complete", 15: "Complete", 16: "Expected, PP-6" },
+						"encounters & objects": { 5: "None", 8: "Expected", 10: "Random", 11: "Known, or Random", 12: "None", 13: "Known, or Special", 14: "Expected", 15: "Expected", 16: "Expected, PP-6" }
+					},
+					"region": {
+						"wilderness": { 5: "Dry and arid", 10: "Wet", 15: "Dense vegetation", 20: "Rocky", 25: "Lots of open space", 30: "Sandy, dirty, or rough", 35: "Barren", 40: "Active natural elements, such as a volcano, waterfall, river, winds, rain, etc.", 45: "Hot", 50: "Cold", 55: "Hilly or sloping", 60: "Difficult to travel through", 65: "Plant life", 70: "Active animals", 75: "Mountainous", 80: "Cliffs", 85: "Dangerous", 90: "Body of water", 90: "Specific purpose", 95: "Exotic", 100: "[Descriptions]" },
+						"city": { 5: "Sprawling and large", 10: "Simple and sparse", 15: "Modern", 20: "Old", 25: "Thriving or bustling", 30: "Inactive or abandoned", 35: "Quiet, sleepy", 40: "Incorporates a natural element, roll on the Wilderness column", 45: "Dangerous", 50: "Well ordered and organized", 55: "In crisis", 60: "Crumbling or run down", 65: "Wealthy and booming", 70: "Densely populated", 75: "Clean", 80: "Friendly", 85: "Hostile", 90: "Specific purpose", 90: "Specific purpose", 95: "Exotic", 100: "[Descriptions]" },
+						"structure": { 5: "Well made and tended", 10: "Run down", 15: "Busy", 20: "Inactive or abandoned", 25: "Ancient, of a bygone era", 30: "Old", 35: "Modern", 40: "Incorporates a natural element, roll on the Wilderness column", 45: "Simple or small", 50: "Tall or large", 55: "Imposing", 60: "Welcoming", 65: "Functional", 70: "Quiet", 75: "Sturdy", 80: "Dangerous", 85: "Occupied", 90: "Specific purpose", 95: "Exotic", 100: "[Descriptions]" },
+						"village": { 5: "Landscape is mountainous and rough.", 10: "Heavily built into its natural surroundings.", 15: "Near a body of water, such as a river, lake, or ocean.", 20: "Near forests or wildlands.", 25: "The whole place is centered around one area or feature.", 30: "Sleepy and quiet.", 35: "Well developed.", 40: "Crudely developed.", 45: "Everyone here dresses the same or similarly.", 50: "Isolated, very few ways in or out.", 55: "Situated on an island of some kind.", 60: "Dusty and dry.", 65: "Quaint and idyllic.", 70: "Protected by a wall, gate, or other defensive barrier.", 80: "Unusual color palette of the buildings and place.", 90: "[Town]", 95: "Exotic", 100: "[Descriptions]" },
+						"town": { 5: "Landscape is flat.", 10: "Landscape is hilly.", 15: "Near a body of water, such as a river, lake, or ocean.", 20: "Near forests or wildlands.", 25: "A river runs through it.", 30: "Sleepy and quiet.", 35: "Criss-crossed with waterways.", 40: "Full of narrow, winding streets.", 45: "Lots of monuments and historical markers.", 50: "Meticulously planned out and constructed community.", 55: "Full of greenery and natural areas.", 60: "Incredibly clean.", 65: "Unusual method of public transportation.", 70: "Stunningly beautiful.", 80: "[Village]", 90: "[Metropolis]", 95: "Exotic", 100: "[Descriptions]" },
+						"metropolis": { 5: "Old and decrepit.", 10: "Highly congested with traffic.", 15: "Near a body of water, such as a river, lake, or ocean.", 20: "Modern architecture.", 25: "Classic looking.", 30: "Known for massive bridges.", 35: "Good public transportation.", 40: "A river runs through it.", 45: "Pollution is a problem.", 50: "Dark and gloomy place.", 55: "Full of greenery and natural areas.", 60: "Has many spires and towers.", 65: "Foggy and cold.", 70: "Very heavily built up and dense.", 80: "[Village]", 90: "[Town]", 95: "Exotic", 100: "[Descriptions]" },
+						"cavern dungeon": { 5: "Dry and warm", 10: "Wet or moist", 15: "Mossy or fungi", 20: "Stalactites and stalagmites", 25: "Large and spacious", 30: "Tight and cramped", 35: "Cave-ins", 40: "Active natural elements, such as flowing lava, underground river, rushing wind, etc.", 45: "Thick with plant life", 50: "Cold", 55: "Set in a mountain", 60: "Near a body of water", 65: "[Ancient Dungeon]", 70: "[Palatial Dungeon]", 75: "Animal noises inside", 80: "Near ancient ruins", 85: "Difficult to travel through", 90: "In a jungle or wilderness", 95: "Exotic", 100: "[Descriptions]" },
+						"ancient dungeon": { 5: "Dry and warm", 10: "Wet or moist", 15: "Crumbling, in ruins", 20: "Cobwebs", 25: "Large and spacious", 30: "Lots of stone work", 35: "Cave-ins", 40: "Active natural elements, such as flowing lava, underground river, rushing wind, etc.", 45: "Thick with plant life", 50: "Cold", 55: "Set in a mountain", 60: "Near a body of water", 65: "[Cavern Dungeon]", 70: "[Palatial Dungeon]", 75: "Within ancient ruins", 80: "In a jungle or wilderness", 85: "Functional", 90: "Specific purpose", 95: "Exotic", 100: "[Descriptions]" },
+						"palatial dungeon": { 5: "In good shape", 10: "In a jungle or wilderness", 15: "Crumbling, in ruins", 20: "Cobwebs", 25: "Grand and imposing", 30: "Set in a desert or barren place", 35: "A once regal and opulent place", 40: "Active natural elements, such as a river flowing through it, windy, etc.", 45: "Thick with plant life", 50: "Cold", 55: "Set onto a mountain", 60: "Near a body of water", 65: "[Ancient Dungeon]", 70: "[Cavern Dungeon]", 75: "Shrouded in mist", 80: "Active animal life around it", 85: "Functional", 90: "Specific purpose", 95: "Exotic", 100: "[Descriptions]" },
+						"dark woods": { 5: "Thick with trees", 10: "Moist and jungle-like", 15: "Shrouded in mist", 20: "Dry and barren", 25: "Man-made ruins are visible", 30: "Too quiet", 35: "Covers a very large area", 40: "Far removed from civilization", 45: "Has fissures and cliffs", 50: "A sickly river flows through it", 55: "Has prominent hills", 60: "Active natural elements, like volcanic activity, geysers, waterfalls, etc.", 65: "Cold", 70: "Has a lake in it", 80: "[Ancient Woods]", 90: "[Horror Woods]", 95: "Exotic", 100: "[Descriptions]" },
+						"ancient woods": { 5: "Thick with trees", 10: "Moist and mossy", 15: "Lots of mushrooms", 20: "Lots of animal noises", 25: "Shrouded in mist", 30: "Lush and full of life", 35: "Covers a very large area", 40: "Far removed from civilization", 45: "Thick canopy overhead that blocks out much of the sky", 50: "A vibrant river flows through it", 55: "Strangely shaped trees", 60: "Active natural elements, like geysers, waterfalls, river rapids, etc.", 65: "Heavy with flowers", 70: "Has a lake in it", 80: "[Dark Woods]", 90: "[Horror Woods]", 95: "Exotic", 100: "[Descriptions]" },
+						"horror woods": { 5: "Thick with trees", 10: "Wet and swampy", 15: "Dry and barren", 20: "Ground covered in dead leaves", 25: "Lots of rocks and boulders", 30: "Shrouded in mist", 35: "Covers a very large area", 40: "Far removed from civilization", 45: "Strange noises", 50: "A river flows through it", 55: "Has prominent hills", 60: "Active natural elements, like geysers, waterfalls, etc.", 65: "Cold", 70: "Has a lake in it", 80: "[Dark Woods]", 90: "[Ancient Woods]", 95: "Exotic", 100: "[Descriptions]" },
+						"small spaceship": { 5: "New and high-tech.", 10: "Bearing strange markings or insignia.", 15: "Obviously damaged and in crisis.", 20: "Sleek and elegant design.", 25: "Crude and rough design.", 30: "Adrift without power.", 35: "Well armed.", 40: "Very unusual design or shape.", 45: "A bright color.", 50: "A civilian or personal ship.", 55: "A pod or shuttle from a larger craft.", 60: "Made from an unusual material.", 65: "Disguised to look like something else.", 70: "Small, quick, and nimble.", 80: "[Large Starship]", 90: "[Space Station]", 95: "Exotic", 100: "[Descriptions]" },
+						"large starship": { 5: "New and high-tech.", 10: "Very large.", 15: "Obviously damaged and in crisis.", 20: "Sleek and elegant design.", 25: "Crude and rough design.", 30: "Adrift without power.", 35: "Well armed.", 40: "Very unusual design or shape.", 45: "Very flat and long.", 50: "Bulbous design.", 55: "Composed of components, modular.", 60: "Made from an unusual material.", 65: "Featuring solar sails.", 70: "One feature dominates, like massive thrusters or habitat ring.", 80: "[Small Spaceship]", 90: "[Space Station]", 95: "Exotic", 100: "[Descriptions]" },
+						"space station": { 5: "New and high-tech.", 10: "Truly massive, a city in space.", 15: "Obviously damaged and in crisis.", 20: "Sleek and elegant design.", 25: "Crude and rough design.", 30: "Seemingly abandoned.", 35: "Well armed.", 40: "Very unusual design or shape.", 45: "In orbit around something or near a feature in space.", 50: "In a remote place.", 55: "Composed of components, modular.", 60: "Built into something natural, like an asteroid.", 65: "Featuring large domes.", 70: "Bilateral, one half is identical to the other half.", 80: "[Small Spaceship]", 90: "[Large Starship]", 95: "Exotic", 100: "[Descriptions]" },						
+						"dimension": { 5: "Like our dimension in terms of science and laws of physics.", 10: "A small, pocket dimension of very limited scope.", 15: "Alternate, nearly identical, version of our dimension.", 20: "Science and physics works very differently here.", 25: "Composed of energy or spirit, there is nothing physical here.", 30: "A single element is very central, such as fire or water.", 35: "Magic, or very weird science, is very prevalent here.", 40: "This is a dying dimension near the verge of collapse.", 45: "A turbulent, chaotic dimension.", 50: "A single enclosed space, such as a labyrinth.", 55: "Based on a single idea, such as a forest or a meadow full of ponds.", 60: "Familiar to our own dimension, but also very different.", 65: "Fantastical.", 70: "Nightmarish.", 80: "A paradise.", 90: "[Planet]", 95: "Exotic", 100: "[Descriptions]" },
+						"planet": { 5: "Colorful.", 10: "Small, more of a moon.", 15: "Dry, barren, and sandy.", 20: "Icy and cold.", 25: "It is livable, you don’t need an environment suit to survive.", 30: "It is an unusual shape.", 35: "Warm.", 40: "Gaseous.", 45: "Volatile and dangerous, very hostile environment.", 50: "Earth-like with breathable air, flourishing plants and animals.", 55: "Shattered, it is broken up into many pieces.", 60: "Full of “monsters”, hostile and terrifying alien life.", 65: "Watery.", 70: "Rocky.", 80: "A paradise.", 90: "Thick with lush plant life.", 95: "Exotic", 100: "[Descriptions]" },
+						"era": { 5: "1 hour or less.", 10: "1 week.", 15: "1 month.", 20: "6 month.", 25: "1 year.", 30: "10 years.", 35: "50 years.", 40: "100 years.", 45: "150 years.", 50: "500 years.", 55: "1,000 years.", 60: "1,500 years.", 65: "10,000 years.", 70: "100,000 years or more.", 80: "The past.", 90: "The future.", 95: "Exotic", 100: "[Descriptions]" }
+					},
+					"story": {
+						"village": { 5: "The place is newly established.", 10: "Relying on one primary form of subsistence, such as farming or fishing.", 15: "Peaceful.", 20: "Poor.", 25: "Heavily agricultural.", 30: "The population is composed primarily of one type of community.", 35: "Home to a cultural artifact.", 40: "Growing and thriving.", 45: "Strong sense of community.", 50: "Friendly population.", 55: "Suspicious of strangers.", 60: "A strong personality is an authority figure here.", 65: "Currently in crisis.", 70: "Currently engaged in an annual festival or event.", 80: "[Town]", 90: "[Metropolis]", 95: "Exotic", 100: "[Action]" },
+						"town": { 5: "Prizes education, is a center of learning.", 10: "Strange rumors are associated with this place.", 15: "High standard of living.", 20: "A single industry or business dominates.", 25: "Heavily agricultural.", 30: "Fractured culturally, no sense of a common community.", 35: "A place in decline.", 40: "Growing and thriving.", 45: "They are deeply into sports.", 50: "Friendly population.", 55: "Very little industry, mostly a place where people live and go to work elsewhere.", 60: "The place just seems a little odd somehow.", 65: "Currently in crisis.", 70: "Currently engaged in an annual festival or event.", 80: "[Village]", 90: "[Metropolis]", 95: "Exotic", 100: "[Action]" },
+						"metropolis": { 5: "Once the site of a great battle or war.", 10: "A capitol or seat of some aspect of government.", 15: "An economic hub.", 20: "Very restrictive government.", 25: "A military center.", 30: "Heavy industrialization.", 35: "A place in decline.", 40: "Growing and thriving.", 45: "Known for its corruption and crime.", 50: "Clear class distinctions among the inhabitants.", 55: "Great wealth.", 60: "Rampant poverty.", 65: "Currently in crisis.", 70: "A mingling of diverse cultures.", 80: "[Village]", 90: "[Town]", 95: "Exotic", 100: "[Action]" },
+						"cavern dungeon": { 5: "Home to something powerful and evil", 10: "Overrun by underground creatures", 15: "Appeared suddenly, like an earthquake opening a fissure or a landslide revealing a cave", 20: "Known to be unstable inside", 25: "The source of monsters plaguing nearby towns", 30: "Associated with a war or large scale conflict", 35: "The place is associated with a particular group", 40: "Associated with magic", 45: "The source of a mystery", 50: "Associated with the undead", 55: "The location has been appropriated for evil purposes", 60: "Home to a group or community of some kind", 65: "Associated with a religion or cult", 70: "A powerful object is housed within", 75: "No one who has gone in has come out", 80: "Related to stories going back centuries", 85: "[Ancient Dungeon]", 90: "[Palatial Dungeon]", 95: "Exotic", 100: "[Actions]" },
+						"ancient dungeon": { 5: "Home to something powerful and evil", 10: "Originally built for evil purposes", 15: "Originally built for good purposes, such as a mining colony or underground city", 20: "The place was brought to ruin by a calamity", 25: "The source of monsters plaguing nearby towns", 30: "The place is cursed", 35: "The place is associated with a particular group", 40: "Associated with magic", 45: "The source of a mystery", 50: "Associated with the undead", 55: "Known to be full of puzzles", 60: "Home to a group or community of some kind", 65: "Associated with a religion or cult", 70: "A powerful object is housed within", 75: "No one who has gone in has come out", 80: "Known to be full of traps", 85: "[Cavern Dungeon]", 90: "[Palatial Dungeon]", 95: "Exotic", 100: "[Actions]" },
+						"palatial dungeon": { 5: "Home to something powerful and evil", 10: "Once a vibrant and important place, like the seat of a government", 15: "Associated with decadence or corruption", 20: "The place was brought to ruin by a calamity", 25: "The source of monsters plaguing nearby towns", 30: "The place is cursed", 35: "The place is associated with a particular group", 40: "Associated with magic", 45: "The source of a mystery", 50: "Associated with the undead", 55: "Associated with a ruler", 60: "Home to a group or community of some kind", 65: "Associated with a religion or cult", 70: "A powerful object is housed within", 75: "A great tragedy happened here once", 80: "Haunted", 85: "[Cavern Dungeon]", 90: "[Ancient Dungeon]", 95: "Exotic", 100: "[Actions]" },						
+						"dark woods": { 5: "Something evil and powerful resides there", 10: "Few have come out alive or sane", 15: "Dangerous creatures are known to be there", 20: "The woods changed recently, suddenly becoming menacing", 25: "The woods are a known source of creatures coming out to plague nearby towns", 30: "Associated with a particular group", 35: "Locals avoid it at all costs", 40: "Haunted", 45: "Associated with the undead", 50: "The location has been appropriated for evil purposes", 55: "Related to stories going back centuries", 60: "A disaster struck the woods", 65: "The place is cursed", 70: "Known to once be a healthy and wholesome place", 80: "[Ancient Woods]", 90: "[Horror Woods]", 95: "Exotic", 100: "[Actions]" },
+						"ancient woods": { 5: "Something ancient and powerful resides there", 10: "Few who have gone in have emerged again", 15: "Strange creatures are known to be there", 20: "The forest itself is thought to be alive and sentient", 25: "Locals avoid it at all costs", 30: "Associated with a particular group", 35: "Known to be deeply magical", 40: "Haunted", 45: "Associated with nature-focused supernatural creatures", 50: "A strange and solitary figure is believed to live there", 55: "Related to stories going back centuries", 60: "A disaster struck the woods", 65: "The woods are revered by the local population", 70: "Known to once be a healthy and wholesome place", 80: "[Dark Woods]", 90: "[Horror Woods]", 95: "Exotic", 100: "[Actions]" },
+						"horror woods": { 5: "Something evil resides there", 10: "People have been known to disappear there", 15: "Strange people are known to be in the woods", 20: "Strange things started happening there recently", 25: "Odd totems and markers can be found in the woods", 30: "Associated with a particular group", 35: "A tragedy occurred in the woods once", 40: "The source of a mystery", 45: "Others have investigated the woods and failed", 50: "Locals avoid it at all costs", 55: "Haunted", 60: "A disaster struck the woods", 65: "The place is cursed", 70: "Known to once be a healthy and wholesome place", 80: "[Dark Woods]", 90: "[Ancient Woods]", 95: "Exotic", 100: "[Actions]" },
+						"small spaceship": { 5: "This ship has been used for smuggling or criminal activity.", 10: "The ship has not been responding to communications.", 15: "A fighter ship.", 20: "A cargo ship.", 25: "Someone or something important is on board.", 30: "Everyone on board is dead.", 35: "The ship has a great many mechanical problems.", 40: "Of unknown origin or purpose.", 45: "Had been stolen.", 50: "An unmanned probe.", 55: "Is wanted by many.", 60: "Is on the run.", 65: "Emitting a distress signal.", 70: "The ship of an ally.", 80: "[Large Starship]", 90: "[Space Station]", 95: "Exotic", 100: "[Actions]" },
+						"large starship": { 5: "The ship of an enemy.", 10: "The ship has not been responding to communications.", 15: "An exploratory and science ship.", 20: "A battlship.", 25: "The ship is owned by a powerful organization.", 30: "Led by a famous captain.", 35: "The ship has a great many mechanical problems.", 40: "Of unknown origin or purpose.", 45: "The ship had been lost for a long, time.", 50: "Returning from a mission.", 55: "A crisis had happened here.", 60: "The ship has unusual properties or technologies.", 65: "Emitting a distress signal.", 70: "The ship of an ally.", 80: "[Small Spaceship]", 90: "[Space Station]", 95: "Exotic", 100: "[Actions]" },
+						"space station": { 5: "A relic from a long lost civilization.", 10: "It is currently experiencing unrest.", 15: "There is a sizable population living here.", 20: "A mining or industrial facility.", 25: "The station is owned by a powerful organization.", 30: "A waystation for travelers.", 35: "A military outpost.", 40: "Is politicaly important.", 45: "Peaceful.", 50: "Has a very long history.", 55: "A crisis had happened here.", 60: "Represents a danger.", 65: "A reserach facility.", 70: "The station of an enemy.", 80: "[Small Spaceship]", 90: "[Large Starship]", 95: "Exotic", 100: "[Actions]" },						
+						"dimension": { 5: "Known for drawing in elements of other dimensions.", 10: "The place is primarily a prison of some kind.", 15: "An “evil” version of our own universe.", 20: "Linked to something we know, such as dreams or a specific myth.", 25: "The entire dimension has a single ruler.", 30: "Home to something unspeakable.", 35: "Created artificially.", 40: "Being there changes you in some way.", 45: "Rich in a resource you need.", 50: "Experiencing a crisis or catastrophe at the moment.", 55: "The health of this dimension affects other dimensions.", 60: "No additional story descriptor.", 65: "[Planet]", 70: "Difficult to return from.", 80: "A bridge between other dimensions.", 90: "Like our universe, but some concepts are reversed.", 95: "Exotic", 100: "[Actions]" },
+						"planet": { 5: "Protected: inhabitants detect you and react immediately.", 10: "Relics and ruins of a past civilization.", 15: "The entire place itself is alive in some way.", 20: "A pleasure world, where others come to have fun.", 25: "The entire place has a single ruler.", 30: "Home to a technologically advanced culture.", 35: "Home to a primitive culture.", 40: "There is a dominant, intelligent species ruling.", 45: "Rich in a resource you need.", 50: "Experiencing a crisis or catastrophe at the moment.", 55: "The dominant species already has opinions about you.", 60: "No additional story descriptor.", 65: "Used as a resource by another culture.", 70: "Something very strange is happening here.", 80: "The place is artificial, it was constructed.", 90: "Your kind has been here before.", 95: "Exotic", 100: "[Actions]" },
+						"era": { 5: "War.", 10: "Post-apocalyptic.", 15: "A time of prosperity.", 20: "An alternate time-line to your own, similar but with changes.", 25: "You encounter immediate difficulty.", 30: "Contains a resource you need.", 35: "Perfect and idyllic.", 40: "Historical event, such as the Titanic sinking.", 45: "Not as it should be.", 50: "Experiencing a crisis or catastrophe at the moment.", 55: "A time of personal significance to the character.", 60: "No additional story descriptor.", 65: "Something that shouldn’t be here is in this era.", 70: "Encounter a famous historical figure.", 80: "Time travelling triggers another event happening.", 90: "You arrive in a center of activity.", 95: "Exotic", 100: "[Actions]" }
+					},
+					"connector": {
+						"village": { 5: "Foot path", 7: "Light road", 9: "Accessway through a wall or enclosure", 10: "Heavy road", 11: "Open field", 12: "Open field", 15: "Bridge", 18: "Stairs", 20: "Light road", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"town": { 5: "Light road", 7: "Heavy road", 9: "Bridge", 10: "Foot path", 11: "Accessway through a fence or enclosure", 12: "Alley", 15: "Light road", 18: "Heavy road", 20: "Stairs", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"metropolis": { 5: "Heavy road", 7: "Heavy road", 9: "Light road", 10: "Foot path", 11: "Accessway through a fence or enclosure", 12: "Alley", 15: "Bridge", 18: "Alley", 20: "Stairs", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"cavern dungeon": { 5: "Simple cavern tunnel", 8: "Natural downward slope", 9: "Natural upward slope", 10: "Hole above you", 11: "Walk space along the edge of a crevasse", 12: "Natural bridge", 15: "Shaft going down", 18: "Large cavern tunnel", 20: "Cramped tunnel or crawlspace", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"ancient dungeon": { 5: "Simple hallway", 8: "Stairs going down", 9: "Stairs going up", 10: "Hole above you", 11: "Simple hallway", 12: "Rickety bridge", 15: "Well or hole in the floor", 18: "Wide hallway", 20: "Simple hallway", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"palatial dungeon": { 5: "Simple hallway", 8: "Stairs going down", 9: "Stairs going up", 10: "Simple hallway", 11: "Balcony or gallery", 12: "Bridge", 15: "Simple hallway", 18: "Grand, wide hallway", 20: "Simple hallway", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"dark woods": { 5: "Natural path through the trees", 8: "Natural downward slope", 9: "Natural upward slope", 10: "A thicket of tight trees", 11: "A small clearing", 12: "Have to climb over something simple and large like a fallen tree", 15: "Have to climb down something simple, like a small embankment", 18: "Loose collection of trees", 20: "Have to cross a stream", 30: "Leads directly to another Area", 40: "Expected", 90: "Same", 100: "[Descriptions]" },
+						"ancient woods": { 5: "Natural path through the trees", 8: "Natural downward slope", 9: "Natural upward slope", 10: "Dense area of brush", 11: "A small meadow", 12: "Have to push past a collection of boulders", 15: "Have to climb down something simple, like a small embankment", 18: "Loose collection of trees", 20: "Have to cross a stream", 30: "Leads directly to another Area", 40: "Expected", 90: "Same", 100: "[Descriptions]" },
+						"horror woods": { 5: "Natural path through the trees", 8: "Natural downward slope", 9: "Natural upward slope", 10: "Have to push past a patch of dead trees and branches", 11: "A small patch of brackish water", 12: "Have to cross a stream", 15: "Have to climb down something simple, like a small embankment", 18: "Loose collection of trees", 20: "Loose collection of trees", 30: "Leads directly to another Area", 40: "Expected", 90: "Same", 100: "[Descriptions]" },
+						"small spaceship": { 5: "Simple hallway", 7: "Short flight of stairs or ramp going down.", 9: "Short flight of stairs or ramp going up.", 10: "Hatch or bulkhead to pass through.", 11: "Simple hallway, cramped.", 12: "Simple hallway, cramped.", 15: "Hatch or bulkhead to pass through.", 18: "Simple hallway", 20: "A simple or common doorway to pass through.", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"large starship": { 5: "Simple hallway", 7: "Stairs or ladder going down", 9: "Stairs or ladder going up", 10: "Hatch or bulkhead to pass through.", 11: "Simple hallway, wide and spacious.", 12: "Elevator or fast travel pod of some kind.", 15: "Simple hallway", 18: "Simple hallway", 20: "A simple or common doorway to pass through.", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" },
+						"space station": { 5: "Simple hallway", 7: "Stairs or ladder going down", 9: "Stairs or ladder going up", 10: "Hatch or bulkhead to pass through.", 11: "Wide open space of some kind.", 12: "Elevator or fast travel pod of some kind.", 15: "Simple hallway", 18: "Deck overlooking another Area.", 20: "A simple or common doorway to pass through.", 30: "Leads directly to another Area", 40: "Expected", 65: "Same", 75: "Same, with intersection", 80: "Same, with a curve or turn", 90: "Same, with a side Area", 100: "[Descriptions]" }
+					},
+					"special elements": { 10: "Supersize", 20: "Barely There", 30: "This is Bad", 40: "This is Good", 50: "Multi-Element", 65: "Exit Here", 80: "Return", 90: "Going Deeper", 100: "Common Ground" },
+					"location": ["Abandoned", "Amusing", "Ancient", "Aromatic", "Beautiful", "Bleak", "Average", "Bizarre", "Calm", "Classy", "Clean", "Colorful", "Creepy", "Cold", "Cute", "Damaged", "Dangerous", "Dark", "Dirty", "Delightful", "Drab", "Disgusting", "Enormous", "Dry", "Empty", "Enormous", "Exotic", "Fortunate", "Familiar", "Frightening", "Full", "Fancy", "Festive", "Harsh", "Horrible", "Important", "Helpful", "Lavish", "Magnificent", "Intense", "Messy", "Military", "Loud", "Modern", "Majestic", "Meaningful", "Extravagant", "Mundane", "Mysterious", "Natural", "Odd", "Official", "Peaceful", "Small", "Positive", "Reassuring", "Quaint", "Quiet", "Ruined", "Rustic", "Simple", "Threatening", "Smelly", "Tranquil", "Warm", "Watery", "Negative", "Enclosed", "Domestic", "New", "Open", "Safe", "Expected", "Unexpected", "Strange", "Active", "Inactive", "Harmful", "Primitive", "Protection", "Unusual", "Bright", "Ornate", "Atmosphere", "Sounds", "Resourceful", "Purposeful", "Personal", "Exclusive", "Intriguing", "Echo", "Unsteady", "Moving", "Cluttered", "Storage", "Confusing", "Lonely", "Long", "Tall", "Artistic"],
+					"encounter": ["Abnormal", "Aggressive", "Angry", "Anxious", "Beautiful", "Average", "Bold", "Busy", "Calm", "Careless", "Cautious", "Cheerful", "Combative", "Bizarre", "Crazy", "Curious", "Dangerous", "Defiant", "Classy", "Delightful", "Creepy", "Energetic", "Enormous", "Excited", "Fearful", "Ferocious", "Foolish", "Fortunate", "Frantic", "Frightening", "Cute", "Generous", "Gentle", "Glad", "Graceful", "Happy", "Helpful", "Helpless", "Innocent", "Intense", "Lazy", "Defeated", "Loud", "Loyal", "Majestic", "Disgusting", "Enormous", "Miserable", "Mysterious", "Feeble", "Odd", "Official", "Peaceful", "Playful", "Positive", "Powerful", "Exotic", "Familiar", "Slow", "Horrible", "Swift", "Threatening", "Violent", "Wild", "Important", "Lonely", "Mighty", "Military", "Mundane", "Powerful", "Reassuring", "Small", "Smelly", "Strong", "Watery", "Weak", "Ambush", "Harmful", "Trap", "Friend", "Foe", "Negative", "Evil", "Animal", "Expected", "Unexpected", "Strange", "Armed", "Active", "Inactive", "Multiple", "Single", "Primitive", "Unusual", "Fast", "Hidden", "Natural", "Quiet", "Unnatural", "Resourceful"],
+					"object": ["Amusing", "Ancient", "Aromatic", "Average", "Beautiful", "Bizarre", "Classy", "Colorful", "Creepy", "Cute", "Damaged", "Delicate", "Disgusting", "Cold", "Empty", "Enormous", "Dangerous", "Exotic", "Deliberate", "Delightful", "Faded", "Familiar", "Enormous", "Fancy", "Hard", "Heavy", "Horrible", "Fortunate", "Important", "Frightening", "Large", "Lethal", "Magnificent", "Military", "Modern", "Extravagant", "Helpful", "Mundane", "Natural", "Powerful", "Rare", "Light", "Loud", "Reassuring", "Majestic", "Meaningful", "Mechanical", "Ruined", "Mysterious", "New", "Odd", "Official", "Small", "Smelly", "Positive", "Powerful", "Smooth", "Valuable", "Warm", "Soft", "Watery", "Threatening", "Weapon", "Useful", "Clothing", "Travel", "Tool", "Negative", "Communication", "Food", "Domestic", "Artistic", "Expected", "Unexpected", "Strange", "Resource", "Fuel", "Harmful", "Energy", "Multiple", "Single", "Unusual", "Bright", "Ornate", "Broken", "Liquid", "Personal", "Intriguing", "Active", "Inactive", "Garbage", "Useless", "Primitive", "Desired", "Healing", "Hidden", "Prized", "Flora", "Moving", "Confusing"]
+				};
+
+				// location crafter
+				var location_elements = {
+					5: ["Supersize", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever Element is generated, make it biggie size, more than what is expected. Take the Element up to the next level, or as grand as you can, while still making sense within the Scene. For instance, if the Category is Locations, and the Element generated is “pool,” where you originally may have envisioned this as a pond you now treat it as a lake."], 
+					10: ["Barely There", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever Element is generated, minimize it as much as possible. Whatever you would have described to represent this Element, take it down a notch or two. If it’s an Encounter, such as an enemy, maybe it is wounded or of a lesser nature than usual. If it’s a Location, maybe it is badly in need of repair or is unusually small."], 
+					15: ["Remove Element", "Roll in the Category again (if you get Special again, treat it as Expected), and cross that Element out and remove it from the Category list. You will still use it for this Scene, but the Category list has now been altered for future rolls. If the Element is Unique, then this result has no effect (as Unique Elements are crossed off anyway)."], 
+					25: ["Add Element", "Add a new Element to this Category, tacking it on to the end of the list. Generate the new Element by treating it like a Random Element and rolling for a description of it on the Complex Question Description Tables. The new Element is then added to the Category list and is treated as though it was rolled for this scene. This is identical to a Random Element Special result (see below), except that the Element generated is added to the Category list to possibly be encountered again later."], 
+					30: ["This is Bad", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever you get, it is bad for the characters. For instance, if it’s an Encounter, it is probably something that is harmful to the characters. If it’s a Location, maybe the place is very dark and treacherous. If it’s an Object, maybe it’s unstable and about to explode. Not everything is dangerous, it could just be finding an otherwise useful Object that is broken. Go with whatever modification to the Element seems most obvious to you. If you’re not sure how to make the Element bad, then roll on a Complex Question Table for inspiration."], 
+					35: ["This is Good", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever you get, it is something good for the characters. Whether it’s a Location, Encounter, or Object, it is an Element that will be helpful or useful to the characters. Go with whatever modification to the Element seems most obvious to you. If you’re not sure how to make the Element good, then roll on a Complex Question Table for inspiration."], 
+					50: ["Multi-Element", "Roll twice on this Category list (if you get Special Element again, treat it as an Expected Element), and allow both of them into the scene together. If the Category is Location, and the Elements are “pool” and “stony chamber,” maybe this is a chamber with an ornate fountain in it."], 
+					60: ["Exit Here", "This Location, in addition to whatever else it contains, also holds an exit from the Region, if this is possible. Maybe it’s a back door out of the mansion, or another exit from the cave. If this result makes no sense, ignore it and treat this as an Expected Element."], 
+					70: ["Return", "Whatever else this Location contains, it also has access to another, previously encountered Location. This is only possible if that other location had a way to reach this one ... in other words, it had other doors or access that the characters had not yet explored. If more than one Location Element matches, then determine which one it is randomly. If this result makes no sense, ignore it and treat this as an Expected Element."], 
+					75: ["Going Deeper", "Instead of adding one Progress Point for this Category, add three instead. Otherwise, treat this result as an Expected Element."], 
+					80: ["Common Ground", "Eliminate three Progress Points for this Category (don’t record this occurrence and eliminate two more). Otherwise, treat this result as an Expected Element."], 
+					100: ["Random Element", "Treat this Special Element like a normal Random Element. As needed, ask the Complex Questions, “What does it look like?” and/or “What does it do?” and roll on the Description and Action tables, interpreting your results."]
+				};
 				
 				// npc creator and emulator
 				var npc_conversation = {
@@ -1630,12 +1724,12 @@
 				// une and crge
 				var une = {
 					"npc": {
-						"modifier": ["superfluous", "inept", "pleasant", "lethargic", "jovial", "addicted", "banal", "insensitive", "defiant", "shrewd", "conformist", "logical", "titled", "obnoxious", "liberal",  "nefarious", "subtle", "inexperienced", "insightful", "compliant", "sensible", "reputable", "prying", "tactless", "destitute", "untrained", "wicked", "oblivious", "fanatic", "conniving",  "romantic", "lazy", "refined", "plebeian", "careful", "unreasonable", "pessimistic", "indispensable", "childish", "alluring", "skilled", "solemn", "scholarly", "pious", "defective",  "neglectful", "habitual", "conservative", "uneducated", "optimistic", "lively", "meek", "uncouth", "inconsiderate", "affluent", "forthright", "helpful", "willful", "cultured", "despondent",  "idealistic", "unconcerned", "indifferent", "revolting", "mindless", "unsupportive", "generous", "fickle", "curious", "passionate", "rational", "docile", "elderly", "touchy", "devoted",  "coarse", "cheery", "sinful", "needy", "established", "foolish", "pragmatic", "naive", "dignified", "unseemly", "cunning", "serene", "privileged", "pushy", "dependable", "delightful",  "thoughtful", "glum", "kind", "righteous", "miserly", "hopeless", "likable", "corrupt", "confident"],
-						"noun": ["gypsy", "missionary", "villager", "mediator", "performer", "witch", "outcast", "magus", "crook", "magister", "merchant", "mercenary", "conscript", "civilian", "serf", "expert", "caretaker",  "worker", "activist", "brute", "commoner", "hermit", "actor", "hero", "inquisitor", "judge", "orator", "herald", "champion", "lord", "ranger", "chieftain", "highwayman", "cleric", "villain",  "occultist", "pioneer", "fortune-hunter", "slave", "professor", "reverend", "burglar", "governor", "gunman", "servant", "thug", "vicar", "scrapper", "clairvoyant", "charmer", "drifter",  "officer", "monk", "patriarch", "globetrotter", "journeyman", "explorer", "homemaker", "shopkeeper", "sniper", "statesman", "warden", "recluse", "crone", "courtier", "astrologer", "outlaw",  "steward", "adventurer", "priest", "duelist", "adept", "polymath", "soldier", "tradesman", "jack-of-all-trades", "bum", "magician", "entertainer", "hitman", "aristocrat", "sorcerer",  "traveler", "craftsman", "wizard", "preacher", "laborer", "vagrant", "scientist", "beggar", "artisan", "master", "apprentice", "ascetic", "tradesman", "rogue", "ascendant", "politician",  "superior", "warrior"]
+						"modifier": ["superfluous", "inept", "pleasant", "lethargic", "jovial", "addicted", "banal", "insensitive", "defiant", "shrewd", "conformist", "logical", "titled", "obnoxious", "liberal", "nefarious", "subtle", "inexperienced", "insightful", "compliant", "sensible", "reputable", "prying", "tactless", "destitute", "untrained", "wicked", "oblivious", "fanatic", "conniving", "romantic", "lazy", "refined", "plebeian", "careful", "unreasonable", "pessimistic", "indispensable", "childish", "alluring", "skilled", "solemn", "scholarly", "pious", "defective", "neglectful", "habitual", "conservative", "uneducated", "optimistic", "lively", "meek", "uncouth", "inconsiderate", "affluent", "forthright", "helpful", "willful", "cultured", "despondent", "idealistic", "unconcerned", "indifferent", "revolting", "mindless", "unsupportive", "generous", "fickle", "curious", "passionate", "rational", "docile", "elderly", "touchy", "devoted", "coarse", "cheery", "sinful", "needy", "established", "foolish", "pragmatic", "naive", "dignified", "unseemly", "cunning", "serene", "privileged", "pushy", "dependable", "delightful", "thoughtful", "glum", "kind", "righteous", "miserly", "hopeless", "likable", "corrupt", "confident"],
+						"noun": ["gypsy", "missionary", "villager", "mediator", "performer", "witch", "outcast", "magus", "crook", "magister", "merchant", "mercenary", "conscript", "civilian", "serf", "expert", "caretaker", "worker", "activist", "brute", "commoner", "hermit", "actor", "hero", "inquisitor", "judge", "orator", "herald", "champion", "lord", "ranger", "chieftain", "highwayman", "cleric", "villain", "occultist", "pioneer", "fortune-hunter", "slave", "professor", "reverend", "burglar", "governor", "gunman", "servant", "thug", "vicar", "scrapper", "clairvoyant", "charmer", "drifter", "officer", "monk", "patriarch", "globetrotter", "journeyman", "explorer", "homemaker", "shopkeeper", "sniper", "statesman", "warden", "recluse", "crone", "courtier", "astrologer", "outlaw", "steward", "adventurer", "priest", "duelist", "adept", "polymath", "soldier", "tradesman", "jack-of-all-trades", "bum", "magician", "entertainer", "hitman", "aristocrat", "sorcerer", "traveler", "craftsman", "wizard", "preacher", "laborer", "vagrant", "scientist", "beggar", "artisan", "master", "apprentice", "ascetic", "tradesman", "rogue", "ascendant", "politician", "superior", "warrior"]
 					},
 					"motivation": {
-						"verb": ["advise", "shepherd", "take", "work", "manage", "obtain", "abuse", "discover", "accompany", "suppress", "attempt", "indulge", "deter", "offend", "proclaim", "spoil", "chronicle",  "acquire", "guide", "operate", "oppress", "fulfill", "damage", "learn", "access", "interact", "drive", "publicize", "persecute", "refine", "create", "review", "burden",  "communicate", "compose", "abduct", "aid", "advocate", "process", "undermine", "promote", "follow", "implement", "report", "explain", "conceive", "advance", "understand",  "develop", "discourage", "blight", "guard", "collaborate", "steal", "attend", "progress", "conquer", "strive", "suggest", "detect", "distress", "hinder", "complete", "weaken",  "execute", "possess", "plunder", "compel", "achieve", "maintain", "record", "construct", "join", "secure", "realize", "embrace", "encourage", "assist", "inform", "convey",  "contact", "agonize", "defile", "patronize", "rob", "pursue", "comprehend", "produce", "depress", "establish", "associate", "administer", "institute", "determine", "overthrow",  "prepare", "relate", "account", "seek", "support"],
-						"noun": ["wealth", "the wealthy", "dreams", "gluttony", "advice", "hardship", "the populous", "discretion", "lust", "propaganda", "affluence", "enemies", "love", "envy", "science", "resources",  "the public", "freedom", "greed", "knowledge", "prosperity", "religion", "pain", "laziness", "communications", "poverty", "the poor", "faith", "wrath", "lies", "opulence", "family",  "slavery", "pride", "myths", "deprivation", "the elite", "enlightenment", "purity", "riddles", "success", "academia", "racism", "moderation", "stories", "distress", "the forsaken",  "sensuality", "vigilance", "legends", "contraband", "the law", "dissonance", "zeal", "industry", "music", "the government", "peace", "composure", "new religions", "literature",  "the oppressed", "discrimination", "charity", "progress", "technology", "friends", "disbelief", "modesty", "animals", "alcohol", "criminals", "pleasure", "atrocities", "ghosts",  "medicines", "allies", "hate", "cowardice", "magic", "beauty", "secret societies", "happiness", "narcissism", "nature", "strength", "the world", "servitude", "compassion", "old religions",  "intelligence", "military", "harmony", "valor", "expertise", "force", "the church", "justice", "patience", "spirits"]
+						"verb": ["advise", "shepherd", "take", "work", "manage", "obtain", "abuse", "discover", "accompany", "suppress", "attempt", "indulge", "deter", "offend", "proclaim", "spoil", "chronicle", "acquire", "guide", "operate", "oppress", "fulfill", "damage", "learn", "access", "interact", "drive", "publicize", "persecute", "refine", "create", "review", "burden", "communicate", "compose", "abduct", "aid", "advocate", "process", "undermine", "promote", "follow", "implement", "report", "explain", "conceive", "advance", "understand", "develop", "discourage", "blight", "guard", "collaborate", "steal", "attend", "progress", "conquer", "strive", "suggest", "detect", "distress", "hinder", "complete", "weaken", "execute", "possess", "plunder", "compel", "achieve", "maintain", "record", "construct", "join", "secure", "realize", "embrace", "encourage", "assist", "inform", "convey", "contact", "agonize", "defile", "patronize", "rob", "pursue", "comprehend", "produce", "depress", "establish", "associate", "administer", "institute", "determine", "overthrow", "prepare", "relate", "account", "seek", "support"],
+						"noun": ["wealth", "the wealthy", "dreams", "gluttony", "advice", "hardship", "the populous", "discretion", "lust", "propaganda", "affluence", "enemies", "love", "envy", "science", "resources", "the public", "freedom", "greed", "knowledge", "prosperity", "religion", "pain", "laziness", "communications", "poverty", "the poor", "faith", "wrath", "lies", "opulence", "family", "slavery", "pride", "myths", "deprivation", "the elite", "enlightenment", "purity", "riddles", "success", "academia", "racism", "moderation", "stories", "distress", "the forsaken", "sensuality", "vigilance", "legends", "contraband", "the law", "dissonance", "zeal", "industry", "music", "the government", "peace", "composure", "new religions", "literature", "the oppressed", "discrimination", "charity", "progress", "technology", "friends", "disbelief", "modesty", "animals", "alcohol", "criminals", "pleasure", "atrocities", "ghosts", "medicines", "allies", "hate", "cowardice", "magic", "beauty", "secret societies", "happiness", "narcissism", "nature", "strength", "the world", "servitude", "compassion", "old religions", "intelligence", "military", "harmony", "valor", "expertise", "force", "the church", "justice", "patience", "spirits"]
 					},
 					"mood": {
 						"Loved": { 1: "Withdrawn", 6: "Guarded", 16: "Cautious", 31: "Neutral", 70: "Socialable", 85: "Helpful", 100: "Forthcoming" },
@@ -1656,7 +1750,7 @@
 						"Mysterious": ["rumor", "uncertainty", "secrets", "misdirection", "whispers", "lies", "shadows", "enigma", "obscurity", "conundrum"],
 						"Prejudiced": ["reputation", "doubt", "bias", "dislike", "partiality", "belief", "view", "discrimination", "assessment", "difference"]
 					},
-					"focus": ["current scene", "last story", "equipment ", "parents", "history", "retainers ", "wealth", "relics", "last action ", "skills", "superiors",  "fame ", "campaign", "future action", "friends ", "allies", "last scene", "contacts ", "flaws", "antagonist", "rewards ", "experience",  "knowledge", "recent scene ", "community", "treasure", "the character ", "current story", "family", "power ", "weapons", "previous scene", "enemy"],
+					"focus": ["current scene", "last story", "equipment", "parents", "history", "retainers", "wealth", "relics", "last action", "skills", "superiors", "fame", "campaign", "future action", "friends", "allies", "last scene", "contacts", "flaws", "antagonist", "rewards", "experience", "knowledge", "recent scene", "community", "treasure", "the character", "current story", "family", "power", "weapons", "previous scene", "enemy"],
 					"power": {
 						"Order": [2, 10, 90, 98, 100],
 						"Calm": [4, 15, 85, 96, 100],
@@ -1680,13 +1774,13 @@
 								8: ["bandits", "villain", "enigma", "illness", "authority", "hamlet", "friend-in-need", "relative", "otherworldly", "deprivation"],
 								10: ["deputies", "horror", "science", "labor", "rebels", "conclave", "disappearance", "rival", "the strange", "the wild"]
 							},
-							"modifier": ["futile", "harsh", "binding", "unreliable", "abnormal", "impassioned", "leeching", "noble", "altruistic", "abstract", "hesitant", "tranquil", "copious", "storied", "irritating",  "benign", "inclusive", "retired", "tapped", "hidden", "revered", "righteous", "provoking", "tedious", "hallowed", "pedantic", "attentive", "ordinary", "quiet", "illusory",  "grim", "inexplicable", "prolonged", "exotic", "legendary", "common", "corrupt", "deceiving", "impervious", "prolonged", "bitter", "roaring", "savage", "fledgling", "meek",  "impassioned", "unmistakable", "drowsy", "fixated", "proficient", "perceiving", "sudden", "mundane", "illuminating", "forbidden", "selfish", "impending", "abrupt", "exhausting",  "fantastic", "prohibited", "fragile", "unforeseen", "honorable", "accidental", "brusque", "painless", "peaceful", "exclusive", "malevolent", "prosperous", "haphazard", "steady",  "apparent", "unlikely", "depraved", "foreign", "abetting", "valuable", "problematic", "comforting", "ravenous", "stale", "haunting", "eccentric", "hopeless", "adept", "regular",  "migrant", "lethargic", "waning", "barbaric", "dubious", "pleasant", "amusing", "regimental", "disputable", "exclusive", "incompetent", "afflicting"],
-							"solution": ["legendary help", "act of nature", "the people", "enemy help", "avoidance", "scarce-used ability", "personal resources", "close friend", "strong attribute", "favored ability",  "favored skill", "on accident", "weak attribute", "counteraction", "faction intervention", "the authority", "fate", "change of heart", "deus ex"]
+							"modifier": ["futile", "harsh", "binding", "unreliable", "abnormal", "impassioned", "leeching", "noble", "altruistic", "abstract", "hesitant", "tranquil", "copious", "storied", "irritating", "benign", "inclusive", "retired", "tapped", "hidden", "revered", "righteous", "provoking", "tedious", "hallowed", "pedantic", "attentive", "ordinary", "quiet", "illusory", "grim", "inexplicable", "prolonged", "exotic", "legendary", "common", "corrupt", "deceiving", "impervious", "prolonged", "bitter", "roaring", "savage", "fledgling", "meek", "impassioned", "unmistakable", "drowsy", "fixated", "proficient", "perceiving", "sudden", "mundane", "illuminating", "forbidden", "selfish", "impending", "abrupt", "exhausting", "fantastic", "prohibited", "fragile", "unforeseen", "honorable", "accidental", "brusque", "painless", "peaceful", "exclusive", "malevolent", "prosperous", "haphazard", "steady", "apparent", "unlikely", "depraved", "foreign", "abetting", "valuable", "problematic", "comforting", "ravenous", "stale", "haunting", "eccentric", "hopeless", "adept", "regular", "migrant", "lethargic", "waning", "barbaric", "dubious", "pleasant", "amusing", "regimental", "disputable", "exclusive", "incompetent", "afflicting"],
+							"solution": ["legendary help", "act of nature", "the people", "enemy help", "avoidance", "scarce-used ability", "personal resources", "close friend", "strong attribute", "favored ability", "favored skill", "on accident", "weak attribute", "counteraction", "faction intervention", "the authority", "fate", "change of heart", "deus ex"]
 						},
 						"connection": {
-							"action": ["proclaim", "protest", "resolve", "interject", "demand", "impart", "commend", "muse", "examine", "digress", "assure", "reminisce", "ponder", "scrutinize", "address", "deceive",  "negotiate", "guide", "endorse", "speculate"],
-							"gerund": ["exposing", "weakening", "divulging", "lying", "confronting", "detailing", "avoiding", "working", "negating", "preparing", "training", "enjoying", "discussing", "obsessing",  "repairing", "improving", "understanding", "connecting", "concluding", "excluding"],
-							"subject": ["a dislike", "an attribute", "a desire", "friends or family", "an annoyance", "a skill", "a fear", "wealth", "home or hearth", "an ability", "a decision", "a love", "personal qualities",  "your nature", "a like", "enemies", "party member", "a core belief", "a possession", "allies"]
+							"action": ["proclaim", "protest", "resolve", "interject", "demand", "impart", "commend", "muse", "examine", "digress", "assure", "reminisce", "ponder", "scrutinize", "address", "deceive", "negotiate", "guide", "endorse", "speculate"],
+							"gerund": ["exposing", "weakening", "divulging", "lying", "confronting", "detailing", "avoiding", "working", "negating", "preparing", "training", "enjoying", "discussing", "obsessing", "repairing", "improving", "understanding", "connecting", "concluding", "excluding"],
+							"subject": ["a dislike", "an attribute", "a desire", "friends or family", "an annoyance", "a skill", "a fear", "wealth", "home or hearth", "an ability", "a decision", "a love", "personal qualities", "your nature", "a like", "enemies", "party member", "a core belief", "a possession", "allies"]
 						}
 					},
 					"isc": {
@@ -1709,8 +1803,9 @@
 					}
 				};
 
-				// mythic variations & mythic magazine vol.8
+				// mythic variations and mythic magazine vol.8 & 14
 				var backstories = {
+					"fulfillment": ["Abandonment", "Abuse", "Accident", "Accomplishment", "Addiction", "Aid", "Anger", "Answers", "Appreciation", "Betrayal", "Break", "Care", "Careful", "Careless", "Child", "Childhood", "Colleague", "Common", "Connection", "Country", "Death", "Debt", "Deceit", "Dependent", "Despair", "Destination", "Disaster", "Discovery", "Distrust", "Duty", "Ego", "Enemy", "Escape", "Exotic", "Failure", "Fall", "Family", "Flee", "Fortune", "Found", "Free", "Friend", "Goal", "Guilt", "Happiness", "Hardship", "Hatred", "Healing", "Home", "Honor", "Hope", "Humility", "Identity", "Illness", "Independent", "Injury", "Intended", "Lies", "Life", "Location", "Loneliness", "Loss", "Lost", "Love", "Memory", "Mistake", "Mystery", "Object", "Pain", "Parent", "Peace", "Power", "Pride", "Questions", "Reciprocation", "Reliance", "Rely", "Repair", "Rescue", "Resentment", "Responsibility", "Revenge", "Rise", "Seek", "Separation", "Sibling", "Stranger", "Talent", "Tested", "Theft", "Time", "Trapped", "Travel", "Trust", "Truth", "Unknown", "War", "Work", "Yearning", "Youth"],
 					"count": { 8: 1, 26: 2, 51: 3, 71: 4, 86: 5, 96: 6, 100: 7 },
 					"focus": {
 						13: "New NPC",
@@ -1737,14 +1832,14 @@
 					"Feel personal accomplishment", "Advance religion", "Rescue a person", "Make many small impacts", "Get revenge",
 					"Build a better life", "Gain fame and glory", "Collect unique art", "Acquire riches", "Gain power and influence",
 					"Find unique artifacts", "Solve ancient mystery", "Deepen mystic power", "Find safe place to live", "Fight the good fight",
-					 "Gain followers", "Explore and discover", "Become an overseer", "Advance a settlement", "Be loved by all", "Unite settlements",
-					 "Cure disease", "Leave their mark", "Slay a creature", "Personal development", "Bring balance", "Have food to eat",
-					 "Live in relative luxury", "Hedonism", "Feed an addiction", "Raise a family", "Discover the truth of their past", "Help the helpless",
-					 "Learn of the Old World", "Voice for the voiceless", "Make contact with First Born", "Raise others from poverty", "Survive the winter",
-					 "Seek pleasure", "Change the system", "Destroy an item", "Defeat a foe", "Find a soulmate", "Be the best", "Teach others",
-					 "Avoid ridicule", "Be a hero", "Be left alone", "Liberate those in bondage", "Stay true to friends and family", "Bring order to chaos",
-					 "Win affection", "Achieve moral perfection", "Defeat romantic rival", "Achieve spiritual enlightenment", "Find settlement resources",
-					 "Oppress others", "Seek forgiveness", "Scheme machinations", "Serve the rightful ruler"
+					"Gain followers", "Explore and discover", "Become an overseer", "Advance a settlement", "Be loved by all", "Unite settlements",
+					"Cure disease", "Leave their mark", "Slay a creature", "Personal development", "Bring balance", "Have food to eat",
+					"Live in relative luxury", "Hedonism", "Feed an addiction", "Raise a family", "Discover the truth of their past", "Help the helpless",
+					"Learn of the Old World", "Voice for the voiceless", "Make contact with First Born", "Raise others from poverty", "Survive the winter",
+					"Seek pleasure", "Change the system", "Destroy an item", "Defeat a foe", "Find a soulmate", "Be the best", "Teach others",
+					"Avoid ridicule", "Be a hero", "Be left alone", "Liberate those in bondage", "Stay true to friends and family", "Bring order to chaos",
+					"Win affection", "Achieve moral perfection", "Defeat romantic rival", "Achieve spiritual enlightenment", "Find settlement resources",
+					"Oppress others", "Seek forgiveness", "Scheme machinations", "Serve the rightful ruler"
 				];
 
 				var motivations = {
@@ -1815,29 +1910,6 @@
 					]
 				};
 
-				var mythic_locations = {
-					"suspects": ["Afraid", "Aggressive", "Aggrieved", "Angry", "Anxious", "Argumentative", "Assist", "Associate", "Awkward", "Beautiful", "Bizarre", "Bold", "Brave", "Burden", "Business ", "Busy", 
-					"Calm", "Careful", "Careless", "Classy", "Competition", "Connected", "Conniving", "Corrupt", "Creepy", "Dangerous", "Deceive", "Defiant", "Desperate", "Dispute", "Elusive", "Emotional", "Enemy", "Exotic", "Failure", "Fame", "Family", "Feminine", "Fleeing", "Foolish", "Frantic", "Friend", "Frightening", "Frivolous", "Happy", "Harmful", "Helpful", "Helpless", "Home", "Important", "Information", "Intellect", "Involved", "Jealousy", "Juvenile", "Lazy", "Leadership", "Legal", "Love", "Loyal", "Masculine", "Mature", "Misfortune", "Missing", "Motivated", "Mundane", "Mysterious", "Negligent", "Odd", "Official", "Old", "Passionate", "Poor", "Power", "Privileged", "Professional", "Protective", "Quiet", "Reassuring", "Representative", "Resourceful", "Rough", "Ruthless", "Secretive", "Skilled", "Stealthy", "Strong", "Success", "Suffering", "Suspicious", "Tension", "Threatening", "Unhelpful", "Unknown", "Unusual", "Vengeance", "Wealthy", "Witness", "Work", "Young"],
-					"location": ["Abandoned", "Amusing", "Ancient", "Aromatic", "Beautiful", "Bleak", "Average", "Bizarre", "Calm", "Classy", "Clean", "Colorful", "Creepy", "Cold", "Cute", "Damaged", "Dangerous", "Dark", "Dirty", "Delightful", "Drab", "Disgusting", "Enormous", "Dry", "Empty", "Enormous", "Exotic", "Fortunate", "Familiar", "Frightening", "Full", "Fancy", "Festive", "Harsh", "Horrible", "Important", "Helpful", "Lavish", "Magnificent", "Intense", "Messy", "Military", "Loud", "Modern", "Majestic", "Meaningful", "Extravagant", "Mundane", "Mysterious", "Natural", "Odd", "Official", "Peaceful", "Small", "Positive", "Reassuring", "Quaint", "Quiet", "Ruined", "Rustic", "Simple", "Threatening", "Smelly", "Tranquil", "Warm", "Watery", "Negative", "Enclosed", "Domestic", "New", "Open", "Safe", "Expected", "Unexpected", "Strange", "Active", "Inactive", "Harmful", "Primitive", "Protection", "Unusual", "Bright", "Ornate", "Atmosphere", "Sounds", "Resourceful", "Purposeful", "Personal", "Exclusive", "Intriguing", "Echo", "Unsteady", "Moving", "Cluttered", "Storage", "Confusing", "Lonely", "Long", "Tall", "Artistic"],
-					"encounter": ["Abnormal", "Aggressive", "Angry", "Anxious", "Beautiful", "Average", "Bold", "Busy", "Calm", "Careless", "Cautious", "Cheerful", "Combative", "Bizarre", "Crazy", "Curious", "Dangerous", "Defiant", "Classy", "Delightful", "Creepy", "Energetic", "Enormous", "Excited", "Fearful", "Ferocious", "Foolish", "Fortunate", "Frantic", "Frightening", "Cute", "Generous", "Gentle", "Glad", "Graceful", "Happy", "Helpful", "Helpless", "Innocent", "Intense", "Lazy", "Defeated", "Loud", "Loyal", "Majestic", "Disgusting", "Enormous", "Miserable", "Mysterious", "Feeble", "Odd", "Official", "Peaceful", "Playful", "Positive", "Powerful", "Exotic", "Familiar", "Slow", "Horrible", "Swift", "Threatening", "Violent", "Wild", "Important", "Lonely", "Mighty", "Military", "Mundane", "Powerful", "Reassuring", "Small", "Smelly", "Strong", "Watery", "Weak", "Ambush", "Harmful", "Trap", "Friend", "Foe", "Negative", "Evil", "Animal", "Expected", "Unexpected", "Strange", "Armed", "Active", "Inactive", "Multiple", "Single", "Primitive", "Unusual", "Fast", "Hidden", "Natural", "Quiet", "Unnatural", "Resourceful"],
-					"object": ["Amusing", "Ancient", "Aromatic", "Average", "Beautiful", "Bizarre", "Classy", "Colorful", "Creepy", "Cute", "Damaged", "Delicate", "Disgusting", "Cold", "Empty", "Enormous", "Dangerous", "Exotic", "Deliberate", "Delightful", "Faded", "Familiar", "Enormous", "Fancy", "Hard", "Heavy", "Horrible", "Fortunate", "Important", "Frightening", "Large", "Lethal", "Magnificent", "Military", "Modern", "Extravagant", "Helpful", "Mundane", "Natural", "Powerful", "Rare", "Light", "Loud", "Reassuring", "Majestic", "Meaningful", "Mechanical", "Ruined", "Mysterious", "New", "Odd", "Official", "Small", "Smelly", "Positive", "Powerful", "Smooth", "Valuable", "Warm", "Soft", "Watery", "Threatening", "Weapon", "Useful", "Clothing", "Travel", "Tool", "Negative", "Communication", "Food", "Domestic", "Artistic", "Expected", "Unexpected", "Strange", "Resource", "Fuel", "Harmful", "Energy", "Multiple", "Single", "Unusual", "Bright", "Ornate", "Broken", "Liquid", "Personal", "Intriguing", "Active", "Inactive", "Garbage", "Useless", "Primitive", "Desired", "Healing", "Hidden", "Prized", "Flora", "Moving", "Confusing"]
-				};
-
-				var location_elements = {
-					5: ["SUPERSIZE", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever Element is generated, make it biggie size, more than what is expected. Take the Element up to the next level, or as grand as you can, while still making sense within the Scene. For instance, if the Category is Locations, and the Element generated is “pool,” where you originally may have envisioned this as a pond you now treat it as a lake."], 
-					10: ["BARELY THERE", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever Element is generated, minimize it as much as possible. Whatever you would have described to represent this Element, take it down a notch or two. If it’s an Encounter, such as an enemy, maybe it is wounded or of a lesser nature than usual. If it’s a Location, maybe it is badly in need of repair or is unusually small."], 
-					15: ["REMOVE ELEMENT", "Roll in the Category again (if you get Special again, treat it as Expected), and cross that Element out and remove it from the Category list. You will still use it for this Scene, but the Category list has now been altered for future rolls. If the Element is Unique, then this result has no effect (as Unique Elements are crossed off anyway)."], 
-					25: ["ADD ELEMENT", "Add a new Element to this Category, tacking it on to the end of the list. Generate the new Element by treating it like a Random Element and rolling for a description of it on the Complex Question Description Tables. The new Element is then added to the Category list and is treated as though it was rolled for this scene. This is identical to a Random Element Special result (see below), except that the Element generated is added to the Category list to possibly be encountered again later."], 
-					30: ["THIS IS BAD", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever you get, it is bad for the characters. For instance, if it’s an Encounter, it is probably something that is harmful to the characters. If it’s a Location, maybe the place is very dark and treacherous. If it’s an Object, maybe it’s unstable and about to explode. Not everything is dangerous, it could just be finding an otherwise useful Object that is broken. Go with whatever modification to the Element seems most obvious to you. If you’re not sure how to make the Element bad, then roll on a Complex Question Table for inspiration."], 
-					35: ["THIS IS GOOD", "Roll in the Category again (if you get Special again, treat it as Expected). Whatever you get, it is something good for the characters. Whether it’s a Location, Encounter, or Object, it is an Element that will be helpful or useful to the characters. Go with whatever modification to the Element seems most obvious to you. If you’re not sure how to make the Element good, then roll on a Complex Question Table for inspiration."], 
-					50: ["MULTI-ELEMENT", "Roll twice on this Category list (if you get Special Element again, treat it as an Expected Element), and allow both of them into the scene together. If the Category is Location, and the Elements are “pool” and “stony chamber,” maybe this is a chamber with an ornate fountain in it."], 
-					60: ["EXIT HERE", "This Location, in addition to whatever else it contains, also holds an exit from the Region, if this is possible. Maybe it’s a back door out of the mansion, or another exit from the cave. If this result makes no sense, ignore it and treat this as an Expected Element."], 
-					70: ["RETURN", "Whatever else this Location contains, it also has access to another, previously encountered Location. This is only possible if that other location had a way to reach this one ... in other words, it had other doors or access that the characters had not yet explored. If more than one Location Element matches, then determine which one it is randomly. If this result makes no sense, ignore it and treat this as an Expected Element."], 
-					75: ["GOING DEEPER", "Instead of adding one Progress Point for this Category, add three instead. Otherwise, treat this result as an Expected Element."], 
-					80: ["COMMON GROUND", "Eliminate three Progress Points for this Category (don’t record this occurrence and eliminate two more). Otherwise, treat this result as an Expected Element."], 
-					100: ["RANDOM ELEMENT", "Treat this Special Element like a normal Random Element. As needed, ask the Complex Questions, “What does it look like?” and/or “What does it do?” and roll on the Description and Action tables, interpreting your results."]
-				};
-
 				var distances = {
 					"Local": ["Close enough to touch", "Within melee range", "A few paces away", "The other side of the room", "In the next room", "A few rooms away", "In the same structure"],
 					"Distant": ["The same building", "The same neighborhood", "The same community", "Within a day’s ride", "Within a week’s ride", "Within a month’s journey", "Far, far away"]
@@ -1864,7 +1936,6 @@
 				};
 
 				var mysteries = {
-					"suspects": ["Afraid", "Aggressive", "Aggrieved", "Angry", "Anxious", "Argumentative", "Assist", "Associate", "Awkward", "Beautiful", "Bizarre", "Bold", "Brave", "Burden", "Business", "Busy", "Calm", "Careful", "Careless", "Classy", "Competition", "Connected", "Conniving", "Corrupt", "Creepy", "Dangerous", "Deceive", "Defiant", "Desperate", "Dispute", "Elusive", "Emotional", "Enemy", "Exotic", "Failure", "Fame", "Family", "Feminine", "Fleeing", "Foolish", "Frantic", "Friend", "Frightening", "Frivolous", "Happy", "Harmful", "Helpful", "Helpless", "Home", "Important", "Information", "Intellect", "Involved", "Jealousy", "Juvenile", "Lazy", "Leadership", "Legal", "Love", "Loyal", "Masculine", "Mature", "Misfortune", "Missing", "Motivated", "Mundane", "Mysterious", "Negligent", "Odd", "Official", "Old", "Passionate", "Poor", "Power", "Privileged", "Professional", "Protective", "Quiet", "Reassuring", "Representative", "Resourceful", "Rough", "Ruthless", "Secretive", "Skilled", "Stealthy", "Strong", "Success", "Suffering", "Suspicious", "Tension", "Threatening", "Unhelpful", "Unknown", "Unusual", "Vengeance", "Wealthy", "Witness", "Work", "Young"],
 					"element": {
 						5: ["New Clue", "New Suspect"],
 						8: ["New Linked Clue", "New Linked Suspect"],
@@ -2123,28 +2194,30 @@
 
 					var score = die1 + die2 + mod;
 					var result;
-					
-					if (score > 9) result = "<b>10+</b> <span class='yes'>Strong Hit!</span></p><p>You succeed, as intended, and avoid the danger entirely.</p><p>Choose a <b>bonus</b>: gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.";
-					else if (score > 6) result = "<b>7-9</b> <span class='maybe'>Weak Hit!</span></p><p>Either you <a id='succeed-link'>succeed</a> or you avert the danger, your choice. You may opt to choose neither and instead choose a <a id='bonus-link'>bonus</a></span> from the 10+ result.<span id='succeed'></span><span id='bonus'></span>";
-					else result = "<b>6-</b> <span class='no'>Miss!</span></p><p>You fail, and the danger hits, as a hard Move followed through to the full extent.</p><p>Add or increase a Condition, then take a dark die, after. If you’re striving against a foe or obstacle, also add a Condition to them that makes it harder to overcome them in that way.";
+
+					if (score > 9) result = "<b>10+</b> <span class='yes'>Strong Hit!</span></p><p>You succeed, as intended, and avoid the danger entirely.</p><p>Choose a <b>bonus</b>: gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.</p>";
+					else if (score > 6) result = "<b>7-9</b> <span class='maybe'>Weak Hit!</span></p><p id='strive-result'>Either you <a id='succeed-link'>succeed</a> or you avert the danger, your choice. You may opt to choose neither and instead choose a <a id='bonus-link'>bonus</a></span> from the 10+ result.</p><div id='strive-options'></div>";
+					else result = "<b>6-</b> <span class='no'>Miss!</span></p><p>You fail, and the danger hits, as a hard Move followed through to the full extent.</p><p>Add or increase a Condition, then take a dark die, after. If you’re striving against a foe or obstacle, also add a Condition to them that makes it harder to overcome them in that way.</p>";
 
 					if (clock === die1 || clock === die2) {
 						clock -= 1;
-						result += "</p><p><b>" + (clock ? "Clock Match" : "Time's Up!") + ":</b> Roll a Motif, narrate an event inspired by it, and play a " + (clock ? "soft" : "hard") + " Dramatic Move.";
+						result += "<p><b>" + (clock ? "Clock Match" : "Time's Up!") + ":</b> Roll a Motif, narrate an event inspired by it, and play a " + (clock ? "soft" : "hard") + " Dramatic Move.";
 						if (clock === 0) clock = 6;
 						$("#clock").value = clock;
 					}
 
-					display("<p><b>Strive:</b> (" + die1 + "," + die2 + (mod ? "+" + mod : "") + ") " + result + "</p>");
+					display("<p><b>Strive:</b> (" + die1 + "," + die2 + (mod ? "+" + mod : "") + ") " + result);
 
 					if (score < 10 && score > 6) {
 						$("#succeed-link").addEventListener("click", function() {
 							$("#succeed-link").outerHTML = "succeed";
-							fadeIn("#succeed", 0, "</p><p><b>Succeed:</b> deliver on a danger; play a soft Move or follow through on a previous soft Move with a hard Move.");
+							$("#strive-options").innerHTML += "<p id='succeed'></p>";
+							fadeIn("#succeed", 0, "<b>Succeed:</b> deliver on a danger; play a soft Move or follow through on a previous soft Move with a hard Move.");
 						});
 						$("#bonus-link").addEventListener("click", function() {
 							$("#bonus-link").outerHTML = "bonus";
-							fadeIn("#bonus", 0, "</p><p><b>Bonus:</b> gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.");
+							$("#strive-options").innerHTML += "<p id='bonus'></p>";
+							fadeIn("#bonus", 0, "<b>Bonus:</b> gain one light die, remove (or adjust) one of your Conditions, or reduce another Condition by 1 rank.");
 						});
 					};
 				};
@@ -2398,7 +2471,6 @@
 					}
 				};
 
-				
 
 				///////////////////////////////////////////////////////////////////
 				/* IF menu */
@@ -3168,6 +3240,10 @@
 				var chaos = 5;
 				var fate_acting = "Average";
 				var fate_difficulty = "Average";
+				var location_type = "small";
+				var location_pp = 0;
+				var encounter_pp = 0;
+				var object_pp = 0;
 			
 				var selectChaos = function() {
 					chaos = parseInt($("#chaos").value);
@@ -3362,7 +3438,7 @@
 				
 				var showMythicMeaningList = function() {
 					display(
-						getLink("Descriptor", "solo.showCyclingMeaning('Descriptor:Mythic Descriptor')") +
+						getLink("Description", "solo.showCyclingMeaning('Description:Mythic Descriptor')") +
 						getLink("Action", "solo.showCyclingMeaning('Action:Mythic Action')") +
 						"<hr>" +
 						getLinks(
@@ -3711,6 +3787,176 @@
 				};
 
 
+				var showMythicArea = function(type, resume) {
+					var getAreaElement = function(element_type, element_meaning, progress) {
+						var getElement = function(roll, allow_specials) {
+							if (roll === undefined) roll = random(1, 100);
+							var element = getRolledItem(roll, mythic_location["area elements"][element_type]);
+
+							if (allow_specials && element === "Expected, PP-6") {
+								progress -= 7;
+								if (progress < 0)  progress = 0;
+								element = "Expected (-6)";
+							}
+							else if (element === "Expected, PP-6" || element === "Special") element = "Expected";
+
+							return element;
+						};
+
+						var getSpecial = function() {
+							var element = "Expected";
+							var special = getRolledItem(random(1, 100), mythic_location["special elements"]);
+
+							if (special === "Going Deeper") {
+								progress += 2;
+								special += ", +2";
+								specials["going deeper"] = "<b>Going Deeper:</b> Unseen Elements have an increased chance of appearing.";
+							}
+							else if (special === "Common Ground") {
+								progress -= 4;
+								if (progress < 0) progress = 0;
+								special += ", -3"
+								specials["common ground"] = "<b>Common Ground:</b> Previously seen Elements occur more frequently.";
+							}
+							else if (special === "Multi-Element") {
+								element = getElement() + " / " + getElement();
+								specials["multi-element"] = "<b>Multi-Element:</b> Combine both Elements into the Area together.";
+							}
+							else {
+								element = getElement();
+								if (special === "Supersize") specials["supersize"] = "<b>Supersize:</b> Whatever Element is generated, enhance it as much as possible. Make it more intense in some way.";
+								else if (special === "Barely There") specials["barely there"] = "<b>Barely There:</b> Whatever Element is generated, minimize it as much as possible, making it less intense.";
+								else if (special === "This is Bad") specials["this is bad"] = "<b>This is Bad:</b> Whatever you get, it is bad for the Player Characters and interpret it that way. This may be a dangerous encounter, a trap, or something that is simply broken and unusable. Whatever detail you generate give it a negative interpretation.";
+								else if (special === "This is Good") specials["this is good"] = "<b>This is Good:</b> Whatever you get, it is good for the Player Characters and interpret it that way. This may be a helpful encounter, a way out, or useful object. Whatever detail you generate give it a positive interpretation.";
+								else if (special === "Exit Here") specials["exit here"] = "<b>Exit Here</b>: This Area, in addition to whatever else it contains, also holds an exit from the Region, if this is possible. Maybe it’s a back door out of the mansion, or another exit from a cave. If this result makes no sense, ignore it and treat this as an Expected Element.</b>";
+								else if (special === "Return") specials["return"] = "<b>Return:</b> Whatever else this Area contains, it also has access to another, previously encountered Area in this Region. This is only possible if that other Area had a way to reach this one such as doors or access that the Characters had not yet explored. Choose the connected Area that’s most logical. If this result makes no sense then ignore it and treat this as an Expected Element.";
+							}
+
+							element = element.replace("Special", "Expected");
+							element += " (" + special + ")";
+
+							if (/Random/.test(element)) {
+								element = element.replace(/Random(?: \((.+)\))?/, function(m, p1) {
+									var text = "Random (" + getMeaning(element_meaning);
+									if (p1) text += ", " + p1;
+									return text + ")";
+								});
+							}
+
+							return element;
+						};
+
+
+						var roll = progress + random(1, 10);
+						var element = getElement(roll, true);
+
+						if (/Random/.test(element)) element += " (" + getMeaning(element_meaning) + ")";
+						else if (/Special/.test(element)) element = getSpecial(element_type);
+
+						if (element_meaning === "Mythic Encounter") encounter_pp = progress + 1;
+						else if (element_meaning === "Mythic Object") object_pp = progress + 1;
+						else location_pp = progress + 1;
+
+						return "(" + roll + ") " + element;
+					};
+
+					if (!resume) {
+						location_type = type;
+						location_pp = 0;
+						encounter_pp = 0;
+						object_pp = 0;
+					}
+					else if ($("#location-pp") !== null) {
+						location_pp = parseInt($("#location-pp").value);
+						encounter_pp = parseInt($("#encounter-pp").value);
+						object_pp = parseInt($("#object-pp").value);
+					}
+
+					var specials = {};
+
+					var location = getAreaElement(location_type, "Mythic Location", location_pp);
+					var encounter = getAreaElement("encounters & objects", "Mythic Encounter", encounter_pp);
+					var object = getAreaElement("encounters & objects", "Mythic Object", object_pp);
+
+					var output = "<p><b>Location:</b> " + location + "</p><p><b>Encounter:</b> " + encounter + "</p><p><b>Object:</b> " + object + "</p>";
+
+					var footer = "";
+
+					if (/Complete/.test(location)) location_pp = 0;
+					else footer = "<hr>" + getLink("Continue Exploring", "solo.showMythicArea('" + location_type + "', true)");
+					
+					if (Object.keys(specials).length) footer = (footer || "<hr>") + "<details><summary>Specials</summary><ul id='specials'><li>" + Object.values(specials).join("</li><li>") + "</li></ul></details>";
+
+					display(output + footer);
+
+				};
+
+				var showMythicAreaList = function(resume) {
+					if (resume) {
+						var values = enumArray(1, 16);
+						
+						return display(
+							"<p>" + getOptions("Location Progress", "location-pp", values, 0) + "</p>" +
+							"<p>" + getOptions("Encounter Progress", "encounter-pp", values, 0) + "</p>" +
+							"<p>" + getOptions("Object Progress", "object-pp", values, 0) + "</p>" +
+							getLink("Resume Small", "solo.showMythicArea('small', true)") +
+							getLink("Resume Large", "solo.showMythicArea('large', true)")
+						);
+					}
+
+					var output = "";
+
+					if (location_pp) output += "<p><b>Location (" + upperCase(location_type) + "):</b> " + location_pp + "</p><p><b>Encounter:</b> " + encounter_pp + " / <b>Objects:</b> " + object_pp + "</p>" + getLink("Continue Exploring", "solo.showMythicArea('" + location_type + "', true)") + "<hr>";
+					display(
+						output + getLinks(["New Small Location", "solo.showMythicArea('small')"], ["New Large Location", "solo.showMythicArea('large')"]) + 
+						"<hr>" + getLink("Resume Exploring", "solo.showMythicAreaList(true)")
+					);
+				};
+				
+
+				var showMythicRegion = function(type, region) {
+					var getRegion = function(region) {
+						var temp = getRolledItem(random(1, 100), mythic_location[type][region.toLowerCase()]);
+
+						if (temp === "[Descriptions]") temp = getMeaning("Mythic Descriptor");
+						else if (temp === "[Actions]") temp = getMeaning("Mythic Action");
+						else if (temp.indexOf("[") !== -1) temp = temp.replace(/\[(.+)\]/, function(m, p1) {
+							return getRegion(p1.toLowerCase());
+						});
+
+						return temp;
+					}
+
+					display("<p><b>" + upperCase(type) + ":</b> " + getRegion(region) + ((type !== "connector") ? "; " + getRegion(region) : "") + "</p>");
+				};
+
+				var showMythicRegionList = function(type) {
+					var getRegionLinks = function(links) {
+						var a;
+						var text = "";
+						for (a = 0; a < links.length; ++a) {
+							if (links[a] === "---") text += "<hr>";
+							else text += getLink(links[a], "solo.showMythicRegion('" + type + "', '" + links[a].toLowerCase() + "')");
+						}
+
+						return text;
+					};
+
+					var output = "";
+
+					if (type === "region") output += getRegionLinks(["Wilderness", "City", "Structure", "---"]);					
+					output += getRegionLinks([
+						"Village", "Town", "Metropolis", "---", 
+						"Cavern Dungeon", "Ancient Dungeon", "Palatial Dungeon", "---",
+						"Dark Woods", "Ancient Woods", "Horror Woods", "---",
+						"Small Spaceship", "Large Starship", "Space Station"
+					]);
+					if (type !== "connector") output += getRegionLinks(["---", "Dimension", "Planet", "Era"]);
+
+					display(output);
+				};
+
+
 				var showMythicLocationProperty = function() {
 					display(
 						getLinks(
@@ -3723,7 +3969,7 @@
 
 				var showLocationElement = function() {
 					var element = getRolledItem(random(1, 100), location_elements);
-					display("<p><b>Element:</b> " + upperCase(element[0].toLowerCase()) + "<br><br>" + element[1] + "</p>")
+					display("<p><b>Element:</b> " + element[0] + "<br><br>" + element[1] + "</p>")
 				};
 
 
@@ -3792,6 +4038,65 @@
 					)
 				};
 
+
+				var showFulfillmentIssue = function() {
+					var a, item;
+					var list = [];
+					var count = random(2, 4);
+
+					do {
+						item = randomItem(backstories["fulfillment"]);
+						if (list.indexOf(item) === -1) list.push(item);
+					}
+					while (list.length < count);
+
+					display("<b>Issue:</b> " + list.join(" / "));
+				};
+
+				var showFulfillmentEpiphany = function(type) {
+					var getFateV2 = function(mod) {
+						var die1 = random(1, 10);
+						var die2 = random(1, 10);
+						var chaosDie = random(1, 10);
+
+						var exceptional = false;
+						var event = false;
+
+						if (chaosDie <= chaos) {
+							if (die1 === die2) {
+								exceptional = true;
+								event = true;
+							}
+							else if ((die1 % 2) && (die2 % 2)) exceptional = true;
+							else if (!(die1 % 2) && !(die2 % 2)) event = true;
+						}
+
+						var result;
+						if (die1 + die2 + mod > 10) result = (exceptional ? 3 : 2);
+						else result = (exceptional ? 0 : 1);
+
+						return [result, event];
+					};
+
+					if (type === undefined) {
+						return display(
+							"<p>The Fulfillment Opportunity...</p>" +
+							getLink("...touched on your character's Issue.", "solo.showFulfillmentEpiphany('touched')") +
+							getLink("...mirrored your character's Issue.", "solo.showFulfillmentEpiphany('mirrored')")
+						);
+					}
+
+					var growth;
+					var result = getFateV2(type === "touched" ? 2 : 4);
+					var results = [
+						"Your character is very troubled, -1 to the Current Fulfillment Value and a Fulfillment Opportunity is Primed.",
+						"Your character is troubled, no change to the Current Fulfillment Value and a Fulfillment Opportunity is Primed.",
+						"Your character gains insight, +1 to the Current Fulfillment Value.",
+						"Your character gains extra insight, +2 to the Current Fulfillment Value."
+					];
+
+					display("<p><b>Growth:</b> " + results[result[0]] + "</p>" + (result[1] ? "<p><b>Random Event:</b> " + getMeaning("Mythic Action") + "</p>" : ""));
+				};
 
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
@@ -4077,7 +4382,7 @@
 						}
 					};
 
-					var meaning;
+					var meaning, temp, temp2;
 
 					// muse
 					if (type in list("Adjective", "Verb", "Noun", "Action", "Topic")) {
@@ -4135,16 +4440,16 @@
 					else if (type === "IF beats") meaning = randomItem(IF["beats"]);
 
 					// mythic
-					else if (type === "Mythic Suspect") meaning = checkMeaning(mysteries["suspects"], mysteries["suspects"]);
+					else if (type === "Mythic Suspect") meaning = checkMeaning(mythic_meaning["suspects"], mythic_meaning["suspects"]);
 					else if (type === "Mythic Descriptor") meaning = checkMeaning(mythic_meaning["descriptor1"], mythic_meaning["descriptor2"]);
 					else if (type === "Mythic Action") meaning = checkMeaning(mythic_meaning["action1"], mythic_meaning["action2"]);
 					else if (/^Mythic:/.test(type)) {
 						meaning = type.split(":")[1];
 						meaning = checkMeaning(mythic_meaning[meaning], mythic_meaning[meaning]);
 					}
-					else if (type === "Mythic Location") meaning = checkMeaning(mythic_locations["location"], mythic_locations["location"]);
-					else if (type === "Mythic Encounter") meaning = checkMeaning(mythic_locations["encounter"], mythic_locations["encounter"]);
-					else if (type === "Mythic Object") meaning = checkMeaning(mythic_locations["object"], mythic_locations["object"]);
+					else if (type === "Mythic Location") meaning = checkMeaning(mythic_location["location"], mythic_location["location"]);
+					else if (type === "Mythic Encounter") meaning = checkMeaning(mythic_location["encounter"], mythic_location["encounter"]);
+					else if (type === "Mythic Object") meaning = checkMeaning(mythic_location["object"], mythic_location["object"]);
 
 					// une
 					else if (type === "UNE") meaning = checkMeaning(une["npc"]["modifier"], une["npc"]["noun"], true);
@@ -4172,9 +4477,9 @@
 					else if (type === "Information") meaning = checkMeaning(information["type"], information["topic"]);
 
 					// location
-					else if (type === "Location Type") meaning = checkMeaning(location_descriptors["type"]);
-					else if (type === "Location Encounter") meaning = checkMeaning(location_descriptors["encounter"]);
-					else if (type === "Location Object") meaning = checkMeaning(location_descriptors["object"]);
+					else if (type === "Location Type") meaning = checkMeaning(location_descriptors["type"], location_descriptors["type"]);
+					else if (type === "Location Encounter") meaning = checkMeaning(location_descriptors["encounter"], location_descriptors["encounter"]);
+					else if (type === "Location Object") meaning = checkMeaning(location_descriptors["object"], location_descriptors["object"]);
 					else if (type === "Feature") meaning = checkMeaning(features["aspect"], features["focus"]);
 					else if (type === "Dry Season") meaning = checkMeaning(weather["Dry"]);
 					else if (type === "Wet Season") meaning = checkMeaning(weather["Wet"]);
@@ -4831,9 +5136,15 @@
 				solo.showStatisticList = showStatisticList;
 				solo.showStatistic = showStatistic;
 				solo.showBackstory = showBackstory;
+				solo.showMythicArea = showMythicArea;
+				solo.showMythicAreaList = showMythicAreaList;
+				solo.showMythicRegion = showMythicRegion;
+				solo.showMythicRegionList = showMythicRegionList;
 				solo.showMythicLocationProperty = showMythicLocationProperty;
 				solo.showMysteryElement = showMysteryElement;
 				solo.showMysteryElementList = showMysteryElementList;
+				solo.showFulfillmentIssue = showFulfillmentIssue;
+				solo.showFulfillmentEpiphany = showFulfillmentEpiphany;
 
 				// chance
 				solo.showDice = showDice;
@@ -5061,7 +5372,7 @@
 
 			#display p:first-child { margin-top: 0; }
 
-			#display p:last-child { margin-bottom: 0; }
+			#display :last-child { margin-bottom: 0; }
 
 			#display {
 				padding: 0;
@@ -5101,6 +5412,11 @@
 			#dice-rolls td { padding: 0; }
 
 			#dice-rolls td:first-child { padding-right: 1em; }
+
+			#specials li { margin-top: 1em; }
+
+			#strive-result { margin-bottom: 0; }
+			#strive-options p:first-child { margin-top: 1em; }
 
 			@media screen and (max-width: 600px) {
 				body { font-size: 80%; }
@@ -5312,8 +5628,12 @@
 				<hr>
 
 				<details><summary onclick="solo.showDescription(this, 'mythic-location-desc')"><b>Location</b></summary>
-					<p><a onclick="solo.showMythicLocationProperty()">Property</a></p>
-					<p><a onclick="solo.showLocationElement()">Element</a></p>
+					<p><a onclick="solo.showMythicAreaList()">Explore</a></p>
+					<p><a onclick="solo.showMythicRegionList('region')">Region</a></p>
+					<p><a onclick="solo.showMythicRegionList('story')">Story</a></p>
+					<p><a onclick="solo.showMythicRegionList('connector')">Connector</a></p>
+					<p><a onclick="solo.showMythicLocationProperty()">Element</a></p>
+					<p><a onclick="solo.showLocationElement()">Special Element</a></p>
 				</details>
 				<hr>
 				
@@ -5322,6 +5642,11 @@
 					<p><a onclick="solo.showMysteryElementList()">Element</a></p>
 					<p><a onclick="solo.showMeaning('Clue:Mythic:clues')">Clue</a></p>
 					<p><a onclick="solo.showMeaning('Suspect:Mythic Suspect')">Suspect</a></p>
+				</details>
+				<br>
+				<details><summary onclick="solo.showDescription(this, 'mythic-fulfillment-desc')"><b>Fulfillment</b></summary>
+					<p><a onclick="solo.showFulfillmentIssue()">Issue</a></p>
+					<p><a onclick="solo.showFulfillmentEpiphany()">Epiphany</a></p>
 				</details>
 			</div>
 
@@ -5610,13 +5935,33 @@
 				<p>This section is dedicated to generating locations using <i>Location Crafter</i>.</p>
 				<details><summary>Details</summary>
 					<br>
-					<details><summary><b>Property</b></summary>
-						<p>Generate properties for a location.</p>
-						<p>The table is meant to be used with <i>Location Crafter</i> or the Region creator in <i>Mythic Magazine Vol.2</i>, but can easily be used on their own to help describe an environment.</p>
+					<details><summary><b>Explore</b></summary>
+						<p>Explore a Region using the Randomized Location Crafter from <i>Mythic Magazine Vol.2</i>.</p>
+						<p>The Continue Exploring option tracks Progress Points automatically in order to traverse a Region, Area by Area. The Resume Exploring option lets you set the Progress Points before you begin so that may pick up where you left off in a Region.</p>
+						<p>This uses the Special Elements and Area Elements tables of Randomize Location Crafter.</p>
+					</details>
+					<br>
+					<details><summary><b>Region</b></summary>
+						<p>Generator Descriptors for a Region.</p>
+						<p>A Region encompasses Areas or Locations. If a Location is a room, then a Region is the building containing the room.</p>
+					</details>
+					<br>
+					<details><summary><b>Story</b></summary>
+						<p>Generate backstory and history for a Region.</p>
+					</details>
+					<br>
+					<details><summary><b>Connector</b></summary>
+						<p>Generator Connectors such as paths and hallways that link one Area to another.</p>
 					</details>
 					<br>
 					<details><summary><b>Element</b></summary>
-						<p>Generate a Location Element for use with <i>Location Crafter</i>.</p>
+						<p>Generate descriptors for Region Elements, such as Locations, Encounters, and Objects.</p>
+						<p>The table is meant to be used with <i>Location Crafter</i> or the Randomized Location Crafter in <i>Mythic Magazine Vol.2</i>, but it can easily be used on its own to help describe an environment.</p>
+					</details>
+					<br>
+					<details><summary><b>Special Element</b></summary>
+						<p>Generate a Special Element for use with <i>Location Crafter</i>.</p>
+						<p>This table from <i>Location Crafter</i> differs from the one found in the Randomized Location Crafter, and while the rules are similar, they're not entirely compatible.</p>
 					</details>
 				</details>
 			</div>
@@ -5641,6 +5986,19 @@
 						<p>Generate a Suspect descriptor.</p>
 					</details>
 				</details>
+			</div>
+
+			<div id="mythic-fulfillment-desc">
+				<p>This section is dedicated to Emotional Quests from <i>Mythic Magazine Vol.14</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Issue</b></summary>
+						<p>Generate an Issue that the character needs to resolve in order to reach Fulfillment.</p>
+					</details>
+					<br>
+					<details><summary><b>Ephiphany</b></summary>
+						<p>Determine how much closer an Epiphany brings your character to reaching Fulfillment.</p>
+					</details>
 			</div>
 
 			<div id="crge-desc">
@@ -5731,6 +6089,11 @@
 					<br>
 					<details><summary><b>Oracle</b></summary>
 						<p>Answer a Yes or No question using a method based on Powered by the Apocalypse rules.</p>
+					</details>
+					<br>
+					<details><summary><b>Motifs</b></summary>
+						<p>Motifs are <i>Calypso</i>'s form of a muse. They help answer open-ended questions.</p>
+						<p>Unlike a word table, Motifs are sentence fragments that are similar to cut-ups of a poem. They are more about evoking a feeling that you can combine with context for an answer.</p>
 					</details>
 					<br>
 					<details><summary><b>Dramatic Move</b></summary>
@@ -5913,7 +6276,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.06.05 tayruh</p>
+				<p>version: 2022.06.11 tayruh</p>
 			</div>
 		</div>
 	</body>
