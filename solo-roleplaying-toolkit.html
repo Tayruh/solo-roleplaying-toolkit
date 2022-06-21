@@ -468,11 +468,11 @@
 					},
 					"story": {
 						"turns": {
-							11: "A sudden turn in favor of the player character(s).",
-							22: "Any useful progress or clues in the scene will be.",
+							11: "A sudden turn in favor of the player character(s) and/or their interests.",
+							22: "Any useful progress or clues in the scene will be offset by ostacles of delays.",
 							33: "Helpful non-player characters suddenly arrive.",
 							44: "Hostile non-player characters suddenly arrive.",
-							55: "An especially unusual item or well-hidden clue is.",
+							55: "An especially unusual item or well-hidden clue is unlocked within the scene.",
 							66: "A sudden turn in favor of the Big Bad or other forces aligned against the main characters and their interests."
 						},
 						"answer": {
@@ -4269,6 +4269,8 @@
 					if (total !== 0 || has_num) types.unshift(" ".repeat(padding) + "Total: <b>" + total + "</b>");
 					else if (!types.length) types.unshift("Total: <b>None</b>");
 
+					$("#reset-dice").style.display = "inline-block";
+
 					$("#dice-rolls").innerHTML = "";
 					fadeIn("#dice-rolls", 0, "<pre><code><p>" + output.join("<br>") + "</p><hr><p>" + types.join("</p><p>") + "</p></code></pre>");
 				};
@@ -5413,6 +5415,11 @@
 
 			#dice-rolls td:first-child { padding-right: 1em; }
 
+			#reset-dice { 
+				margin-left: 2em;
+				display: none; 
+			}
+
 			#specials li { margin-top: 1em; }
 
 			#strive-result { margin-bottom: 0; }
@@ -5666,7 +5673,7 @@
 
 			<div id="dice-roller">
 				<p><input type="text" id="dice" spellcheck="false" autocomplete="off"></p>
-				<p><a onclick="solo.showDice()">Roll Dice</a></p>
+				<p><a id="roll-button" onclick="solo.showDice()">Roll Dice</a><a id="reset-dice" onclick="solo.showDiceRoller()">Reset Dice</a></p>
 				<br>
 
 				<div id="dice-rolls">
@@ -6276,7 +6283,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.06.11 tayruh</p>
+				<p>version: 2022.06.20 tayruh</p>
 			</div>
 		</div>
 	</body>
