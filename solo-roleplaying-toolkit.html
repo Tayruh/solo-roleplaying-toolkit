@@ -1721,7 +1721,7 @@
 					]
 				};
 
-				// une and crge
+				// une, crge, bold, and isc
 				var une = {
 					"npc": {
 						"modifier": ["superfluous", "inept", "pleasant", "lethargic", "jovial", "addicted", "banal", "insensitive", "defiant", "shrewd", "conformist", "logical", "titled", "obnoxious", "liberal", "nefarious", "subtle", "inexperienced", "insightful", "compliant", "sensible", "reputable", "prying", "tactless", "destitute", "untrained", "wicked", "oblivious", "fanatic", "conniving", "romantic", "lazy", "refined", "plebeian", "careful", "unreasonable", "pessimistic", "indispensable", "childish", "alluring", "skilled", "solemn", "scholarly", "pious", "defective", "neglectful", "habitual", "conservative", "uneducated", "optimistic", "lively", "meek", "uncouth", "inconsiderate", "affluent", "forthright", "helpful", "willful", "cultured", "despondent", "idealistic", "unconcerned", "indifferent", "revolting", "mindless", "unsupportive", "generous", "fickle", "curious", "passionate", "rational", "docile", "elderly", "touchy", "devoted", "coarse", "cheery", "sinful", "needy", "established", "foolish", "pragmatic", "naive", "dignified", "unseemly", "cunning", "serene", "privileged", "pushy", "dependable", "delightful", "thoughtful", "glum", "kind", "righteous", "miserly", "hopeless", "likable", "corrupt", "confident"],
@@ -1763,7 +1763,26 @@
 						"To Conflict": [2, 6, 16, 50, 84, 94, 98, 100],
 						"To Endings": [1, 2, 20, 50, 80, 98, 99, 100]
 					},
-					"unexpectedly": ["foreshadowing", "to knowledge", "limelit", "cross-stitch", "tying off", "framing", "entering the red", "six degrees", "to conflict", "set change", "to endings", "re-roll/reserved", "costume change", "upstaged", "montage", "re-roll/reserved", "key grip", "pattern change", "enter stage left", "re-roll/reserved"],
+					"unexpectedly": {
+						1: ["Foreshadowing", "set a thread to be the main thread for the next scene. The current scene should then start wrapping up and heading towards the next scene."], 
+						2: ["Tying Off", "the main thread resolves or substantially moves forward in this scene by narrative decree. This does not mean that the main thread cannot create follow-up threads."], 
+						3: ["To Conflict", "the next scene centers on a conflict of your choosing. Set the main elements of the next scene, and start heading toward them in this scene."], 
+						4: ["Costume Change", "an NPC drastically changes their mind, motivations, alliances, etc. for better or worse. This could be a big story reveal or a simple change of heart."], 
+						5: ["Key Grip", "set the location or general elements for the next scene. The current scene should then start wrapping up and heading towards the next scene."], 
+						6: ["To Knowledge", "the next scene centers on lore or investigation of your choosing. Set the main elements of the next scene, and start heading toward them in this scene."], 
+						7: ["Framing", "an NPC (new or pre-existing) or object becomes critical to the main thread."], 
+						8: ["Set Change", "scene continues in another location. The current thread remains as much as makes sense."], 
+						9: ["Upstaged", "an NPC makes a big move. If the NPC has any motivations, plot vectors, or goals they go into overdrive."], 
+						10: ["Pattern Change", "the main thread gets modified, drastically. Whatever direction the main thread was heading, make a hard left. Use a generator, such as Rory’s Story Cubes, tarot cards or a random Wikipedia page, as necessary."], 
+						11: ["Limelit", "the rest of the scene goes great for the PC’s. Assume that the majority of the questions pertaining to the main thread with regard to the scene are answered in a way that benefits the PC’s."], 
+						12: ["Entering the Red", "threat of danger or combat arrives. The premise of the scene gets more dangerous in a way that forces the PC’s to respond by leaving, fighting, or taking their chances."], 
+						13: ["To Endings", "the next scene resolves or substantially moves forward a thread of your choosing. Set the main elements of the next scene, and start heading toward them in this scene."], 
+						14: ["Montage", "the timeframe of the scene changes to a montage of actions set across various scenes to move forward."], 
+						15: ["Enter Stage Left", "a PC or NPC (new or pre-existing) arrives fresh in the scene."], 
+						16: ["Cross-Stitch", "choose another thread to be the main thread for the rest of the scene."], 
+						17: ["Six Degrees", "a meaningful, but not always positive, connection forms between two PC’s and/or NPC’s."], 
+						18: ["Reroll / Reserved", "these slots are reserved for specific “GM actions” found in an RPG system, such as a compel action in the FATE system."], 
+					},
 					"bold": {
 						"waylay": {
 							"descriptor": ["Easy Foes", "Hard Foes", "Knowledge", "Physical", "Factional", "Haven", "Party", "Personal", "Epic", "Natural"],
@@ -1870,44 +1889,9 @@
 				};
 
 				var location_descriptors = {
-					"type": [
-						"High", "Remote", "Exposed", "Broken", "Diverse", "Rough", "Shadowy", "Contested", "Grim", "Wild", "Fertile", "Blocked", "Perilous", "Hidden", "Occupied",
-						"Rich", "Big", "Savage", "Defended", "Withered", "Mystical", "Inaccessible", "Protected", "Wide", "Foul", "Dead", "Barren", "Blighted", "Low", "Abundant",
-						"Lush", "Flooded", "Corrupted", "Forgotten", "Expansive", "Settled", "Dense", "Civilized", "Desolate", "Isolated", "Bustling", "Tropical", "Compact",
-						"Frozen", "Narrow", "Fantastic", "Windy", "Noisy", "Huge", "Undesirable", "Strategic", "Poor", "Stormy", "Hazardous", "Vibrant", "Crowded", "Unique",
-						"Deserted", "Traditional", "Tamed", "Crumbling", "Depleted", "Wet", "Smooth", "Dilapidated", "Guarded", "Enchanted", "Colossal", "Decayed", "Thin",
-						"Giant", "Unsafe", "Lively", "Spacious", "Tiny", "Secret", "Eerie", "Chilly", "Sharp", "Treacherous", "Grand", "Chilling", "Steep", "Unsavory",
-						"Enigmatic", "Unnerving", "Terrible", "Complex", "Horrifying", "Overgrown", "Sacred", "Crooked", "Bountiful", "Somber", "Hospitable", "Dim", "Crude",
-						"Gloomy", "Shoddy", "Filthy", "Uninhabited", "Timeless", "Untouched", "Dingy", "Endangered", "Nightmarish", "Vulnerable", "Hostile", "Haunted", "Elderly",
-						"Neglected", "Turbulent", "Closed", "Old", "Pristine", "Ugly", "Violent", "Young", "Toxic", "Abandoned", "Amusing", "Ancient", "Aromatic", "Beautiful",
-						"Bleak", "Average", "Bizarre", "Calm", "Classy", "Clean", "Colorful", "Creepy", "Cold", "Cute", "Damaged", "Dangerous", "Dark", "Dirty", "Delightful",
-						"Drab", "Disgusting", "Dry", "Empty", "Enormous", "Exotic", "Fortunate", "Familiar", "Frightening", "Full", "Fancy", "Festive", "Harsh", "Horrible",
-						"Important", "Helpful", "Lavish", "Magnificent", "Intense", "Messy", "Military", "Loud", "Modern", "Majestic", "Meaningful", "Extravagant", "Mundane",
-						"Mysterious", "Natural", "Odd", "Official", "Peaceful", "Small", "Positive", "Reassuring", "Quaint", "Quiet", "Ruined", "Rustic", "Simple", "Threatening",
-						"Smelly", "Tranquil", "Warm", "Watery", "Negative", "Enclosed", "Domestic", "New", "Open", "Safe", "Expected", "Unexpected", "Strange", "Active",
-						"Inactive", "Harmful", "Primitive", "Protection", "Unusual", "Bright", "Ornate", "Atmosphere", "Sounds", "Resourceful", "Purposeful", "Personal",
-						"Exclusive", "Intriguing", "Echo", "Unsteady", "Moving", "Cluttered", "Storage", "Confusing", "Lonely", "Long", "Tall", "Artistic"
-					],
-					"encounter": [
-						"Abnormal", "Aggressive", "Angry", "Anxious", "Beautiful", "Average", "Bold", "Busy", "Calm", "Careless", "Cautious", "Cheerful", "Combative", "Bizarre",
-						"Crazy", "Curious", "Dangerous", "Defiant", "Classy", "Delightful", "Creepy", "Energetic", "Enormous", "Excited", "Fearful", "Ferocious", "Foolish",
-						"Fortunate", "Frantic", "Frightening", "Cute", "Generous", "Gentle", "Glad", "Graceful", "Happy", "Helpful", "Helpless", "Innocent", "Intense", "Lazy",
-						"Defeated", "Loud", "Loyal", "Majestic", "Disgusting", "Miserable", "Mysterious", "Feeble", "Odd", "Official", "Peaceful", "Playful", "Positive",
-						"Powerful", "Exotic", "Familiar", "Slow", "Horrible", "Swift", "Threatening", "Violent", "Wild", "Important", "Lonely", "Mighty", "Military", "Mundane",
-						"Reassuring", "Small", "Smelly", "Strong", "Watery", "Weak", "Ambush", "Harmful", "Trap", "Friend", "Foe", "Negative", "Evil", "Animal", "Expected",
-						"Unexpected", "Strange", "Armed", "Active", "Inactive", "Multiple", "Single", "Primitive", "Unusual", "Fast", "Hidden", "Natural", "Quiet", "Unnatural",
-						"Resourceful"
-					],
-					"object": [
-						"Amusing", "Ancient", "Aromatic", "Average", "Beautiful", "Bizarre", "Classy", "Colorful", "Creepy", "Cute", "Damaged", "Delicate", "Disgusting", "Cold",
-						"Empty", "Enormous", "Dangerous", "Exotic", "Deliberate", "Delightful", "Faded", "Familiar", "Fancy", "Hard", "Heavy", "Horrible", "Fortunate",
-						"Important", "Frightening", "Large", "Lethal", "Magnificent", "Military", "Modern", "Extravagant", "Helpful", "Mundane", "Natural", "Powerful", "Rare",
-						"Light", "Loud", "Reassuring", "Majestic", "Meaningful", "Mechanical", "Ruined", "Mysterious", "New", "Odd", "Official", "Small", "Smelly", "Positive",
-						"Smooth", "Valuable", "Warm", "Soft", "Watery", "Threatening", "Weapon", "Useful", "Clothing", "Travel", "Tool", "Negative", "Communication", "Food",
-						"Domestic", "Artistic", "Expected", "Unexpected", "Strange", "Resource", "Fuel", "Harmful", "Energy", "Multiple", "Single", "Unusual", "Bright", "Ornate",
-						"Broken", "Liquid", "Personal", "Intriguing", "Active", "Inactive", "Garbage", "Useless", "Primitive", "Desired", "Healing", "Hidden", "Prized", "Flora",
-						"Moving", "Confusing"
-					]
+					"type": ["High", "Remote", "Exposed", "Broken", "Diverse", "Rough", "Shadowy", "Contested", "Grim", "Wild", "Fertile", "Blocked", "Perilous", "Hidden", "Occupied", "Rich", "Big", "Savage", "Defended", "Withered", "Mystical", "Inaccessible", "Protected", "Wide", "Foul", "Dead", "Barren", "Blighted", "Low", "Abundant", "Lush", "Flooded", "Corrupted", "Forgotten", "Expansive", "Settled", "Dense", "Civilized", "Desolate", "Isolated", "Bustling", "Tropical", "Compact", "Frozen", "Narrow", "Fantastic", "Windy", "Noisy", "Huge", "Undesirable", "Strategic", "Poor", "Stormy", "Hazardous", "Vibrant", "Crowded", "Unique", "Deserted", "Traditional", "Tamed", "Crumbling", "Depleted", "Wet", "Smooth", "Dilapidated", "Guarded", "Enchanted", "Colossal", "Decayed", "Thin", "Giant", "Unsafe", "Lively", "Spacious", "Tiny", "Secret", "Eerie", "Chilly", "Sharp", "Treacherous", "Grand", "Chilling", "Steep", "Unsavory", "Enigmatic", "Unnerving", "Terrible", "Complex", "Horrifying", "Overgrown", "Sacred", "Crooked", "Bountiful", "Somber", "Hospitable", "Dim", "Crude", "Gloomy", "Shoddy", "Filthy", "Uninhabited", "Timeless", "Untouched", "Dingy", "Endangered", "Nightmarish", "Vulnerable", "Hostile", "Haunted", "Elderly", "Neglected", "Turbulent", "Closed", "Old", "Pristine", "Ugly", "Violent", "Young", "Toxic", "Abandoned", "Amusing", "Ancient", "Aromatic", "Beautiful", "Bleak", "Average", "Bizarre", "Calm", "Classy", "Clean", "Colorful", "Creepy", "Cold", "Cute", "Damaged", "Dangerous", "Dark", "Dirty", "Delightful", "Drab", "Disgusting", "Dry", "Empty", "Enormous", "Exotic", "Fortunate", "Familiar", "Frightening", "Full", "Fancy", "Festive", "Harsh", "Horrible", "Important", "Helpful", "Lavish", "Magnificent", "Intense", "Messy", "Military", "Loud", "Modern", "Majestic", "Meaningful", "Extravagant", "Mundane", "Mysterious", "Natural", "Odd", "Official", "Peaceful", "Small", "Positive", "Reassuring", "Quaint", "Quiet", "Ruined", "Rustic", "Simple", "Threatening", "Smelly", "Tranquil", "Warm", "Watery", "Negative", "Enclosed", "Domestic", "New", "Open", "Safe", "Expected", "Unexpected", "Strange", "Active", "Inactive", "Harmful", "Primitive", "Protection", "Unusual", "Bright", "Ornate", "Atmosphere", "Sounds", "Resourceful", "Purposeful", "Personal", "Exclusive", "Intriguing", "Echo", "Unsteady", "Moving", "Cluttered", "Storage", "Confusing", "Lonely", "Long", "Tall", "Artistic"],
+					"encounter": ["Abnormal", "Aggressive", "Angry", "Anxious", "Beautiful", "Average", "Bold", "Busy", "Calm", "Careless", "Cautious", "Cheerful", "Combative", "Bizarre", "Crazy", "Curious", "Dangerous", "Defiant", "Classy", "Delightful", "Creepy", "Energetic", "Enormous", "Excited", "Fearful", "Ferocious", "Foolish", "Fortunate", "Frantic", "Frightening", "Cute", "Generous", "Gentle", "Glad", "Graceful", "Happy", "Helpful", "Helpless", "Innocent", "Intense", "Lazy", "Defeated", "Loud", "Loyal", "Majestic", "Disgusting", "Miserable", "Mysterious", "Feeble", "Odd", "Official", "Peaceful", "Playful", "Positive", "Powerful", "Exotic", "Familiar", "Slow", "Horrible", "Swift", "Threatening", "Violent", "Wild", "Important", "Lonely", "Mighty", "Military", "Mundane", "Reassuring", "Small", "Smelly", "Strong", "Watery", "Weak", "Ambush", "Harmful", "Trap", "Friend", "Foe", "Negative", "Evil", "Animal", "Expected", "Unexpected", "Strange", "Armed", "Active", "Inactive", "Multiple", "Single", "Primitive", "Unusual", "Fast", "Hidden", "Natural", "Quiet", "Unnatural", "Resourceful"],
+					"object": ["Amusing", "Ancient", "Aromatic", "Average", "Beautiful", "Bizarre", "Classy", "Colorful", "Creepy", "Cute", "Damaged", "Delicate", "Disgusting", "Cold", "Empty", "Enormous", "Dangerous", "Exotic", "Deliberate", "Delightful", "Faded", "Familiar", "Fancy", "Hard", "Heavy", "Horrible", "Fortunate", "Important", "Frightening", "Large", "Lethal", "Magnificent", "Military", "Modern", "Extravagant", "Helpful", "Mundane", "Natural", "Powerful", "Rare", "Light", "Loud", "Reassuring", "Majestic", "Meaningful", "Mechanical", "Ruined", "Mysterious", "New", "Odd", "Official", "Small", "Smelly", "Positive", "Smooth", "Valuable", "Warm", "Soft", "Watery", "Threatening", "Weapon", "Useful", "Clothing", "Travel", "Tool", "Negative", "Communication", "Food", "Domestic", "Artistic", "Expected", "Unexpected", "Strange", "Resource", "Fuel", "Harmful", "Energy", "Multiple", "Single", "Unusual", "Bright", "Ornate", "Broken", "Liquid", "Personal", "Intriguing", "Active", "Inactive", "Garbage", "Useless", "Primitive", "Desired", "Healing", "Hidden", "Prized", "Flora", "Moving", "Confusing"]
 				};
 
 				var distances = {
@@ -1921,18 +1905,8 @@
 				};
 
 				var features = {
-					"aspect": [
-						"Blocked", "Crafted", "Ancient", "Sunken", "Trapped", "Secret", "Toxic", "Ruined", "Defended", "Decaying", "Marked", "Guarded", "Inaccessible",
-						"Foreboding", "Veiled", "Deep", "Depleted", "Foul", "Elevated", "Moving", "Unnatural", "Active", "Confined", "Fortified", "Collapsed", "Isolated",
-						"Destroyed", "Open", "Sacred", "Flooded", "Complex", "Abundant", "Hidden", "Expansive", "Mysterious", "Unstable", "Fragile", "Broken", "Ensnaring",
-						"Pillaged", "Sealed", "Makeshift", "Treacherous", "Natural", "Dead", "Unusual", "Abandoned", "Deadly", "Forgotten", "Mystical"
-					],
-					"focus": [
-						"Attack", "Threshold", "Boundary", "Alarm", "Exit", "Passage", "Crossing", "Trigger", "Trap", "Hideaway", "Nature", "Sign", "Refuge", "Valuables",
-						"Breach", "Route", "Location", "Trail", "Supply", "History", "Prisoner", "Habitation", "Debris", "Creature", "Lair", "Person", "Enclosure", "Remains",
-						"Water", "Message", "Darkness", "Opening", "Weapon", "Entry", "Illumination", "Obstacle", "Craft", "Container", "Information", "Grave", "Equipment",
-						"Shelter", "Denizen", "Environment", "Material", "Resource", "Corruption", "Death", "Function", "Power"
-					]
+					"aspect": ["Blocked", "Crafted", "Ancient", "Sunken", "Trapped", "Secret", "Toxic", "Ruined", "Defended", "Decaying", "Marked", "Guarded", "Inaccessible", "Foreboding", "Veiled", "Deep", "Depleted", "Foul", "Elevated", "Moving", "Unnatural", "Active", "Confined", "Fortified", "Collapsed", "Isolated", "Destroyed", "Open", "Sacred", "Flooded", "Complex", "Abundant", "Hidden", "Expansive", "Mysterious", "Unstable", "Fragile", "Broken", "Ensnaring", "Pillaged", "Sealed", "Makeshift", "Treacherous", "Natural", "Dead", "Unusual", "Abandoned", "Deadly", "Forgotten", "Mystical"],
+					"focus": ["Attack", "Threshold", "Boundary", "Alarm", "Exit", "Passage", "Crossing", "Trigger", "Trap", "Hideaway", "Nature", "Sign", "Refuge", "Valuables", "Breach", "Route", "Location", "Trail", "Supply", "History", "Prisoner", "Habitation", "Debris", "Creature", "Lair", "Person", "Enclosure", "Remains", "Water", "Message", "Darkness", "Opening", "Weapon", "Entry", "Illumination", "Obstacle", "Craft", "Container", "Information", "Grave", "Equipment", "Shelter", "Denizen", "Environment", "Material", "Resource", "Corruption", "Death", "Function", "Power"]
 				};
 
 				var mysteries = {
@@ -3012,6 +2986,18 @@
 
 				var surge = 0;
 
+				var getUnexpectedly = function(replace_text) {
+					var roll = random(1, 20);
+					var unexpected = getRolledItem(roll, une["unexpectedly"]);
+
+					var output = "<p><b>" + unexpected[0].replace("Reserved", "Reserved " + (roll - 17)) + "</b>: " + unexpected[1] + "</p>";
+
+					if (unexpected[0] === "Reroll / Reserved") output = output + "<p><a onclick='solo.getUnexpectedly(true)'>Reroll</a></p>";
+
+					if (replace_text) $("#unexpectedly").innerHTML = output;
+					else return output;
+				};
+
 				var showLoom = function(type) {
 					var roll = random(1, 100);
 
@@ -3037,7 +3023,11 @@
 						"<span class='yes exceptional'>Yes, and unexpectedly</span>"
 					];
 
-					display("<p><b>Fate:</b> " + results[index] + "</p>");
+					var output = "<p><b>Fate:</b> " + results[index] + "</p>";
+
+					if (index === 0 || index === 7) output += "<div id='unexpectedly'>" + getUnexpectedly() + "</div>";
+
+					display(output);
 				};
 
 				var showLoomList = function() {
@@ -5097,6 +5087,7 @@
 				solo.showMysteryEngineList = showMysteryEngineList;
 
 				// crge
+				solo.getUnexpectedly = getUnexpectedly;
 				solo.showLoom = showLoom;
 				solo.showLoomList = showLoomList;
 				solo.showPowerLevel = showPowerLevel;
@@ -6283,7 +6274,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.06.20 tayruh</p>
+				<p>version: 2022.07.03 tayruh</p>
 			</div>
 		</div>
 	</body>
