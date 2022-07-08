@@ -1822,6 +1822,31 @@
 					}
 				};
 
+				// one page solo engine
+				var opse = {
+					"suit domain": ["Physical (appearance, existence)", "Technical (mental, operation)", "Mystical (meaning, capability)", "Social (personal, connection)"],
+					"scene complication": ["Hostile forces oppose you", "An obstacle blocks your way", "Wouldn’t it suck if…", "An NPC acts suddenly", "All is not as is seems", "Things actually go as planned"],
+					"altered scene": ["A major detail of the scene is enhanced or somehow worse", "The environment is different", "Unexpected NPCs are present", "Add a Scene Complication", "Add a Pacing Move", "Add a Random Event"],
+					"oracle how": ["Surprisingly lacking", "Less than expected", "About average", "About average", "More than expected", "Extraordinary"],
+					"pacing moves": ["Foreshadow Trouble", "Reveal a New Detail", "An NPC Takes Action", "Advance a Threat", "Advance a Plot", "Add a Random Event to the scene"],
+					"failure moves": ["Cause Harm", "Put Someone in a Spot", "Offer a Choice", "Advance a Threat", "Reveal an Unwelcome Truth", "Foreshadow Trouble"],
+					"action focus": ["Seek", "Oppose", "Communicate", "Move", "Harm", "Create", "Reveal", "Command", "Take", "Protect", "Assist", "Transform", "Deceive"],
+					"detail focus": ["Small", "Large", "Old", "New", "Mundane", "Simple", "Complex", "Unsavory", "Specialized", "Unexpected", "Exotic", "Dignified", "Unique"],
+					"topic focus": ["Current Need", "Allies", "Community", "History", "Future Plans", "Enemies", "Knowledge", "Rumors", "A Plot Arc", "Recent Events", "Equipment", "A Faction", "The PCs"],
+					"objective": ["Eliminate a threat", "Learn the truth", "Recover something valuable", "Escort or deliver to safety", "Restore something broken", "Save an ally in peril"],
+					"adversaries": ["A powerful organization", "Outlaws", "Guardians", "Local inhabitants", "Enemy horde or force", "A new or recurring villain"],
+					"rewards": ["Money or valuables", "Money or valuables", "Knowledge and secrets", "Support of an ally", "Advance a plot arc", "A unique item of power"],
+					"identity": ["Outlaw", "Drifter", "Tradesman", "Commoner", "Soldier", "Merchant", "Specialist", "Entertainer", "Adherent", "Leader", "Mystic", "Adventurer", "Lord"],
+					"goal": ["Obtain", "Learn", "Harm", "Restore", "Find", "Travel", "Protect", "Enrich Self", "Avenge", "Fulfill Duty", "Escape", "Create", "Serve"],
+					"notable feature": ["Unremarkable", "Notable nature", "Obvious physical trait", "Quirk or mannerism", "Unusual equipment", "Unexpected age or origin"],
+					"location": ["Typical area", "Transitional area", "Living area or meeting place", "Working or utility area", "Area with a special feature", "Location for a specialized purpose"],
+					"encounter": ["None", "None", "Hostile enemies", "Hostile enemies", "An obstacle blocks the way", "Unique NPC or adversary"],
+					"object": ["Nothing, or mundane objects", "Nothing, or mundane objects", "An interesting item or clue", "A useful tool, key, or device", "Something valuable", "Rare or special item"],
+					"total exits": ["Dead end", "1 additional exit", "2 additional exits"],
+					"terrain": ["Same as current hex", "Same as current hex", "Common terrain", "Common terrain", "Uncommon terrain", "Rare terrain"],
+					"features": ["Notable structure", "Dangerous hazard", "A settlement", "Strange natural feature", "New region (set new terrain types)", "Dungeon Crawler entrance"]
+				}
+				
 				// mythic variations and mythic magazine vol.8 & 14
 				var backstories = {
 					"fulfillment": ["Abandonment", "Abuse", "Accident", "Accomplishment", "Addiction", "Aid", "Anger", "Answers", "Appreciation", "Betrayal", "Break", "Care", "Careful", "Careless", "Child", "Childhood", "Colleague", "Common", "Connection", "Country", "Death", "Debt", "Deceit", "Dependent", "Despair", "Destination", "Disaster", "Discovery", "Distrust", "Duty", "Ego", "Enemy", "Escape", "Exotic", "Failure", "Fall", "Family", "Flee", "Fortune", "Found", "Free", "Friend", "Goal", "Guilt", "Happiness", "Hardship", "Hatred", "Healing", "Home", "Honor", "Hope", "Humility", "Identity", "Illness", "Independent", "Injury", "Intended", "Lies", "Life", "Location", "Loneliness", "Loss", "Lost", "Love", "Memory", "Mistake", "Mystery", "Object", "Pain", "Parent", "Peace", "Power", "Pride", "Questions", "Reciprocation", "Reliance", "Rely", "Repair", "Rescue", "Resentment", "Responsibility", "Revenge", "Rise", "Seek", "Separation", "Sibling", "Stranger", "Talent", "Tested", "Theft", "Time", "Trapped", "Travel", "Trust", "Truth", "Unknown", "War", "Work", "Yearning", "Youth"],
@@ -4088,6 +4113,151 @@
 					display("<p><b>Growth:</b> " + results[result[0]] + "</p>" + (result[1] ? "<p><b>Random Event:</b> " + getMeaning("Mythic Action") + "</p>" : ""));
 				};
 
+				
+				///////////////////////////////////////////////////////////////////
+				/* One Page Solo Engine menu */
+
+				var showOnePageOracle = function(odds) {
+					var answer = random(1, 6);
+					var mod = random(1, 6);
+
+					var output = (answer > odds) ? "Yes" : "No";
+
+					if (mod === 1) output += " but…";
+					else if (mod === 6) output += " and…";
+
+					display("<p><b>Oracle:</b> " + output + "</p>");
+				};
+
+				var showOnePageOracleList = function() {
+					display(
+						getLinks(
+							["Likely", "solo.showOnePageOracle(2)"],
+							["Even", "solo.showOnePageOracle(3)"],
+							["Unlikely", "solo.showOnePageOracle(4)"]
+						)
+					);
+				};
+
+
+				var showOnePageGeneration = function(type, return_output) {
+					var output, name, meaning;
+
+					if (/OPSE /.test(type)) {
+						name = type.split(":");
+						if (name.length > 1) type = name[1];
+
+						output = 
+							"<p><b>" + name[0] + ":</b> " + getMeaning(type) + "</b></p>" +
+							"<p><b>Domain:</b> " + randomItem(opse["suit domain"]) + "</p>";
+					}
+
+					else if (type === "generate scene") {
+						output = "<p><b>Complication:</b> " + getMeaning("OPSE Scene Complication") + "</p><p><b>Alteration:</b> ";
+						
+						if (random(1, 6) < 5) output += "None</p>";
+						else {
+							meaning = getMeaning("OPSE Altered Scene");
+							if (meaning === "Add a Scene Complication") meaning = getMeaning("OPSE Scene Complication") + "</p>";
+							else if (meaning === "Add a Pacing Move") meaning = getMeaning("OPSE Pacing Moves") + "</p>";
+							
+							if (/Random Event/.test(meaning)) meaning += showOnePageGeneration("random event", true);
+							output += meaning;
+						}
+					}
+
+					else if (type === "gm moves") {
+						output =
+							getLink("Pacing Move", "solo.showMeaning('Move:OPSE Pacing Moves')") +
+							getLink("Failure Move", "solo.showMeaning('Move:OPSE Failure Moves')");
+					}
+
+					else if (type === "random event") {
+						output =
+							"<p><b>What Happens:</b> " + getMeaning("OPSE Action Focus") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>Involving:</b> " + getMeaning("OPSE Topic Focus") + " - " + randomItem(opse["suit domain"]) + "</p>";
+					}
+
+					else if (type === "oracle focus") {
+						output = getLinks(
+							["Action Focus", "solo.showOnePageGeneration('Action:OPSE Action Focus')"],
+							["Detail Focus", "solo.showOnePageGeneration('Detail:OPSE Detail Focus')"],
+							["Action Focus", "solo.showOnePageGeneration('Topic:OPSE Topic Focus')"]
+						);
+					}
+
+					else if (type === "generic generator") {
+						output =
+							"<p><b>What it Does:</b> " + getMeaning("OPSE Action Focus") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>How it Looks:</b> " + getMeaning("OPSE Detail Focus") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>How Significant:</b> " + getMeaning("OPSE Oracle How") + "</p>";
+					}
+
+					else if (type === "generate plot hook") {
+						output =
+							"<p><b>Objective:</b> " + getMeaning("OPSE Objective") + "</p>" +
+							"<p><b>Adversary:</b> " + getMeaning("OPSE Adversaries") + "</p>" +
+							"<p><b>Reward:</b> " + getMeaning("OPSE Rewards") + "</p>"
+					}
+
+					else if (type === "generate npc") {
+						output =
+							"<p><b>Identity:</b> " + getMeaning("OPSE Identity") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>Goal:</b> " + getMeaning("OPSE Goal") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>Notable Feature:</b></p><ul>" + 
+								"<li>" + getMeaning("OPSE Notable Feature") + "</li>" +
+								"<li>" + getMeaning("OPSE Detail Focus") + " - " + randomItem(opse["suit domain"]) + "</li></ul>" +
+							showOnePageGeneration("current situation", true);
+					}
+
+					else if (type === "notable feature") {
+						output = 
+							"<p><b>Feature:</b> " + randomItem(opse["notable feature"]) + "</p>" +
+							"<p><b>Detail:</b> " + getMeaning("OPSE Detail Focus") + " - " + randomItem(opse["suit domain"]) + "</p>"
+					}
+
+					else if (type === "current situation") {
+						output =
+							"<p><b>Attitude to PCs:</b> " + getMeaning("OPSE Oracle How") + "</p>" +
+							"<p><b>Conversation:</b> " + getMeaning("OPSE Topic Focus") + " - " + randomItem(opse["suit domain"]) + "</p>"
+					}
+
+					else if (type === "dungeon theme") {
+						output =
+							"<p><b>How it Looks:</b> " + getMeaning("OPSE Detail Focus") + " - " + randomItem(opse["suit domain"]) + "</p>" +
+							"<p><b>How it is Used:</b> " + getMeaning("OPSE Action Focus") + " - " + randomItem(opse["suit domain"]) + "</p>";
+					}
+
+					else if (type === "dungeon area") {
+						output =
+							"<p><b>Location:</b> " + getMeaning("OPSE Location") + "</p>" +
+							"<p><b>Encounter:</b> " + getMeaning("OPSE Encounter") + "</p>" +
+							"<p><b>Object:</b> " + getMeaning("OPSE Object") + "</p>" +
+							"<p><b>Total Exits:</b> " + getMeaning("OPSE Total Exits") + "</p>"
+					}
+
+					else if (type === "generate hex") {
+						output = 
+							"<p><b>Terrain:</b> " + getMeaning("OPSE Terrain") + "</p>" +
+							"<p><b>Contents:</b> " + (random(1, 6) === 6 ? getMeaning("OPSE Features") : "None") + "</p>";
+					}
+
+					else if (type === "contents") {
+						if (random(1, 6) === 6) output = "Roll a Feature";
+						else output = "Nothing notable";
+						output = "<p><b>Contents:</b> " + output + "</p>";
+					}
+
+					else if (type === "event") {
+						if (random(1, 6) < 5) output = "<p><b>Event:</b> None</p>";
+						else output = showOnePageGeneration("random event", true) + "<hr>" + showOnePageGeneration("generate scene", true);
+					}
+
+					if (return_output) return output;
+					display(output);
+				};
+				
+				
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -4443,6 +4613,9 @@
 					else if (type === "Mythic Encounter") meaning = checkMeaning(mythic_location["encounter"], mythic_location["encounter"]);
 					else if (type === "Mythic Object") meaning = checkMeaning(mythic_location["object"], mythic_location["object"]);
 
+					// one page solo engine
+					else if (/^OPSE /.test(type)) meaning = checkMeaning(opse[type.substring(5).toLowerCase()]);
+					
 					// une
 					else if (type === "UNE") meaning = checkMeaning(une["npc"]["modifier"], une["npc"]["noun"], true);
 					else if (type === "UNE Motivation") meaning = checkMeaning(une["motivation"]["verb"], une["motivation"]["noun"], true);
@@ -5139,6 +5312,11 @@
 				solo.showFulfillmentIssue = showFulfillmentIssue;
 				solo.showFulfillmentEpiphany = showFulfillmentEpiphany;
 
+				// one page solo engine
+				solo.showOnePageOracle = showOnePageOracle;
+				solo.showOnePageOracleList = showOnePageOracleList;
+				solo.showOnePageGeneration = showOnePageGeneration;
+
 				// chance
 				solo.showDice = showDice;
 				solo.addDice = addDice;
@@ -5442,6 +5620,7 @@
 								<details id="system-details"><summary onclick="solo.showDescription(this, 'system-desc')">
 									<select name="system" id="system" onclick="event.stopPropagation()" onchange="solo.selectSystem(true)">
 										<option value="Mythic">MYTHIC</option>
+										<option value="OPSE">ONE PAGE S.E.</option>
 										<option value="CRGE">CRGE - UNE</option>
 										<option value="Motif">MOTIF</option>
 										<option value="Calypso">CALYPSO</option>
@@ -5487,14 +5666,14 @@
 								<hr>
 
 								<details><summary onclick="solo.showDescription(this, 'event-desc')"><b>Events</b></summary>
-									<p><a onclick="solo.showEvent()">Event</a></p>
+									<p><a onclick="solo.showEvent()">New Event</a></p>
 									<p><a onclick="solo.showMeaning('Backlash')">Mystic Backlash</a></p>
 									<p><a onclick="solo.showDilemmaList()">Dilemma</a></p>
 								</details>
 								<hr>
 
 								<details><summary onclick="solo.showDescription(this, 'npc-desc')"><b>NPCs</b></summary>
-									<p><a onclick="solo.showNPC()">NPC</a></p>
+									<p><a onclick="solo.showNPC()">New NPC</a></p>
 									<p><a onclick="solo.showCharProperties()">Property</a></p>							
 									<p><a onclick="solo.showMeaning('Relationship')">Relationship</a></p>
 									<p><a onclick="solo.showMeaning('Action:Combat Action')">Combat Action</a></p>
@@ -5504,7 +5683,7 @@
 								<hr>
 
 								<details><summary onclick="solo.showDescription(this, 'location-desc')"><b>Locations</b></summary>
-									<p><a onclick="solo.showLocation()">Location</a></p>
+									<p><a onclick="solo.showLocation()">New Location</a></p>
 									<p><a onclick="solo.showLocationProperties()">Property</a></p>
 									
 									<p><a onclick="solo.showWeather()">Weather</a></p>
@@ -5648,6 +5827,54 @@
 				</details>
 			</div>
 
+			<div id="OPSE">
+				<p><a onclick="solo.showOnePageOracleList()">Oracle (Yes/No)</a></p>
+				<p><a onclick="solo.showOnePageGeneration('oracle focus')">Oracle (Focus)</a></p>
+				<p><a onclick="solo.showMeaning('How:OPSE Oracle How')">Oracle (How)</a></p>
+				<hr>
+				<p><a onclick="solo.showOnePageGeneration('gm moves')">GM Move</a></p>
+				<p><a onclick="solo.showOnePageGeneration('random event')">Random Event</a></p>
+				<p><a onclick="solo.showOnePageGeneration('generic generator')">Generic Generator</a></p>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'opse-scene-desc')"><b>Set the Scene</b></summary>
+					<p><a onclick="solo.showOnePageGeneration('generate scene')">New Scene</a></p>
+					<p><a onclick="solo.showMeaning('Complication:OPSE Scene Complication')">Scene Complication</a></p>
+					<p><a onclick="solo.showMeaning('Alteration:OPSE Altered Scene')">Altered Scene</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'opse-plot-desc')"><b>Plot Hook</b></summary>
+					<p><a onclick="solo.showOnePageGeneration('generate plot hook')">New Plot Hook</a></p>
+					<p><a onclick="solo.showMeaning('Objective:OPSE Objective')">Objective</a></p>
+					<p><a onclick="solo.showMeaning('Adversary:OPSE Adversaries')">Adversary</a></p>
+					<p><a onclick="solo.showMeaning('Reward:OPSE Rewards')">Reward</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'opse-npc-desc')"><b>NPC Generator</b></summary>
+					<p><a onclick="solo.showOnePageGeneration('generate npc')">New NPC</a></p>
+					<p><a onclick="solo.showMeaning('Identity:OPSE Identity')">Identity</a></p>
+					<p><a onclick="solo.showMeaning('Goal:OPSE Goal')">Goal</a></p>
+					<p><a onclick="solo.showOnePageGeneration('notable feature')">Notable Feature</a></p>
+					<p><a onclick="solo.showOnePageGeneration('current situation')">Current Situation</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'opse-dungeon-desc')"><b>Dungeon Crawler</b></summary>
+					<p><a onclick="solo.showOnePageGeneration('dungeon area')">New Area</a></p>
+					<p><a onclick="solo.showOnePageGeneration('dungeon theme')">Dungeon Theme</a></p>
+					<p><a onclick="solo.showMeaning('Location:OPSE Location')">Location</a></p>
+					<p><a onclick="solo.showMeaning('Encounter:OPSE Encounter')">Encounter</a></p>
+					<p><a onclick="solo.showMeaning('Object:OPSE Object')">Object</a></p>
+					<p><a onclick="solo.showMeaning('Exits:OPSE Total Exits')">Total Exits</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'opse-hex-desc')"><b>Hex Crawler</b></summary>
+					<p><a onclick="solo.showOnePageGeneration('generate hex')">New Hex</a></p>
+					<p><a onclick="solo.showOnePageGeneration('event')">Event</a></p>
+					<p><a onclick="solo.showMeaning('Terrain:OPSE Terrain')">Terrain</a></p>
+					<p><a onclick="solo.showOnePageGeneration('contents')">Contents</a></p>
+					<p><a onclick="solo.showMeaning('Feature:OPSE Features')">Feature</a></p>
+				</details>
+			</div>
+
 			<div id="CRGE">
 				<p><a onclick="solo.showLoomList()">Loom of Fate</a></p>
 				<hr>
@@ -5734,6 +5961,8 @@
 			<div id="alice">
 				Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, “and what is the use of a book,” thought Alice “without pictures or conversations?” So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her. There was nothing so very remarkable in that; nor did Alice think it so very much out of the way to hear the Rabbit say to itself, “Oh dear! Oh dear! I shall be late!” (when she thought it over afterwards, it occurred to her that she ought to have wondered at this, but at the time it all seemed quite natural); but when the Rabbit actually took a watch out of its waistcoat-pocket, and looked at it, and then hurried on, Alice started to her feet, for it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it, and burning with curiosity, she ran across the field after it, and fortunately was just in time to see it pop down a large rabbit-hole under the hedge. In another moment down went Alice after it, never once considering how in the world she was to get out again. The rabbit-hole went straight on like a tunnel for some way, and then dipped suddenly down, so suddenly that Alice had not a moment to think about stopping herself before she found herself falling down a very deep well. Either the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled “ORANGE MARMALADE”, but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody underneath, so managed to put it into one of the cupboards as she fell past it. “Well!” thought Alice to herself, “after such a fall as this, I shall think nothing of tumbling down stairs! How brave they’ll all think me at home! Why, I wouldn’t say anything about it, even if I fell off the top of the house!” (Which was very likely true.) Down, down, down. Would the fall never come to an end? “I wonder how many miles I’ve fallen by this time?” she said aloud. “I must be getting somewhere near the centre of the earth. Let me see: that would be four thousand miles down, I think—” (for, you see, Alice had learnt several things of this sort in her lessons in the schoolroom, and though this was not a very good opportunity for showing off her knowledge, as there was no one to listen to her, still it was good practice to say it over) “—yes, that’s about the right distance—but then I wonder what Latitude or Longitude I’ve got to?” (Alice had no idea what Latitude was, or Longitude either, but thought they were nice grand words to say.) Presently she began again. “I wonder if I shall fall right through the earth! How funny it’ll seem to come out among the people that walk with their heads downward! The Antipathies, I think—” (she was rather glad there was no one listening, this time, as it didn’t sound at all the right word) “—but I shall have to ask them what the name of the country is, you know. Please, Ma’am, is this New Zealand or Australia?” (and she tried to curtsey as she spoke—fancy curtseying as you’re falling through the air! Do you think you could manage it?) “And what an ignorant little girl she’ll think me for asking! No, it’ll never do to ask: perhaps I shall see it written up somewhere.” Down, down, down. There was nothing else to do, so Alice soon began talking again. “Dinah’ll miss me very much to-night, I should think!” (Dinah was the cat.) “I hope they’ll remember her saucer of milk at tea-time. Dinah my dear! I wish you were down here with me! There are no mice in the air, I’m afraid, but you might catch a bat, and that’s very like a mouse, you know. But do cats eat bats, I wonder?” And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way, “Do cats eat bats? Do cats eat bats?” and sometimes, “Do bats eat cats?” for, you see, as she couldn’t answer either question, it didn’t much matter which way she put it. She felt that she was dozing off, and had just begun to dream that she was walking hand in hand with Dinah, and saying to her very earnestly, “Now, Dinah, tell me the truth: did you ever eat a bat?” when suddenly, thump! thump! down she came upon a heap of sticks and dry leaves, and the fall was over. Alice was not a bit hurt, and she jumped up on to her feet in a moment: she looked up, but it was all dark overhead; before her was another long passage, and the White Rabbit was still in sight, hurrying down it. There was not a moment to be lost: away went Alice like the wind, and was just in time to hear it say, as it turned a corner, “Oh my ears and whiskers, how late it’s getting!” She was close behind it when she turned the corner, but the Rabbit was no longer to be seen: she found herself in a long, low hall, which was lit up by a row of lamps hanging from the roof. There were doors all round the hall, but they were all locked; and when Alice had been all the way down one side and up the other, trying every door, she walked sadly down the middle, wondering how she was ever to get out again. Suddenly she came upon a little three-legged table, all made of solid glass; there was nothing on it except a tiny golden key, and Alice’s first thought was that it might belong to one of the doors of the hall; but, alas! either the locks were too large, or the key was too small, but at any rate it would not open any of them. However, on the second time round, she came upon a low curtain she had not noticed before, and behind it was a little door about fifteen inches high: she tried the little golden key in the lock, and to her great delight it fitted! Alice opened the door and found that it led into a small passage, not much larger than a rat-hole: she knelt down and looked along the passage into the loveliest garden you ever saw. How she longed to get out of that dark hall, and wander about among those beds of bright flowers and those cool fountains, but she could not even get her head through the doorway; “and even if my head would go through,” thought poor Alice, “it would be of very little use without my shoulders. Oh, how I wish I could shut up like a telescope! I think I could, if I only knew how to begin.” For, you see, so many out-of-the-way things had happened lately, that Alice had begun to think that very few things indeed were really impossible. There seemed to be no use in waiting by the little door, so she went back to the table, half hoping she might find another key on it, or at any rate a book of rules for shutting people up like telescopes: this time she found a little bottle on it, (“which certainly was not here before,” said Alice,) and round the neck of the bottle was a paper label, with the words “DRINK ME,” beautifully printed on it in large letters. It was all very well to say “Drink me,” but the wise little Alice was not going to do that in a hurry. “No, I’ll look first,” she said, “and see whether it’s marked ‘poison’ or not”; for she had read several nice little histories about children who had got burnt, and eaten up by wild beasts and other unpleasant things, all because they would not remember the simple rules their friends had taught them: such as, that a red-hot poker will burn you if you hold it too long; and that if you cut your finger very deeply with a knife, it usually bleeds; and she had never forgotten that, if you drink much from a bottle marked “poison,” it is almost certain to disagree with you, sooner or later. However, this bottle was not marked “poison,” so Alice ventured to taste it, and finding it very nice, (it had, in fact, a sort of mixed flavour of cherry-tart, custard, pine-apple, roast turkey, toffee, and hot buttered toast,) she very soon finished it off.
 			</div>
+
+			<!-- Main Menu descriptions -->
 
 			<div id="chance-desc">
 				<p>This section is dedicated to items of chance that are used across all mediums (solo roleplay,  standard roleplay, gamebooks, etc).</p>
@@ -5856,6 +6085,8 @@
 					</details>
 				</details>
 			</div>
+
+			<!-- Mythic descriptions -->
 
 			<div id="mythic-desc">
 				<p>This section is dedicated to tools related to the <i>Mythic</i>, <i>Adventure Crafter</i>, and <i>Location Crafter</i> series.</p>
@@ -5999,6 +6230,163 @@
 					</details>
 			</div>
 
+			<!-- One Page Solo Engine descriptions -->
+
+			<div id="opse-desc">
+				<p>This section is dedicated to tools related to the <i>One Page Solo Engine</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Oracle (Yes/No)</b></summary>
+						<p>Generate a Yes or No answer to a question.</p>
+					</details>
+					<br>
+					<details><summary><b>Oracle (Focus)</b></summary>
+						<p>Generate an answer to an open question.</p>
+					</details>
+					<br>
+					<details><summary><b>Oracle (How)</b></summary>
+						<p>Determine how much something is, such as size, price, importance, dangerous, etc.</p>
+					</details>
+					<br>
+					<details><summary><b>GM Move</b></summary>
+						<p>Deterimine a narrative action to perform to keep the story moving.</p>
+						<p>Pacing Moves are for lulls in the story, and Failure Moves are for when the PCs fail a check.</p>
+					</details>
+					<br>
+					<details><summary><b>Random Event</b></summary>
+						<p>Generates a random event in the story.</p>
+					</details>
+					<br>
+					<details><summary><b>Generic Generator</b></summary>
+						<p>Generates a random story element, such as towns, spaceships, factions, magic items, taverns, monsters, or anything else.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="opse-scene-desc">
+				<p>This section is dedicated to generating scenes for your adventure.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>New Scene</b></summary>
+						<p>Generates a new scene.</p>
+					</details>
+					<br>
+					<details><summary><b>Scene Complication</b></summary>
+						<p>Determine the complication for the scene.</p>
+					</details>
+					<br>
+					<details><summary><b>Altered Scene</b></summary>
+						<p>Generates a scene alteration.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="opse-plot-desc">
+				<p>This section is dedicated to generating plot hooks for your adventure.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary>New Plot Hook</summary>
+						<p>Generate a new plot hook.</p>
+					</details>
+					<br>
+					<details><summary>Objective</summary>
+						<p>Determine the objective.</p>
+					</details>
+					<br>
+					<details><summary>Adversary</summary>
+						<p>Determine the adversary.</p>
+					</details>
+					<br>
+					<details><summary>Reward</summary>
+						<p>Determine the reward.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="opse-npc-desc">
+				<p>This section is dedicated to generating characters.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary>New NPC</summary>
+						<p>Generates a new character.</p>
+					</details>
+					<br>
+					<details><summary>Identity</summary>
+						<p>Determine the character's identity.</p>
+					</details>
+					<br>
+					<details><summary>Goal</summary>
+						<p>Determine the character's goal.</p>
+					</details>
+					<br>
+					<details><summary>Notable Feature</summary>
+						<p>Determine the character's most notable feature.</p>
+					</details>
+					<br>
+					<details><summary>Current Situation</summary>
+						<p>Determine the character's attitude and conversation topic.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="opse-dungeon-desc">
+				<p>This section is dedicated to generating and exploring dungeons.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary>New Area</summary>
+						<p>Generates a new area of the dungeon.</p>
+					</details>
+					<br>
+					<details><summary>Dungeon Theme</summary>
+						<p>Determine the theme of the dungeon.</p>
+					</details>
+					<br>
+					<details><summary>Location</summary>
+						<p>Determine the location type.</p>
+					</details>
+					<br>
+					<details><summary>Encounter</summary>
+						<p>Determine what you encounter at the location.</p>
+					</details>
+					<br>
+					<details><summary>Object</summary>
+						<p>Determine the objectcs at the location.</p>
+					</details>
+					<br>
+					<details><summary>Total Exits</summary>
+						<p>Determine how many exits the location has.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="opse-hex-desc">
+				<p>This section is dedicated to generating and exploring hex maps.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary>New Hex</summary>
+						<p>Generates a new hex area.</p>
+					</details>
+					<br>
+					<details><summary>Event</summary>
+						<p>Determine the event that happens in that hex.</p>
+					</details>
+					<br>
+					<details><summary>Terrain</summary>
+						<p>Determine the terrain type for the hex.</p>
+					</details>
+					<br>
+					<details><summary>Contents</summary>
+						<p>Determine the contents of the hex.</p>
+					</details>
+					<br>
+					<details><summary>Feature</summary>
+						<p>Determine the features located at the hex.</p>
+					</details>
+				</details>
+			</div>
+
+			<!-- CRGE descriptions -->
+
 			<div id="crge-desc">
 				<p>This section is dedicated to tools from <i>CRGE</i>, <i>UNE</i>, <i>BOLD</i>, and <i>ISC</i>.</p>
 				<details><summary>Details</summary>
@@ -6042,6 +6430,8 @@
 				</details>
 			</div>
 
+			<!-- Motif descriptions -->
+
 			<div id="motif-desc">
 				<p>This section is dedicated to tools from the <i>Motif</i> series.</p>
 				<details><summary>Details</summary>
@@ -6075,6 +6465,8 @@
 					</details>
 				</details>
 			</div>
+
+			<!-- Calypso descriptions -->
 
 			<div id="calypso-desc">
 				<p>This section is dedicated to tools related to <i>Calyspo</i>.</p>
@@ -6149,6 +6541,8 @@
 					</details>
 				</details>
 			</div>
+
+			<!-- If descriptions -->
 
 			<div id="if-desc">
 				<p>This section is dedicated to tools related to <i>If</i>.</p>
@@ -6248,12 +6642,13 @@
 					<li><i>Mythic Magazine</i> by Tana Pigeon</li>
 					<li><i>Adventure Crafter</i> by Tana Pigeon</li>
 					<li><i>Location Crafter</i> by Tana Pigeon</li>
-					<li><i>Calypso</i> by Tam H.</li>
-					<li><i>If</i> by Tam H.</li>
+					<li><i>One Page Solo Engine</i> by Karl Hendricks</li>
 					<li><i>CRGE: Conjectural Roleplaying GM Emulator</i> by Zach Best</li>
 					<li><i>UNE: Universal NPC Emulator</i> by Zach Best</li>
 					<li><i>BOLD: Book of Legends and Deeds</i> by Zach Best</li>
 					<li><i>ISC: Inferential Scene Crafter</i> by Zach Best</li>
+					<li><i>Calypso</i> by Tam H.</li>
+					<li><i>If</i> by Tam H.</li>
 					<li><i>Ironsworn</i> by Shawn Tomkin</li>
 					<li><i>Ironsworn Delve</i> by Shawn Tomkin</li>
 					<li><i>Ironsmith</i> by Eric Bright</li>
@@ -6274,7 +6669,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.07.03 tayruh</p>
+				<p>version: 2022.07.08 tayruh</p>
 			</div>
 		</div>
 	</body>
