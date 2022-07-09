@@ -143,12 +143,21 @@
 						return result;
 					};
 
-					if (!/^([0-9]+)?D(VH?|(?:G[ABCDFPS](\+([0-9]+)?[FSAT])*|([0-9]+|F)([+-][0-9]+)*))$/i.test(die)) return null;
+					if (!/^([0-9]+)?D(VH?|(?:G[ABCDFPS](\+([0-9]+)?[FSAT])*|([0-9]+([XRGBYPO]+)?|F)([+-][0-9]+)*))$/i.test(die)) return null;
 
 					var dice = die.toUpperCase().match(/^([0-9]+)?D([0-9]+|F|VH?|G[A-Z])(.*)$/i);
 					var number = parseInt(dice[1] || 1);
 					var size = dice[2];
 					var mods = dice[3];
+					var match;
+					
+					var colors = [];
+					var color_map = {"R": "#ff7979", "G": "#72cb72", "B": "#8e8eff", "Y": "#ffff00", "P": "#ca7eff;", "O": "#ffa93e"};
+					if (/[XRGBYPO]/.test(mods)) {
+						match = mods.match(/([XRGBYPO]+)([+-][0-9]+)?/);
+						colors = match[1].split("");
+						mods = match[2];
+					}
 
 					var gen_dice = {};
 					var vamp_dice = {};
@@ -196,7 +205,7 @@
 					var total = 0;
 					var rolls = [];
 
-					var add_total;
+					var add_total, color;
 
 					for (a = 0; a < number; ++a) {
 						add_total = true;
@@ -205,6 +214,11 @@
 						else if (/G[ABCDFPS]/.test(size)) { roll = getGenesys(size); add_total = false; }
 						else roll = random(1, size);
 						if (add_total) total += roll;
+						
+						if (colors.length) {
+							color = colors.shift();
+							if (color !== "X") roll = "<span style='color:" + color_map[color] + "'>" + roll + "</span>";
+						}
 						rolls.push(roll);
 					}
 
@@ -5709,6 +5723,8 @@
 				<p><a onclick="solo.showCharacterEngineList()">Character</a></p>
 				<p><a onclick="solo.showActionEngineList()">Action</a></p>
 				<p><a onclick="solo.showWorldEngineList()">World</a></p>
+				<hr>
+
 				<p><a onclick="solo.showNPCEngine()">NPC</a></p>
 				<p><a onclick="solo.showPromptEngineList()">Prompt</a></p>
 				<p><a onclick="solo.showMysteryEngineList()">Mystery</a></p>
@@ -5820,7 +5836,8 @@
 					<p><a onclick="solo.showMeaning('Clue:Mythic:clues')">Clue</a></p>
 					<p><a onclick="solo.showMeaning('Suspect:Mythic Suspect')">Suspect</a></p>
 				</details>
-				<br>
+				<hr>
+
 				<details><summary onclick="solo.showDescription(this, 'mythic-fulfillment-desc')"><b>Fulfillment</b></summary>
 					<p><a onclick="solo.showFulfillmentIssue()">Issue</a></p>
 					<p><a onclick="solo.showFulfillmentEpiphany()">Epiphany</a></p>
@@ -5907,29 +5924,46 @@
 					</p>
 					<br>
 
+					<details><summary>Colored Dice</summary>
+						<p><b>Example 1:</b> <code>3D8RYB,2D6XG+2</code></p>
+						
+						<table>
+							<tr><td>R</td><td><code>Red</code></td></tr>
+							<tr><td>G</td><td><code>Green</code></td></tr>
+							<tr><td>B</td><td><code>Blue</code></td></tr>
+							<tr><td>Y</td><td><code>Yellow</code></td></tr>
+							<tr><td>P</td><td><code>Purple</code></td></tr>
+							<tr><td>O</td><td><code>Orange</code></td></tr>
+							<tr><td>X</td><td><code>default</code></td></tr>
+						</table>
+
+						<p>Only standard dice may be colored.</p>
+					</details>
+					<br>
+
 					<details><summary>Genesys/Star Wars</summary>
-					<p><b>Example:</b> <code>3DGA+2T+S,DGP</code></p>
+						<p><b>Example:</b> <code>3DGA+2T+S,DGP</code></p>
 
-					<table>
-						<tr class='odd'><td><a onclick="solo.addDice('DGA')">Ability</a></td><td><code>1DGA</code></td></tr>
-						<tr class='odd'><td><a onclick="solo.addDice('DGD')">Difficulty</a></td><td><code>1DGD</code></td></tr>
+						<table>
+							<tr class='odd'><td><a onclick="solo.addDice('DGA')">Ability</a></td><td><code>1DGA</code></td></tr>
+							<tr class='odd'><td><a onclick="solo.addDice('DGD')">Difficulty</a></td><td><code>1DGD</code></td></tr>
 
-						<tr><td><a onclick="solo.addDice('DGB')">Boost</a></td><td><code>1DGB</code></td></tr>
-						<tr><td><a onclick="solo.addDice('DGS')">Setback</a></td><td><code>1DGS</code></td></tr>
+							<tr><td><a onclick="solo.addDice('DGB')">Boost</a></td><td><code>1DGB</code></td></tr>
+							<tr><td><a onclick="solo.addDice('DGS')">Setback</a></td><td><code>1DGS</code></td></tr>
 
-						<tr class='odd'><td><a onclick="solo.addDice('DGC')">Challenge</a></td><td><code>1DGC</code></td></tr>
-						<tr class='odd'><td><a onclick="solo.addDice('DGP')">Proficiency</a></td><td><code>1DGP</code></td></tr>
+							<tr class='odd'><td><a onclick="solo.addDice('DGC')">Challenge</a></td><td><code>1DGC</code></td></tr>
+							<tr class='odd'><td><a onclick="solo.addDice('DGP')">Proficiency</a></td><td><code>1DGP</code></td></tr>
 
-						<tr><td><a onclick="solo.addDice('DGF')">Force</a></td><td><code>1DGF</code></td></tr>
-					</table>
-					<p><b>Modifiers:</b></p>
+							<tr><td><a onclick="solo.addDice('DGF')">Force</a></td><td><code>1DGF</code></td></tr>
+						</table>
+						<p><b>Modifiers:</b></p>
 
-					<table>
-						<tr><td><a onclick="solo.addDice('+S')">Success</a></td><td><code>+1S</code></td></tr>
-						<tr><td><a onclick="solo.addDice('+F')">Failure</a></td><td><code>+1F</code></td></tr>
-						<tr><td><a onclick="solo.addDice('+A')">Advantage</a></td><td><code>+1A</code></td></tr>
-						<tr><td><a onclick="solo.addDice('+T')">Threat</a></td><td><code>+1T</code></td></tr>
-					</table>
+						<table>
+							<tr><td><a onclick="solo.addDice('+S')">Success</a></td><td><code>+1S</code></td></tr>
+							<tr><td><a onclick="solo.addDice('+F')">Failure</a></td><td><code>+1F</code></td></tr>
+							<tr><td><a onclick="solo.addDice('+A')">Advantage</a></td><td><code>+1A</code></td></tr>
+							<tr><td><a onclick="solo.addDice('+T')">Threat</a></td><td><code>+1T</code></td></tr>
+						</table>
 					</details>
 					<br>
 
@@ -6669,7 +6703,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.07.08 tayruh</p>
+				<p>version: 2022.07.09 tayruh</p>
 			</div>
 		</div>
 	</body>
