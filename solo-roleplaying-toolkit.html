@@ -4196,7 +4196,7 @@
 						output = getLinks(
 							["Action Focus", "solo.showOnePageGeneration('Action:OPSE Action Focus')"],
 							["Detail Focus", "solo.showOnePageGeneration('Detail:OPSE Detail Focus')"],
-							["Action Focus", "solo.showOnePageGeneration('Topic:OPSE Topic Focus')"]
+							["Topic Focus", "solo.showOnePageGeneration('Topic:OPSE Topic Focus')"]
 						);
 					}
 
@@ -4275,10 +4275,16 @@
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
-				var showDice = function() {
+				var quick_rolls_text = "";
+				var quick_rolls = [];
+
+				var showDice = function(rolls) {
 					addClass("#results", "full-width");
 
-					var rolls = $("#dice").value.split(",");
+					if (rolls !== undefined) $("#dice").value = rolls;
+					else rolls = $("#dice").value;
+					
+					rolls = rolls.split(",");
 					var results = [];
 					var longest = 0;
 
@@ -4461,10 +4467,49 @@
 				var showDiceRoller = function() {
 					display($("#dice-roller").innerHTML);
 
+					$("#quick-rolls").innerHTML = "<p>" + (quick_rolls.length ? quick_rolls.join("<br>") : "List is Empty") + "<br>" + getLink("Edit Quick Rolls", "solo.showQuickRolls()") + "</p>";
+
 					$("#dice").addEventListener("keyup", function(e) {
 						if (e.keyCode === 13) showDice();
 					});
 					$("#dice").focus();
+				};
+
+				var showQuickRolls = function() {
+					display(
+						"<p><textarea id='quick-rolls' spellcheck='false'>" + quick_rolls_text + "</textarea></p>" +
+						"<p><div id='save-button'>" + getLink("Save", "solo.saveQuickRolls()") + "</div></p>" + 
+						"<p>Each new line is a new quick roll.<br>Labels are separated with a colon.</p>" +
+						"<p><b>Example:</b><br><code>2d10,d6<br>Sword Attack: 4dF+4<br>Cortex: d6,2d8,d10</code></p>"
+					);
+				};
+
+				var saveQuickRolls = function() {
+					quick_rolls_text = $("#quick-rolls").value;
+
+					var input = quick_rolls_text.replace("'", "");
+					input = input.replace('"', '');
+
+					var lines = input.split("\n");
+
+					quick_rolls = [];
+
+					var a, temp;
+					for (a = 0; a < lines.length; ++a) {
+						if (lines[a].trim().length < 1) continue;
+						temp = lines[a].split(":");
+						quick_rolls.push("<a onclick='solo.showDice(\"" + (temp.length < 2 ? temp[0].trim() : lines[a].substring(temp[0].length + 1).trim()) + "\")'>" + temp[0].trim() + "</a>");
+					}
+
+					var copy = $("#save-button").innerHTML;
+					var count = "quick roll" + (quick_rolls.length !== 1 ? "s" : "");
+					$("#save-button").innerHTML = "<p><b>Saved! (" + quick_rolls.length + " " + count + ")</b></p>";
+
+					setTimeout(function() {
+						if ($("#save-button") === null) return;
+
+						$("#save-button").innerHTML = copy;
+					}, 2000);
 				};
 
 
@@ -5335,6 +5380,8 @@
 				solo.showDice = showDice;
 				solo.addDice = addDice;
 				solo.showDiceRoller = showDiceRoller;
+				solo.showQuickRolls = showQuickRolls;
+				solo.saveQuickRolls = saveQuickRolls;
 				solo.shuffleCards = shuffleCards;
 				solo.drawCard = drawCard;
 				solo.showCard = showCard;
@@ -5923,6 +5970,11 @@
 						<a onclick="solo.addDice('2D6')">2D6</a> • <a onclick="solo.addDice('3D6')">3D6</a> • <a onclick="solo.addDice('D2')">D2</a> • <a onclick="solo.addDice('D3')">D3</a><br>
 						<a onclick="solo.addDice('D10,D10,D6')">Ironsworn</a> • <a onclick="solo.addDice('4DF')">FATE</a>
 					</p>
+					<hr>
+					
+					<div id="quick-rolls"></div>
+
+					<hr>
 					<br>
 
 					<details><summary>Genesys/Star Wars</summary>
@@ -6704,7 +6756,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.07.09 tayruh</p>
+				<p>version: 2022.07.17 tayruh</p>
 			</div>
 		</div>
 	</body>
