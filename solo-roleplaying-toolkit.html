@@ -1174,6 +1174,26 @@
 					}
 				};
 
+
+				// libre
+				var libre = {
+					"missions": ["Patrol (Place)", "Scout (Place)", "Find/Recover (Person/Item)", "Explore (Place)", "Hunt (Person/Beast/Monster)", "Capture (Person/Beast/Monster)", "Spy (Person/Place)", "Escort (Places(s)/Person)", "Deliver (Person/Item)", "Investigate (Peson/Place)", "Negotiate (Person)", "Win over (Person)", "Survive (Place)", "Evade (Person)", "Escape (Person)", "Defend (Place)", "Protect (Person/Item)", "Attack (Person/Place)", "Rescue (Person)", "Research (Person/Place/Item)"],
+					"traits": ["Cruel/Malevolent", "Thoughtful", "Mysterious/Secretive", "Heroic", "Sneaky/Under-handed", "Lazy", "Happy/Optimistic", "Dour/Taciturn", "Cowardly", "Crude/Capricious", "Cautious", "Impulsive", "Loyal", "Nervous/Awkward", "Loud/Boisterous", "Gregarious", "Sympathetic", "Accusative/Defensive", "Unflappable", "Lying/Treacherous"],
+					"people": ["Local Leader Staff", "Regional Leader Staff", "National Leader Staff", "Servant of royalty", "Local Leader Inner Circle", "Reg'l Leader Inner Circle", "Nat'l Leader Inner Circle", "Royal family", "Local Leader", "Regional Leader", "Spy/agent", "Religious lay folk", "Relig. meditative/scholar", "Religious activist/cultist", "Religion staff", "Religion Inner Circle", "Mercenary/arms guild", "Merc./arms leader/boss", "Merchants, biz/finance", "Merchant/finance boss", "Rogue guild/smugglers", "Rogue/smuggle leader", "Scholar/scientist", "Academic luminary", "Crafters/manufacturing", "Crafter/manuf. leader", "Conscript/militia", "Army/marine soldier", "Archer/air/sea soldier", "NCO/specialist", "Officer/military leader", "Police/public safety", "Cousin", "In-law, indirect family", "Niece/nephew", "Aunt/uncle", "Parents/grandparents", "Brother/sister", "Child/dependent", "Family friend", "Childhood friend", "Neighbor/acquaintance", "Early/first love", "Teacher or colleague", "Beggar/poor", "Role model", "Former friend", "Former love", "Occupational peer", "Bad blood family", "Hostile foreigner", "Rival of friend/ally", "Ideological rival", "General troublemaker", "Despicable villain", "Skilled hero", "Aged hero", "Liar/braggart", "Craft master/boss", "Exceptional talent", "Exceptional beauty", "Wealthy entrepreneur", "Prestigious family", "Expert historian/lore", "Specialty academician", "Expert healer/doctor", "Diplomatic expert", "Popular entertainer", "Master builder/engineer", "Nomad/traveler", "Liar/hoaxer", "Scout/messenger", "Terrorist/anarchist", "Unremarkable commoner", "(Potential) patron/ally", "(Potential) patron/ally", "(Potential) patron/ally", "(Potential) patron/ally", "(Potential) rival/past foe", "(Potential) rival/past foe", "F: Weak team (℅)", "F: Average team (℅)", "F: Average NPC (℅)", "F: Talented NPC (℅)", "F: Add leader (℅)", "F: Animals/mounts", "F: non-combat - d100", "F: Weak minions", "F: Average minions", "F: Big brute", "F: Vehicles/mounts", "F: Wk mindless minion", "F: Avg mindless minion", "F: Hybrids/animals", "F: Powerful entity", "F: Automaton", "F: d100, Average (℅)", "F: d100, Talented (℅)", "F: d100, Captive(s)", "F: d100, Infiltrator/spy"],
+					"civilized": ["Square/Meeting hall", "Warehouse/storage", "Marketplace", "Farm/villa/estate", "Smithy/factory", "Crafting-place", "Shop/store", "Tavern/inn/hotel", "Arena/sport-place", "Streets/alleys", "Luxury digs", "Library or lab", "Palace/fortress/HQ", "Keep/tower", "Field/meadow", "Garden/lawn/park", "Temple/church", "Home/hovel", "Cellar/underground", "Port/station/transit", "Memorial", "Crowded", "Plants", "Garbage/rubble", "Offal smell", "Cooking smells", "Pollution/smog", "Chemical smells", "Incense/perfumed", "Stuffy/stale smell", "Cramped", "Furniture-strewn", "Curtained", "Machinery/magic", "Background noise", "Music", "Stairs/ramps", "Terraced", "Vehicle(s)", "Fence/hedge", "Ditch", "Dank/damp", "Bright/well-lit", "Gloomy/dimly-lit", "Twilight/dusk", "Shadowy", "Hazy", "Foggy", "Dusty", "Wide open spaces", "High observation point", "Sight-blocking", "Hot", "Humid", "Cold", "Dry", "Breezy", "Windy", "Gale", "Cloudy", "Overcast", "Stormy", "Clear", "Still", "Sprinkling", "Rain (sleet/snow)", "Downpour (blizzard)", "Work sounds", "Running water", "Blowing winds", "Traffic/passers-by", "Birdsong", "Animal sounds", "Quiet/serene", "Floral/sweet smells", "Solid/hard ground", "Soft/plush ground", "Smooth/slip ground", "Rough ground", "R: Conversation", "R: Argue/debate", "R: Study/learn", "R: Guard/vigilance", "R: Guard/vigilance", "R: Anxiety/fear", "R: Anxiety/fear", "R: Hate/anger", "R: Hate/anger", "R: Hunt/scavenge", "R: Welcome/friendly", "R: Worship/reverent", "R: Sick/diseased", "R: Drunk/drugged", "R: Hurt/suffering", "R: Respect/grateful", "R: Celebrate/fest", "R: Tired/rest/sleep", "R: Cook/eat/drink", "R: Lack/hungry/poor"],
+					"wilderness": ["Underground", "Cave/caverns", "Mine/shaft/tunnel(s)", "Fissure/crevasse", "Ruins/buildings", "Taiga/tundra/desert", "Forest (deciduous)", "Forest (coniferous)", "Swamp/marsh", "Jungle (vines)", "Scrub (brush)", "Steppes/grasslands", "Broken/blasted area", "Cliffs/crags/gorges", "Hills", "Mountains", "Plateau", "Valley", "Canyon/chasm", "Pond/lake (shore)", "Landmark", "River (shore)", "Stream", "Ocean (shore)", "Vine-choked", "Overgrown", "Vines", "Underbrush", "Cobwebs", "Toxic/poison fumes", "Disease-ridden", "Wildlife signs", "Monstrous signs", "Insect swarms", "Vermin/pests", "Sandy/loose", "Gravel/shale", "Muddy", "Icy or wet (slick)", "Smooth stone", "Loose stone/boulders", "Rooty", "Bright/well-lit", "Gloomy/dimly-lit", "Twilight/dusk", "Shadowy", "Dark as night", "Pitch dark", "Hazy", "Foggy", "Dusty", "Smoky", "Wide open spaces", "Observation point", "Sight-blocking", "Hot", "Humid", "Cold", "Dry", "Breezy", "Windy", "Gale", "Cloudy", "Overcast", "Stormy", "Clear", "Still", "Sprinkling", "Rain (sleet/snow)", "Downpour (blizzard)", "Dew", "Running water", "Blowing winds", "Rainfall patter", "Bird calls", "Small animal sound", "Lg. animal sounds", "Quiet/serene", "Floral/sweet smells", "Mildew/mold-smell", "Rotten/carrion smell", "Solid/hard ground", "Soft/plush ground", "Smooth/slip ground", "Rough ground", "Deserted", "Abandoned", "Desolate", "Empty", "Eerie", "Forbidding", "Protected", "Exposed", "Unstable/hazardous", "Fire (set)", "Mystic/bless/curse", "Artifact/object", "Guardians/guarded", "Illusory", "Trapped/warded"],
+					"items": ["Noble dress/accessory", "Indeterminate clothing", "Indeterminate accessory", "Military uniform", "Religious vestment", "Jewelry adornment", "Gems & jewels", "Semi-precious jewelry", "Concealable weapons", "Small melee weapons", "Large melee weapons", "Small ranged weapons", "Large ranged weapons", "Thrown weapons", "Reactive/explosives", "Odd/exotic weapons", "Armory (collection)", "Light/piecemeal armor", "Leathers/riot gear", "Medium protection", "Heavy protection", "Shield/riot gear", "Helmet", "Exotic armor/protection", "Heavy/powered armor", "Armory (collection)", "Clothes/fabrics", "Lighting", "Eating gear", "Drinking gear", "Cooking gear", "Craft tools/machines", "Portable shelter (tents)", "Hygiene/beauty items", "Potpourri/incense", "Text/data (religious)", "Small ceremonial items", "Large ceremony items", "Door/portal/container", "Images/icons", "Statue/sculpture", "Text/data (sci-/magic)", "Herb/organic medicine", "Processed medicine", "Poison/pesticide", "Hard drugs", "Inert crystal, rare earth", "Preserved organics ", "Flammables/explosives", "Occupational gear", "Art/sci. instruments", "Info: Location of item", "Info: Religious/mythic", "Info: Dimensions/existence", "Info: Geographic", "Info: History/Lore", "Info: Ecology", "Info: Medicine/anatomy", "Info: Accounting ledger", "Info: Diary/personal", "Fresh food", "Preserved food", "Raw foodstuffs", "Fruits/vegetables", "Herbs/spices", "Cheese or meats", "Drinkable infusions", "Alcohol", "Mild drug (tobacco/coffee)", "Industrial metals", "Lumber/organics", "Construction material", "Ceramics", "Cloth", "Paper/data storage", "Oil/grease or fuel", "Valuable stone", "Semi-precious stone", "Animal parts", "Illustrated/illuminated art", "Poetry/prose/multimedia", "Statue/sculpture", "Carving", "Drawing/painting", "Big items (machinery)", "Religious place/info", "Political place/info", "Fortification/info", "Defense weakness/info", "Med. devices/machines", "Shop devices/machines", "Furniture", "Symbolic ancestral  items", "Symbolic rulership items", "Cash/valuables", "Cash/valuables", "Cash/valuables", "Vehicle (small)", "Vehicle (medium)", "Vehicle (large)"],
+					"civilized places": ["Square/Meeting hall", "Warehouse/storage", "Marketplace", "Farm/villa/estate", "Smithy/factory", "Crafting-place", "Shop/store", "Tavern/inn/hotel", "Arena/sport-place", "Streets/alleys", "Luxury digs", "Library or lab", "Palace/fortress/HQ", "Keep/tower", "Field/meadow", "Garden/lawn/park", "Temple/church", "Home/hovel", "Cellar/underground", "Port/station/transit"],
+					"wilderness places": ["Underground", "Cave/caverns", "Mine/shaft/tunnel(s)", "Fissure/crevasse", "Ruins/buildings", "Taiga/tundra/desert", "Forest (deciduous)", "Forest (coniferous)", "Swamp/marsh", "Jungle (vines)", "Scrub (brush)", "Steppes/grasslands", "Broken/blasted area", "Cliffs/crags/gorges", "Hills", "Mountains", "Plateau", "Valley", "Canyon/chasm", "Pond/lake (shore)"],
+					"window dressing": {2: ["Colder", "Wetter", "Hillier", "More People"], 8: ["As Expected", "As Expected", "As Expected", "As Expected"], 10: ["Warmer", "Drier", "Flatter", "Fewer People"]},
+					"foes": ["Weak team ℅ (2)", "Average team ℅ (3)", "Average NPC ℅ (5)", "Talented NPC ℅ (10)", "Add leader ℅ (10)", "Animals/mounts (2)", "non-combat - d100 (1)", "Weak minions (2)", "Average minions (3)", "Big brute (10)", "Vehicles/mounts (2-10)", "Wk mindless minion(2)", "Avg mindless minion(3)", "Hybrids/animals (5)", "Powerful entity (10)", "Automaton (10)", "d100, Average ℅ (5)", "d100, Talented ℅ (10)", "d100, Captive(s) (0)", "d100, Infiltrator/spy(15)"],
+					"culture": ["Majority/Native ", "Majority/Native ", "Majority/Native ", "Native Minority ", "Affiliated/neighbor ", "Affiliated/neighbor ", "Far-away ", "Unusual/Exotic ", "Opposed ", "Opposed"],
+					"occupation": ["Common/generalist", "Common/generalist", "Social/leadership", "Fighter/Warrior", "Traveler/Rogue", "Wilderness specialist", "Officers/special forces", "Academic specialist", "Religious/inspirational", "Setting skills specialist"],
+					"rationales": ["Conversation", "Argue/debate", "Study/learn", "Guard/vigilance", "Guard/vigilance", "Anxiety/fear", "Anxiety/fear", "Hate/anger", "Hate/anger", "Hunt/scavenge", "Welcome/friendly", "Worship/reverent", "Sick/diseased", "Drunk/drugged", "Hurt/suffering", "Respect/grateful", "Celebrate/fest", "Tired/rest/sleep", "Cook/eat/drink", "Lack/hungry/poor"],
+					"unexpected events": ["P: Arrival ", "P: Departure ", "P: Trait positive", "P: Trait negative", "P: Trait, random", "P: Skill check ", "P: Rationale new/change", "P: Mission twist", "P: Scene quality intrudes ", "P: Item intrudes", "F: Start/cease hostilities", "F: Leader emerges", "F: Special item", "F: Call for backup", "F: Adds/Reinforcements", "Monster/Beast", "Trap/Ambush (arrest/confine)", "Trap/Ambush (damage/incapacitate)", "Scene quality new/change", "Scene quality ceases"],
+					"person focus": {3: "Self / Rival", 5: "Ally / Patron", 7: "Person / Ally", 10: "Foe / Rival"}
+				};
+
 				// adventure crafter
 				var plot_points = [
 					["CONCLUSION", "If this Turning Point is currently a Plotline Development, then it becomes a Plotline Conclusion. Incorporate anything necessary into this Turning Point to end this Plotline and remove it from the Plotlines List. If this Turning Point is a New Plotline or already a Conclusion, then consider this Plot Point a None.", [8, 8, 8, 8, 8]],
@@ -4129,6 +4149,78 @@
 
 				
 				///////////////////////////////////////////////////////////////////
+				/* Libre menu */
+
+				var showLibreGeneration = function(type, return_output) {
+					var output, temp, list;
+
+					if (type === "unexpected events") {
+						output = randomItem(libre["unexpected events"]) + "</p>";
+						if (/^P:/.test(output)) output = output.replace(/^P:/, "Person:") + showLibreGeneration("person focus", true);
+						else output = output.replace(/^F:/, "Foe:");
+						output = "<p><b>Event:</b> " + output;
+					}
+
+					else if (type === "people") {
+						var output = randomItem(libre["people"]);
+
+						if (/^F:/.test(output)) output = "Person:</b> Foe: " + output.substring(3);
+						else output = "Person:</b> " + output;
+						output = "<p><b>" + output + "</p>";
+					}
+
+					else if (type === "person focus") output = "<p><b>Focus:</b> " + getRolledItem(random(1, 10), libre["person focus"]) + "</p>";
+
+					else if (type === "window dressing") {
+						output = 
+							"<p><b>Temperature:</b> " + getRolledItem(random(1, 10), libre["window dressing"])[0] + "</p>" +
+							"<p><b>Precipitation:</b> " + getRolledItem(random(1, 10), libre["window dressing"])[1] + "</p>" +
+							"<p><b>Terrain:</b> " + getRolledItem(random(1, 10), libre["window dressing"])[2] + "</p>" +
+							"<p><b>(Civilized) Density:</b> " + getRolledItem(random(1, 10), libre["window dressing"])[3] + "</p>";
+					}
+
+					else if (type === "civilized" || type === "wilderness") {
+						list = [];
+						
+						do {
+							temp = randomItem(libre[type]);
+							if (list.indexOf(temp) !== -1) continue;
+							list.push(temp);
+						}
+						while (list.length < 3);
+
+						output = "<p><b>Qualities:</b> " + list.join("; ") + "</p>";
+					}
+
+					if (return_output) return output;
+					display(output);
+				};
+
+				var showLibreQuestion = function(chance) {
+					var output, roll;
+
+					if (chance === undefined) {
+						output = getLinks(
+							["Near Certain", "solo.showLibreQuestion(95)"],
+							["Very Likely", "solo.showLibreQuestion(80)"],
+							["Likely", "solo.showLibreQuestion(65)"],
+							["50/50", "solo.showLibreQuestion(50)"],
+							["Unlikely", "solo.showLibreQuestion(35)"],
+							["Very Unlikely", "solo.showLibreQuestion(20)"],
+							["Nigh Impossible", "solo.showLibreQuestion(5)"],
+						);
+					}
+
+					else {
+						roll = random(1, 100);
+						output = "<p><b>Answer:</b> (" + roll + ") " + (roll <= chance ? "Yes" : "No") + "</p>";
+					}
+
+					display(output);
+				};
+
+
+				///////////////////////////////////////////////////////////////////
 				/* One Page Solo Engine menu */
 
 				var showOnePageOracle = function(odds) {
@@ -4674,6 +4766,9 @@
 
 					// one page solo engine
 					else if (/^OPSE /.test(type)) meaning = checkMeaning(opse[type.substring(5).toLowerCase()]);
+
+					// libre
+					else if (/^Libre /.test(type)) meaning = checkMeaning(libre[type.substring(6).toLowerCase()]);
 					
 					// une
 					else if (type === "UNE") meaning = checkMeaning(une["npc"]["modifier"], une["npc"]["noun"], true);
@@ -5371,6 +5466,10 @@
 				solo.showFulfillmentIssue = showFulfillmentIssue;
 				solo.showFulfillmentEpiphany = showFulfillmentEpiphany;
 
+				// libre
+				solo.showLibreGeneration = showLibreGeneration;
+				solo.showLibreQuestion = showLibreQuestion;
+
 				// one page solo engine
 				solo.showOnePageOracle = showOnePageOracle;
 				solo.showOnePageOracleList = showOnePageOracleList;
@@ -5682,9 +5781,10 @@
 									<select name="system" id="system" onclick="event.stopPropagation()" onchange="solo.selectSystem(true)">
 										<option value="Mythic">MYTHIC</option>
 										<option value="OPSE">ONE PAGE S.E.</option>
-										<option value="CRGE">CRGE - UNE</option>
 										<option value="Motif">MOTIF</option>
+										<option value="CRGE">CRGE - UNE</option>
 										<option value="Calypso">CALYPSO</option>
+										<option value="Libre">LIBRE</option>
 										<option value="IF">IF</option>
 									</select>
 									</summary>
@@ -5892,6 +5992,33 @@
 				</details>
 			</div>
 
+			<div id="Libre">
+				<p><a onclick="solo.showLibreQuestion()">Yes/No Question</a></p>
+				<p><a onclick="solo.showLibreGeneration('unexpected events')">Unexpected Event</a></p>
+				<p><a onclick="solo.showMeaning('Mission:Libre missions')">Mission</a></p>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'libre-characters-desc')"><b>Characters</b></summary>
+					<p><a onclick="solo.showLibreGeneration('people')">Person</a></p>
+					<p><a onclick="solo.showMeaning('Foe:Libre foes')">Foes</a></p>
+					<hr>
+					<p><a onclick="solo.showMeaning('Trait:Libre traits')">Trait</a></p>
+					<p><a onclick="solo.showMeaning('Culture:Libre culture')">Culture</a></p>
+					<p><a onclick="solo.showMeaning('Occupation:Libre occupation')">Occupation</a></p>
+					<p><a onclick="solo.showMeaning('Rationale:Libre rationales')">Rationale</a></p>
+					<p><a onclick="solo.showLibreGeneration('person focus')">Person Focus</a></p>
+				</details>
+				<hr>
+				<details><summary onclick="solo.showDescription(this, 'libre-places-desc')"><b>Places</b></summary>
+					<p><a onclick="solo.showMeaning('Place:Libre civilized places')">Civilized Place</a></p>
+					<p><a onclick="solo.showMeaning('Place:Libre wilderness places')">Wilderness Place</a></p>
+					<hr>
+					<p><a onclick="solo.showLibreGeneration('civilized')">Civilized Qualities</a></p>
+					<p><a onclick="solo.showLibreGeneration('wilderness')">Wilderness Qualities</a></p>
+					<p><a onclick="solo.showLibreGeneration('window dressing')">Window Dressing</a></p>
+					<p><a onclick="solo.showMeaning('Item:Libre items')">Item</a></p>
+				</details>
+			</div>
+
 			<div id="OPSE">
 				<p><a onclick="solo.showOnePageOracleList()">Oracle (Yes/No)</a></p>
 				<p><a onclick="solo.showOnePageGeneration('oracle focus')">Oracle (Focus)</a></p>
@@ -6057,6 +6184,7 @@
 					<br>
 					<details><summary><b>Dice Roll</b></summary>
 						<p>Roll dice in various sizes. To roll dice, type the desired roll notation into the textbox and click the 'Roll Dice' button. Use the examples given as a guideline as to what is possible.</p>
+						<p>You can create aliases for common rolls via the Edit Quick Rolls link. Once your settings are saved on the Quick Roll edit menu, they will appear in the Dice Roll menu.</p>
 					</details>
 					<br>
 					<details><summary><b>Playing Card</b></summary>
@@ -6472,6 +6600,91 @@
 				</details>
 			</div>
 
+			<!-- Libre descriptions -->
+
+			<div id="libre-desc">
+				<p>This section is dedicated to tools related to <i>Libre Solo Role Playing</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Yes/No Question</b></summary>
+						<p>Determine the answer to a question or resolve a skill check.</p>
+					</details>
+					<br>
+					<details><summary><b>Unexpected Events</b></summary>
+						<p>Generate an event that's triggered when the Yes/No Question roll is at or under to the Plot Stress value.</p>
+					</details>
+					<br>
+					<details><summary><b>Mission</b></summary>
+						<p>Generate a mission. The focus of the mission is listed in parenthesis.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="libre-characters-desc">
+				<p>This section is dedicated to generating characters.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Person</b></summary>
+						<p>Generate a Person. A Person may also be a Foe.</p>
+					</details>
+					<br>
+					<details><summary><b>Foe</b></summary>
+						<p>Generates a foe.</p>
+						<p>Foes listed with a ℅ symbol suggest rolling a Culture and Occupation.</p>
+					</details>
+					<br>
+					<details><summary><b>Trait</b></summary>
+						<p>Generates a character trait.</p>
+					</details>
+					<br>
+					<details><summary><b>Culture</b></summary>
+						<p>Determines the character's culture.</p>
+					</details>
+					<br>
+					<details><summary><b>Occupation</b></summary>
+						<p>Determines the character's occupation.</p>
+					</details>
+					<br>
+					<details><summary><b>Rationale</b></summary>
+						<p>Determines the character's rationale, either in general or regarding a specific action.</p>
+					</details>
+					<br>
+					<details><summary><b>Person Focus</b></summary>
+						<p>Selects a character from the Scene.</p>
+					</details>
+				</details>
+			</div>
+
+			<div id="libre-places-desc">
+				<p>This section is dedicated to generating places and scenes.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Civilized Place</b></summary>
+						<p>Determine a Civilized Place.</p>
+					</details>
+					<br>
+					<details><summary><b>Wilderness Place</b></summary>
+						<p>Determine a Wilderness Place.</p>
+					</details>
+					<br>
+					<details><summary><b>Civilized Qualities</b></summary>
+						<p>Generate a list of Scene Qualities for a Civilized Place.</p>
+					</details>
+					<br>
+					<details><summary><b>Wilderness Qualities</b></summary>
+						<p>Generate a list of Scene Qualities for a Wilderness Place.</p>
+					</details>
+					<br>
+					<details><summary><b>Window Dressing</b></summary>
+						<p>Generate the base Window Dressing for a Scene.</p>
+					</details>
+					<br>
+					<details><summary><b>Item</b></summary>
+						<p>Determine an notable item for a Scene.</p>
+					</details>
+				</details>
+			</div>
+
 			<!-- CRGE descriptions -->
 
 			<div id="crge-desc">
@@ -6556,7 +6769,7 @@
 			<!-- Calypso descriptions -->
 
 			<div id="calypso-desc">
-				<p>This section is dedicated to tools related to <i>Calyspo</i>.</p>
+				<p>This section is dedicated to tools related to <i>Calypso</i>.</p>
 				<details><summary>Details</summary>
 					<br>
 					<details><summary><b>Strive</b></summary>
@@ -6736,6 +6949,7 @@
 					<li><i>ISC: Inferential Scene Crafter</i> by Zach Best</li>
 					<li><i>Calypso</i> by Tam H.</li>
 					<li><i>If</i> by Tam H.</li>
+					<li><i>Libre Solo Role Playing</i> by Brian Washburn</li>
 					<li><i>Ironsworn</i> by Shawn Tomkin</li>
 					<li><i>Ironsworn Delve</i> by Shawn Tomkin</li>
 					<li><i>Ironsmith</i> by Eric Bright</li>
@@ -6756,7 +6970,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.07.17 tayruh</p>
+				<p>version: 2022.07.19 tayruh</p>
 			</div>
 		</div>
 	</body>
