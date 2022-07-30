@@ -4541,30 +4541,31 @@
 					if (total !== 0 || has_num) types.unshift(" ".repeat(padding) + "Total: <b>" + total + "</b>");
 					else if (!types.length) types.unshift("Total: <b>None</b>");
 
-					$("#reset-dice").style.display = "inline-block";
-
 					$("#dice-rolls").innerHTML = "";
 					fadeIn("#dice-rolls", 0, "<pre><code><p>" + output.join("<br>") + "</p><hr><p>" + types.join("</p><p>") + "</p></code></pre>");
 				};
 
 				var addDice = function(dice) {
 					var text = $("#dice").value.trimEnd();
+					var entries = text.split(",");
 
-					if (text.trim().length && /^[^+-]/.test(dice)) text += ",";
+					if (text.trim().length && /^[^+-]/.test(dice.trim()) && /[^0-9]/.test(entries[entries.length - 1].trim())) text += ",";
 					$("#dice").value = text + dice;
-
-					$("#dice").focus();
 				};
 
 				var showDiceRoller = function() {
+					var a, output;
+
 					display($("#dice-roller").innerHTML);
 
-					$("#quick-rolls").innerHTML = "<p>" + (quick_rolls.length ? quick_rolls.join("<br>") : "List is Empty") + "<br>" + getLink("Edit Quick Rolls", "solo.showQuickRolls()") + "</p>";
+					if (!quick_rolls.length) output = "<li>List is Empty</li>";
+					else output = "<li>" + quick_rolls.join("</li><li>") + "</li>";
+
+					$("#quick-rolls").innerHTML = "<ul>" + output + "</ul>" + getLink("Edit Quick Rolls", "solo.showQuickRolls()");
 
 					$("#dice").addEventListener("keyup", function(e) {
 						if (e.keyCode === 13) showDice();
 					});
-					$("#dice").focus();
 				};
 
 				var showQuickRolls = function() {
@@ -4593,15 +4594,7 @@
 						quick_rolls.push("<a onclick='solo.showDice(\"" + (temp.length < 2 ? temp[0].trim() : lines[a].substring(temp[0].length + 1).trim()) + "\")'>" + temp[0].trim() + "</a>");
 					}
 
-					var copy = $("#save-button").innerHTML;
-					var count = "quick roll" + (quick_rolls.length !== 1 ? "s" : "");
-					$("#save-button").innerHTML = "<p><b>Saved! (" + quick_rolls.length + " " + count + ")</b></p>";
-
-					setTimeout(function() {
-						if ($("#save-button") === null) return;
-
-						$("#save-button").innerHTML = copy;
-					}, 2000);
+					showDiceRoller();
 				};
 
 
@@ -5744,10 +5737,9 @@
 
 			#dice-rolls td:first-child { padding-right: 1em; }
 
-			#reset-dice { 
-				margin-left: 2em;
-				display: none; 
-			}
+			#reset-dice { margin-left: 2em; }
+
+			#quick-rolls ul { padding-inline-start: 0px; }
 
 			#specials li { margin-top: 1em; }
 
@@ -5929,7 +5921,7 @@
 				<details><summary onclick="solo.showDescription(this, 'if-brain-fuel-desc')"><b>Brain Fuel</b></summary>
 					<p><a onclick="solo.showMeaning('Condition:IF positive condition')">Positive Condition</a></p>
 					<p><a onclick="solo.showMeaning('Condition:IF negative condition')">Negative Condition</a></p>
-					<p><a onclick="solo.showMeaning('Condition:IF beats')">Beat</a></p>
+					<p><a onclick="solo.showMeaning('Beat:IF beats')">Beat</a></p>
 				</details>
 			</div>
 
@@ -6970,7 +6962,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.07.19 tayruh</p>
+				<p>version: 2022.07.29 tayruh</p>
 			</div>
 		</div>
 	</body>
