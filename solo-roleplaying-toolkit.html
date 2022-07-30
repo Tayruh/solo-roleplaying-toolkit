@@ -4369,8 +4369,12 @@
 
 				var quick_rolls_text = "";
 				var quick_rolls = [];
+				var showing_quick_rolls = false;
 
-				var showDice = function(rolls) {
+				var showDice = function(rolls, show_quick_rolls) {
+
+					showing_quick_rolls = showing_quick_rolls || show_quick_rolls;
+
 					addClass("#results", "full-width");
 
 					if (rolls !== undefined) $("#dice").value = rolls;
@@ -4542,7 +4546,11 @@
 					else if (!types.length) types.unshift("Total: <b>None</b>");
 
 					$("#dice-rolls").innerHTML = "";
-					fadeIn("#dice-rolls", 0, "<pre><code><p>" + output.join("<br>") + "</p><hr><p>" + types.join("</p><p>") + "</p></code></pre>");
+
+					fadeIn("#dice-rolls", 0, 
+						"<pre><code><p>" + output.join("<br>") + "</p><hr><p>" + types.join("</p><p>") + "</p></code></pre>" + 
+						((showing_quick_rolls) ? "<br><hr><div id='quick-rolls'><ul><li>" + quick_rolls.join("</lil><li>") + "</li></ul></div>" : "")
+					);
 				};
 
 				var addDice = function(dice) {
@@ -4555,6 +4563,8 @@
 
 				var showDiceRoller = function() {
 					var a, output;
+
+					showing_quick_rolls = false;
 
 					display($("#dice-roller").innerHTML);
 
@@ -4591,7 +4601,7 @@
 					for (a = 0; a < lines.length; ++a) {
 						if (lines[a].trim().length < 1) continue;
 						temp = lines[a].split(":");
-						quick_rolls.push("<a onclick='solo.showDice(\"" + (temp.length < 2 ? temp[0].trim() : lines[a].substring(temp[0].length + 1).trim()) + "\")'>" + temp[0].trim() + "</a>");
+						quick_rolls.push("<a onclick='solo.showDice(\"" + (temp.length < 2 ? temp[0].trim() : lines[a].substring(temp[0].length + 1).trim()) + "\", true)'>" + temp[0].trim() + "</a>");
 					}
 
 					showDiceRoller();
@@ -6087,7 +6097,7 @@
 					</p>
 					<p>
 						<a onclick="solo.addDice('2D6')">2D6</a> • <a onclick="solo.addDice('3D6')">3D6</a> • <a onclick="solo.addDice('D2')">D2</a> • <a onclick="solo.addDice('D3')">D3</a><br>
-						<a onclick="solo.addDice('D10,D10,D6')">Ironsworn</a> • <a onclick="solo.addDice('4DF')">FATE</a>
+						<a onclick="solo.addDice('4DF')">Fate</a> • <a onclick="solo.addDice('D10,D10,D6')">Ironsworn</a>
 					</p>
 					<hr>
 					
