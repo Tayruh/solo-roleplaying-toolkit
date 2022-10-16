@@ -1021,7 +1021,7 @@
 							"Unity": ["safety for freedom", "what might have been", "seven gold coins for a kiss", "cut off at the knees", "an eye for secrets", "a heavy gilded mask"]
 						},
 						"People": {
-							"Those Who Guide": ["The Twin Ravens. Memory and Thought, inextricably linked, shaping reality around them.", "The Speaker of the Open Eye. The figure of a hanged or crucified seeker.", "The Oracle of the Silver Star. A crowned oracle before a crevice, speaking ofblood and hearts.", "The Prophet of the Eternal. Cowled, with lamp and staff, ageless.", "The Child of Truth. With scales and balance, and with eyes and heart open.", "The Exaltation of the Mind. SmirkingMercury, unkind missive in hand, or Odin tying the rope around his own ankles."],
+							"Those Who Guide": ["The Twin Ravens. Memory and Thought, inextricably linked, shaping reality around them.", "The Speaker of the Open Eye. The figure of a hanged or crucified seeker.", "The Oracle of the Silver Star. A crowned oracle before a crevice, speaking ofblood and hearts.", "The Prophet of the Eternal. Cowled, with lamp and staff, ageless.", "The Child of Truth. With scales and balance, and with eyes and heart open.", "The Exaltation of the Mind. Smirking Mercury, unkind missive in hand, or Odin tying the rope around his own ankles."],
 							"Those Who Act": ["The Magus of Power. A flashy youth with winged helmet and heels, displaying the mystical arts.", "The Flaming Sword. A smiling woman holds the jaws of a fierce and powerful lion open.", "The Ruler of the Hosts of Air. A holy and energetic ruler under a starry sky, bearing a wicked shield.", "The Reconciler, Bringer-Forth of Life. Crowned with stars, a winged goddess stands upon the moon.", "The Son of the Morning. A flame-clad god wielding light with certainty.", "The Exaltation of the Physical. Uncouth Pan, innocent and playful, or eager, curious Priapus."],
 							"Those Who Are": ["The Twilight Crux. A child of two worlds, fated to serve just one.", "The Dweller in the Waters. A woman-octopus, singing idly as she waits.", "That Which Was and Will Be Again. The dead rising, hungry and yearning, at the fool’s command.", "The Life-Tree. Adorned with eyes; the bitterest wisdom imparted is that some prices are too high to pay.", "The Lord of the Gates of Death. The transformer of all that lives, bearing scythe and with an open hand.", "The Exaltation of the Soul. Grey-eyed Athena, wielder of the aegis, or gentle Venus, hand-in-hand with her child Eros."]
 						}
@@ -3323,13 +3323,13 @@
 
 
 				var showFateV1 = function(odds, compare) {
-					if (compare === null) compare = chaos;
-
+					if (compare === null) compare = 10 - chaos;
+					
 					var roll = random(1, 100);
 					var chance = mythic_fate["v1"][odds][compare];
 
 					var success = (roll > chance[1]) ? "no" : "yes";
-					var exceptional = (roll <= chance[0] || roll > chance[2]) ? "exceptional " : "";
+					var exceptional = (roll <= chance[0] || (chance[2] > 0 && roll >= chance[2])) ? "exceptional " : "";
 
 					display(
 						"<p><b>Fate:</b> (" + roll + ") " + "<span class='" + exceptional + success + "'>" + upperCase(exceptional + success) + (exceptional ? "!" : "") + "</span></p>" + 
@@ -6020,15 +6020,15 @@
 			<div id="Mythic">
 				<p>
 				Chaos <select name="chaos" id="chaos" onchange="solo.selectChaos()">
-					<option value="1">9</option>
-					<option value="2">8</option>
-					<option value="3">7</option>
-					<option value="4">6</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
 					<option value="5">5</option>
-					<option value="6">4</option>
-					<option value="7">3</option>
-					<option value="8">2</option>
-					<option value="9">1</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
 				</select>
 				</p>
 				<p><a onclick="solo.showFateV1List()">Fate Chart</a></p>
@@ -7059,7 +7059,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.10.07 tayruh</p>
+				<p>version: 2022.10.16 tayruh</p>
 			</div>
 		</div>
 	</body>
