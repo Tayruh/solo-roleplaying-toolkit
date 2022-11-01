@@ -272,6 +272,11 @@
 					return list.sort(function(a, b) { return a - b; });
 				};
 
+				var clamp = function(value, min, max) {
+					console.log(Math.min(Math.max(value, min), max))
+					return Math.min(Math.max(value, min), max);
+				};
+				
 				var isArray = function(val) {
 					return (val instanceof Array || Array.isArray(val));
 				};
@@ -3373,7 +3378,7 @@
 					var exceptional = false;
 					var event = false;
 
-					if (chaosDie <= Math.min(Math.max(chaos, 4), 6)) {
+					if (chaosDie <= clamp(chaos, 3, 6)) {
 						if (die1 === die2) {
 							exceptional = true;
 							event = true;
@@ -4193,7 +4198,7 @@
 						var exceptional = false;
 						var event = false;
 
-						if (chaosDie <= Math.min(Math.max(chaos, 4), 6))  {
+						if (chaosDie <= clamp(chaos, 3, 6))  {
 							if (die1 === die2) {
 								exceptional = true;
 								event = true;
