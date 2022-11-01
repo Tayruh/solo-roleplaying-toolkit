@@ -1459,6 +1459,17 @@
 					]
 				};
 
+				var twists = [
+					"Someone is revealed to have an unexpected connection to another character.", "Something that you had taken for granted as a truth is revealed to be false.", 
+					"A successful action unexpectedly makes the situation worse.", "A problem that you thought had been resolved returns.", 
+					"Information is revealed that alters a perceived truth in an unexpected way.", "Something that you were trying to keep hidden is revealed.", 
+					"A character must choose one out of two or more equally positive or equally negative options.", "A threat comes from the environment.", 
+					"A character with questionable motives enters the story.", "A character's weakness or mistake is exploited.", 
+					"Someone or something is taken from you or becomes broken.", "A character does something contrary to who they are.", "A sacrifice is necessary to succeed.", 
+					"A past event or action is revealed that directly affects the current situation.", "Someone or something taken for granted is discovered to be unexpectedly important.", 
+					"A strength becomes a momentary weakness.", "A previously unseen weakness or fear comes is revealed.", "The current path to your goal is closed off unexpectedly."
+				];
+
 				var combat_actions = [
 					{ 
 						3: "Compel a surrender", 6: "Coordinate with allies", 9: "Gather reinforcements", 13: "Seize something or someone", 17: "Provoke a reckless response", 21: "Intimidate or frighten", 
@@ -3362,7 +3373,7 @@
 					var exceptional = false;
 					var event = false;
 
-					if (chaosDie <= chaos) {
+					if (chaosDie <= Math.min(Math.max(chaos, 4), 6)) {
 						if (die1 === die2) {
 							exceptional = true;
 							event = true;
@@ -3557,14 +3568,11 @@
 
 
 				var getDetail = function() {
-					var mod;
-
-					if (chaos < 4 === 0) mod = 2;
-					else if (chaos < 6) mod = 0;
-					else mod = -2;
+					var mod = 0;
+					if (chaos < 4) mod = 2;
+					else if (chaos > 5) mod = -2;
 
 					var roll = rollDice("2D10") + mod;
-
 					if (roll < 5) return "Anger";
 					if (roll > 17) return "Calm";
 
@@ -3892,20 +3900,12 @@
 
 
 				var showBackstory = function() {
-					var roll = rollDice("1D100");
-					var count = getRolledItem(roll, backstories["count"]);
-
-					var a, num;
+					var a, roll;
 					var events = [];
-					for (a = 0; a < count; ++a) {
-						roll = rollDice("1D100");
-						if (a > 0 && parseInt(num) === 100) break;
-						for (num in backstories["focus"]) {
-							if (roll <= parseInt(num)) {
-								events.push(backstories["focus"][num]);
-								break;
-							}
-						}
+					for (a = 0; a < 7; ++a) {
+						roll = random(1, 100);
+						events.push(getRolledItem(roll, backstories["focus"]));
+						if (a > 0 && roll > 96) break;
 					}
 
 					for (a = 0; a < events.length; ++a) {
@@ -4193,7 +4193,7 @@
 						var exceptional = false;
 						var event = false;
 
-						if (chaosDie <= chaos) {
+						if (chaosDie <= Math.min(Math.max(chaos, 4), 6))  {
 							if (die1 === die2) {
 								exceptional = true;
 								event = true;
@@ -4862,6 +4862,10 @@
 						meaning += " " + checkMeaning(une["bold"]["connection"]["subject"], false, true);
 					}
 
+					// event
+					else if (type === "Twist") meaning = randomItem(twists);
+					else if (type === "Backlash") meaning = getRolledItem(random(1, 100), mystic_backlash[random(0, 1)]);
+
 					// npc
 					else if (type === "Combat") meaning = checkMeaning(combat_events["method"], combat_events["target"]);
 					else if (type === "Identity") {
@@ -4876,7 +4880,6 @@
 					else if (type === "Goal") meaning = checkMeaning(character_goals);
 					else if (type === "Relationship") meaning = checkMeaning(relationships);
 					else if (type === "Combat Action") meaning = getRolledItem(random(1, 100), combat_actions[random(0, 2)]);
-					else if (type === "Backlash") meaning = getRolledItem(random(1, 100), mystic_backlash[random(0, 1)]);
 					else if (type === "Information") meaning = checkMeaning(information["type"], information["topic"]);
 
 					// location
@@ -5912,6 +5915,7 @@
 
 								<details><summary onclick="solo.showDescription(this, 'event-desc')"><b>Events</b></summary>
 									<p><a onclick="solo.showEvent()">New Event</a></p>
+									<p><a onclick="solo.showMeaning('Twist')">Twist</a></p>
 									<p><a onclick="solo.showMeaning('Backlash')">Mystic Backlash</a></p>
 									<p><a onclick="solo.showDilemmaList()">Dilemma</a></p>
 								</details>
@@ -6314,6 +6318,10 @@
 					<br>
 					<details><summary><b>Event</b></summary>
 						<p>Generates a random event.</p>
+					</details>
+					<br>
+					<details><summary><b>Twist</b></summary>
+						<p>Generates a narrative twist.</p>
 					</details>
 					<br>
 					<details><summary><b>Mystic Backlash</b></summary>
@@ -7059,7 +7067,7 @@
 					<li><i>Ursa Minor</i> by Thomas Davis</li>
 				</ul>
 
-				<p>version: 2022.10.16 tayruh</p>
+				<p>version: 2022.11.01 tayruh</p>
 			</div>
 		</div>
 	</body>
