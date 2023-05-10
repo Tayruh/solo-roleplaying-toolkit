@@ -1460,6 +1460,28 @@
 						["Turn Their Move Against Them","Your powers have the exact opposite effect that you are trying to achieve."], 
 						["Complicate Things, Bigtime (add a threat or Nemesis)","Your Mythos calls out to similar legends, bringing the attention of a Rift opposed to you, or Gatekeepers."], 
 						["Complicate Things, Bigtime (alter the setting)","Your Mythos changes your Logos (your appearance, life, or relationships) to better reflect its story."]
+					],
+					"lostgained": [
+						["We lose: A great comrade", "But we gain: New ones"],
+						["We lose: Our faith in the world", "But we gain: A second chance"],
+						["We lose: A valuable resource", "But we gain: The upper hand"],
+						["We lose: A great treasure", "But we gain: A powerful ally"],
+						["We lose: The peace", "But we gain: A higher calling"],
+						["We lose: Our way", "But we gain: A different perspective"],
+						["We lose: Precious time", "But we gain: A great boon"],
+						["We lose: Our reputation", "But we gain: Respect of the people"],
+						["We lose: Our identity", "But we gain: Vast wisdom"],
+						["We lose: Our powers", "But we gain: New skills"],
+						["We lose: Our trusty steed", "But we gain: A stronger bond"],
+						["We lose: The perfect opportunity", "But we gain: A shot at freedom"],
+						["We lose: The battle", "But we gain: Remarkable experience"],
+						["We lose: Their trust", "But we gain: Their love"],
+						["We lose: Our weapons", "But we gain: A better sense of self"],
+						["We lose: Our sense of security", "But we gain: A world to explore"],
+						["We lose: Control of the situation", "But we gain: Knowledge of the situation"],
+						["We lose: Our choice in the matter", "But we gain: Insight on the matter"],
+						["We lose: A loved one", "But we gain: Cherished memories"],
+						["We lose: Our very lives", "But we gain: A lasting legacy"]
 					]
 				};
 
@@ -5284,8 +5306,10 @@
 					if (type === "random") type = randomItem(["allies", "situational", "objects", "powers"]);
 
 					var dilemma = randomItem(dilemmas[type]);
+					var dilemma2 = dilemma;
+					if (type === "lostgained") dilemma2 = randomItem(dilemmas[type]);
 
-					display("<p><b>Dilemma:</b> " + dilemma[0] + "</p><p>" + dilemma[1] + "</p>");
+					display("<p><b>Dilemma:</b> " + dilemma[0] + "</p><p>" + dilemma2[1] + "</p>");
 				};
 
 				var showDilemmaList = function() {
@@ -5295,6 +5319,7 @@
 							["Situational & Tactical", "solo.showDilemma('situational')"],
 							["Objects & Gear", "solo.showDilemma('objects')"],
 							["You & Your Powers", "solo.showDilemma('powers')"],
+							["We lost, but we gained", "solo.showDilemma('lostgained')"],
 							["Random", "solo.showDilemma('random')"]
 						)
 					);
@@ -7060,6 +7085,7 @@
 					<li><i>1000+ NPC Traits</i> by Johnn Four</li>
 					<li><i>SOLO</i> by Paul Elliott</li>
 					<li><i>Scarlet Heroes</i> by Kevin Crawford</li>
+					<li><i>We Lost, But Gained</i> by Solo RPG Voyager</li>
 				</ul>
 				
 				<p>The following provide content for the muse meaning tables:</p>
