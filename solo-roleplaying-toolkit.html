@@ -1941,6 +1941,15 @@
 					"terrain": ["Same as current hex", "Same as current hex", "Common terrain", "Common terrain", "Uncommon terrain", "Rare terrain"],
 					"features": ["Notable structure", "Dangerous hazard", "A settlement", "Strange natural feature", "New region (set new terrain types)", "Dungeon Crawler entrance"]
 				}
+
+				// ANCHOR: GUM tables
+				var gum = {
+					"oracle": {
+						"As the GM": ["Strong no", "Strong no", "No", "No", "No", "No", "No", "No", "Weak no", "Weak no", "Weak yes", "Weak yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Strong yes", "Strong yes"],
+						"In character": ["No, in fact...", "No, in fact...", "No", "No", "No", "No, but...", "No, but...", "Requires skill test", "Requires skill test", "Can't tell for now", "Can't tell for sure", "Requires skill test", "Requires skill test", "Yes, but...", "Yes, but...", "Yes", "Yes", "Yes", "Yes, not only that...", "Yes, not only that..."],
+						"To another character": ["No, in fact...", "No, definitely not.", "No, something's missing...", "No, but hurry up...", "No, it can be dangerous...", "No, I think not...", "I don't think so, not sure.", "Don't know, but I know who...", "I'd be in trouble...", "Don't know, no idea.", "It depends...", "It's complicated...", "Don't know, but I know where...", "It's possible, not sure.", "Yes, I guess so.", "Yes, but be careful...", "Yes, and hurry up...", "Yes, despite...", "Yes, of course.", "Yes, and also..."]
+					}
+				}
 				
 				// mythic variations and mythic magazine vol.8 & 14
 				var backstories = {
@@ -4327,7 +4336,6 @@
 					display(output);
 				};
 
-
 				///////////////////////////////////////////////////////////////////
 				/* One Page Solo Engine menu */
 
@@ -4471,7 +4479,24 @@
 					display(output);
 				};
 				
-				
+				///////////////////////////////////////////////////////////////////
+				// ANCHOR Show GUM functions
+				/* GUM menu */
+				var showGUMOracle = function(who) {
+					var output = randomItem(gum["oracle"][who])
+					display("<p><b>" + getLink(who, "solo.showGUMOracle('" + who + "')") + "</b> " + output + "</p>");
+				};
+
+				var showGUMOracleList = function() {
+					display(
+						getLinks(
+							["As the GM", "solo.showGUMOracle('As the GM')"],
+							["In character", "solo.showGUMOracle('In character')"],
+							["To another character", "solo.showGUMOracle('To another character')"]
+						)
+					);
+				};
+
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -5591,6 +5616,10 @@
 				solo.showOnePageOracle = showOnePageOracle;
 				solo.showOnePageOracleList = showOnePageOracleList;
 				solo.showOnePageGeneration = showOnePageGeneration;
+				
+				// ANCHOR GUM exported functions
+				solo.showGUMOracle = showGUMOracle;
+				solo.showGUMOracleList = showGUMOracleList;
 
 				// chance
 				solo.showDice = showDice;
@@ -5902,6 +5931,7 @@
 										<option value="Calypso">CALYPSO</option>
 										<option value="Libre">LIBRE</option>
 										<option value="IF">IF</option>
+										<option value="GUM">GUM</option>
 									</select>
 									</summary>
 									<div id="system-data"></div>
@@ -6183,6 +6213,12 @@
 					<p><a onclick="solo.showOnePageGeneration('contents')">Contents</a></p>
 					<p><a onclick="solo.showMeaning('Feature:OPSE Features')">Feature</a></p>
 				</details>
+			</div>
+
+			<!-- ANCHOR GUM HTML -->
+			<div id="GUM">
+				<p><a onclick="solo.showGUMOracleList()">GUM Oracle</a></p>
+				<hr>
 			</div>
 
 			<div id="CRGE">
@@ -6725,6 +6761,19 @@
 					</details>
 				</details>
 			</div>
+			
+			<!-- ANCHOR GUM description -->
+			<div id="gum-desc">
+				<p>This section is dedicated to tools related to the <i>Game Unfolding Machine</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Oracle (Yes/No)</b></summary>
+						<p>Generate a Yes or No answer to a question, answering either as the GM, in character, or as a NPC.</p>
+					</details>
+					<details><summary></summary></details>
+					<br>
+				</details>
+			</div>
 
 			<!-- Libre descriptions -->
 
@@ -7086,6 +7135,7 @@
 					<li><i>SOLO</i> by Paul Elliott</li>
 					<li><i>Scarlet Heroes</i> by Kevin Crawford</li>
 					<li><i>We Lost, But Gained</i> by Solo RPG Voyager</li>
+					<li><i>Game Unfolding Machine</i> by Jeansen Vaars</li>
 				</ul>
 				
 				<p>The following provide content for the muse meaning tables:</p>
