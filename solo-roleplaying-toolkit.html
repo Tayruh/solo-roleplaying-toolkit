@@ -487,7 +487,7 @@
 					"story": {
 						"turns": {
 							11: "A sudden turn in favor of the player character(s) and/or their interests.",
-							22: "Any useful progress or clues in the scene will be offset by ostacles of delays.",
+							22: "Any useful progress or clues in the scene will be offset by obstacles of delays.",
 							33: "Helpful non-player characters suddenly arrive.",
 							44: "Hostile non-player characters suddenly arrive.",
 							55: "An especially unusual item or well-hidden clue is unlocked within the scene.",
@@ -1948,6 +1948,12 @@
 						"As the GM": ["Strong no", "Strong no", "No", "No", "No", "No", "No", "No", "Weak no", "Weak no", "Weak yes", "Weak yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Strong yes", "Strong yes"],
 						"In character": ["No, in fact...", "No, in fact...", "No", "No", "No", "No, but...", "No, but...", "Requires skill test", "Requires skill test", "Can't tell for now", "Can't tell for sure", "Requires skill test", "Requires skill test", "Yes, but...", "Yes, but...", "Yes", "Yes", "Yes", "Yes, not only that...", "Yes, not only that..."],
 						"To another character": ["No, in fact...", "No, definitely not.", "No, something's missing...", "No, but hurry up...", "No, it can be dangerous...", "No, I think not...", "I don't think so, not sure.", "Don't know, but I know who...", "I'd be in trouble...", "Don't know, no idea.", "It depends...", "It's complicated...", "Don't know, but I know where...", "It's possible, not sure.", "Yes, I guess so.", "Yes, but be careful...", "Yes, and hurry up...", "Yes, despite...", "Yes, of course.", "Yes, and also..."]
+					},
+					"plan check": {
+						"safe": ["suffering a complication", "facing an inconvenience", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune", "enjoying good fortune"], 
+						"risky": ["canceled because of a problem", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune", "enjoying good fortune"], 
+						"tense": ["canceled because of a problem", "canceled because of a problem", "suffering a complication", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune"],
+						"exploding": ["canceled because of a problem", "canceled because of a problem", "canceled because of a problem", "suffering a complication", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune"]
 					}
 				}
 				
@@ -4496,6 +4502,23 @@
 						)
 					);
 				};
+				
+				var showGUMPlanCheck = function(risk) {
+					var output = randomItem(gum["plan check"][risk]);
+					display("<p>Your plans are <b>" + output + "</b></p>");
+					// TODO link inconveniences and other stuff
+				}
+
+				var showGUMPlanCheckList = function() {
+					display(
+						getLinks(
+							["safe", "solo.showGUMPlanCheck('safe')"],
+							["risky", "solo.showGUMPlanCheck('risky')"],
+							["tense", "solo.showGUMPlanCheck('tense')"],
+							["exploding", "solo.showGUMPlanCheck('exploding')"]
+						)
+					)
+				}
 
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
@@ -5620,6 +5643,8 @@
 				// ANCHOR GUM exported functions
 				solo.showGUMOracle = showGUMOracle;
 				solo.showGUMOracleList = showGUMOracleList;
+				solo.showGUMPlanCheck = showGUMPlanCheck;
+				solo.showGUMPlanCheckList = showGUMPlanCheckList;
 
 				// chance
 				solo.showDice = showDice;
@@ -6218,6 +6243,7 @@
 			<!-- ANCHOR GUM HTML -->
 			<div id="GUM">
 				<p><a onclick="solo.showGUMOracleList()">Oracle</a></p>
+				<p><a onclick="solo.showGUMPlanCheckList()">Plan check</a></p>
 				<hr>
 			</div>
 
@@ -6770,7 +6796,9 @@
 					<details><summary><b>Oracle (Yes/No)</b></summary>
 						<p>Generate a Yes or No answer to a question, answering either as the GM, in character, or as a NPC.</p>
 					</details>
-					<details><summary></summary></details>
+					<details><summary><b>Plan check</b></summary>
+						<p>Check if everything goes according to the plan, and maybe introduce some issues.</p>
+					</details>
 					<br>
 				</details>
 			</div>
