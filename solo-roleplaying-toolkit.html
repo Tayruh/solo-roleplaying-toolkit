@@ -2017,10 +2017,10 @@
 						"stuff": ["Defensive item", "Tech gadgets", "Transport", "Followers", "Fancy cloak", "Expensive stuff", "Property", "Books, scrolls", "Business", "Servants", "Staff, wand", "Weapons, lots", "Sword", "Travel items", "Dagger", "Special stones", "Charms, amulet", "A pet, a drone", "Portrait", "Weird device"]
 					},
 					"PC challenges": {
-						"skill": ["Situation for what PCs do worst, vulnerability", "Resist, endure, withstand, fortitude test, hold on!", "Push, kick, smash, pull, throw, lift, move", "Get over someone, make them, the hard way", "They are too many, another way, trick them", "Move, quick, run, quickly! watch out!", "Jump, crawl, squeeze, climb, stretch, swim, air", "Only a specialist or expert can do, setting specific", "Better not to be detected, guards, sentinels", "Test of spirit, will, mentality, wits, courage", "Locked out, to steal, watched, protected", "Dodge, evade, run, act quickly, hurry up", "It's here, must be, have you seen, heard that?", "Test of pilot, drive, handle, ride, control, manage", "Low morale, scared, uninspired, unwilling", "Trace, footstep, supplies, survive, fetch, collect", "What is that? Historic, cultural, weird, magical", "It\'s broken, not working, failing, erratic, jammed", "Injured being, person, in pain, hurts, sick, poisoned", "Situation for what PCs do best or are good at"],
-						"situation": ["Someone watching Can hurt", "must heal Inconveniently placed", "Easier with right tools", "Costs wealth, resources", "Annoying presence", "Easy, simple, solvable", "Hard, difficult, complex", "Can harm reputation", "Difficult terrain", "Time limit, one shot", "Vision difficulties", "Haste is rewarded", "Needs a distraction", "Team effort, needs help", "Dangerous consequences", "Distracting elements", "Lengthy, phased", "Do silently, swiftly", "Atmospheric issues"],
-						"prompt": ["It's broken", "must restore", "What is that smell?", "It's about to fall!", "What are they doing here?", "What is that?", "That is treason!", "What is that sound?", "Did you see that?", "An explosion", "Something starts failing", "Never seen that before", "They need help!", "It's full of traps", "Are they trying to trick us?", "This needs careful study", "This is so weird, magic?", "Someone was here", "They are way too many", "Advanced technology", "This should be stopped"],
-						"conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Large structure", "Moving objects"]
+						"Skill": ["Situation for what PCs do worst, vulnerability", "Resist, endure, withstand, fortitude test, hold on!", "Push, kick, smash, pull, throw, lift, move", "Get over someone, make them, the hard way", "They are too many, another way, trick them", "Move, quick, run, quickly! watch out!", "Jump, crawl, squeeze, climb, stretch, swim, air", "Only a specialist or expert can do, setting specific", "Better not to be detected, guards, sentinels", "Test of spirit, will, mentality, wits, courage", "Locked out, to steal, watched, protected", "Dodge, evade, run, act quickly, hurry up", "It's here, must be, have you seen, heard that?", "Test of pilot, drive, handle, ride, control, manage", "Low morale, scared, uninspired, unwilling", "Trace, footstep, supplies, survive, fetch, collect", "What is that? Historic, cultural, weird, magical", "It\'s broken, not working, failing, erratic, jammed", "Injured being, person, in pain, hurts, sick, poisoned", "Situation for what PCs do best or are good at"],
+						"Situation": ["Someone watching Can hurt", "must heal Inconveniently placed", "Easier with right tools", "Costs wealth, resources", "Annoying presence", "Easy, simple, solvable", "Hard, difficult, complex", "Can harm reputation", "Difficult terrain", "Time limit, one shot", "Vision difficulties", "Haste is rewarded", "Needs a distraction", "Team effort, needs help", "Dangerous consequences", "Distracting elements", "Lengthy, phased", "Do silently, swiftly", "Atmospheric issues"],
+						"Prompt": ["It's broken", "must restore", "What is that smell?", "It's about to fall!", "What are they doing here?", "What is that?", "That is treason!", "What is that sound?", "Did you see that?", "An explosion", "Something starts failing", "Never seen that before", "They need help!", "It's full of traps", "Are they trying to trick us?", "This needs careful study", "This is so weird, magic?", "Someone was here", "They are way too many", "Advanced technology", "This should be stopped"],
+						"Conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Large structure", "Moving objects"]
 
 					},
 					"PC conflict details": {
@@ -4700,7 +4700,7 @@
 						)
 						+ "<hr>" +
 						getLinks(
-						// TODO make it easy to roll multiple items, all results on one page
+						// TODO Ergo: make it easy to roll multiple items, all results on one page
 							["Grand oracle: Action", "solo.showGUMOracle('Action')"],
 							["Grand oracle: Descriptor", "solo.showGUMOracle('Descriptor')"],
 							["Grand oracle: Subject", "solo.showGUMOracle('Subject')"]
@@ -4747,8 +4747,19 @@
 				var showGUMIntervention = function() {
 					var output = randomItem(gum["Intervention"]);
 					display("<p>Intervention: <b>" + output + "</b></p>");
+					// TODO: Ergo: automate grand oracle rolls that may be needed
 				}
 
+				var showGUMChallenge = function() {
+					const aspects = ["Prompt", "Skill", "Situation", "Conditions"];
+					var output = "";
+					for (let i = 0; i < aspects.length; i++) {
+						var o = randomItem(gum["PC challenges"][aspects[i]]);
+						output += "<p>" + aspects[i] + ": <b>" + o + "</b></p>";
+					}
+					display(output);
+				}
+				
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -5876,6 +5887,7 @@
 				solo.showGUMPlanCheckList = showGUMPlanCheckList;
 				solo.showGUMIssues = showGUMIssues;
 				solo.showGUMIntervention = showGUMIntervention;
+				solo.showGUMChallenge = showGUMChallenge;
 
 				// chance
 				solo.showDice = showDice;
@@ -6476,7 +6488,7 @@
 				<p><a onclick="solo.showGUMOracleList()">Oracle</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()">Plan check</a></p>
 				<p><a onclick="solo.showGUMIntervention()">GM intervention</a></p>
-				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Challenge</a></p>
+				<p><a onclick="solo.showGUMChallenge()">Challenge</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Combat</a></p>
 				<hr>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Scene designer</a></p>
