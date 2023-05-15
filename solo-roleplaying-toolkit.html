@@ -4710,12 +4710,12 @@
 				
 				var showGUMPlanCheck = function(risk) {
 					var output = randomItem(gum["plan check"][risk]);
-					output = "<p>Your plans are <b>" + output + "</b></p>";
+					output = "<p>Your plans are " + output + "</p>";
 					const drawers = ["circumstance", "inconvenience", "complication", "problem"];
 					for (let i = 0; i < drawers.length; i++) {
 						if (output.indexOf(drawers[i]) > -1) {
 							var o = randomItem(gum["plan check"][drawers[i]]);
-							output += "<p>  → <b>" + o + "</b></p>";
+							output += "<p>  → " + o + "</p>";
 						}
 					}
 					display(output);
@@ -4723,7 +4723,7 @@
 				
 				var showGUMIssues = function(type) {
 					var output = randomItem(gum["plan check"][type]);
-					display("<p>" + type + ": <b>" + output + "</b></p>");
+					display("<p><b>" + type + "</b>: " + output + "</p>");
 				}
 
 				var showGUMPlanCheckList = function() {
@@ -4746,7 +4746,7 @@
 
 				var showGUMIntervention = function() {
 					var output = randomItem(gum["Intervention"]);
-					display("<p>Intervention: <b>" + output + "</b></p>");
+					display("<p><b>Intervention</b>: " + output + "</p>");
 					// TODO: Ergo: automate grand oracle rolls that may be needed
 				}
 
@@ -4755,7 +4755,7 @@
 					var output = "";
 					for (let i = 0; i < aspects.length; i++) {
 						var o = randomItem(gum["PC challenges"][aspects[i]]);
-						output += "<p>" + aspects[i] + ": <b>" + o + "</b></p>";
+						output += "<p><b>" + aspects[i] + "</b>: " + o + "</p>";
 					}
 					display(output);
 				}
