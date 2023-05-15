@@ -4690,24 +4690,6 @@
 					var output = randomItem(gum["oracle"][who])
 					display("<p><b>" + getLink(who, "solo.showGUMOracle('" + who + "')") + "</b> " + output + "</p>");
 				};
-				
-				var showGUMGrandOracle = function() {
-					answers = {};
-
-					var a = 0;
-					var steps = ["Action", "Descriptor", "Subject"];
-
-					var text = "<table>";
-					for (a = 0; a < steps.length; ++a) {
-						text += "<tr><td><b>" + steps[a] + "</b></td>" +
-							"<td id='answer-" + a + "' onclick='solo.showAnswer(" + a + ", \"" + theme + "\", \"" + steps[a] + "\")'>" +
-							"<span class='spoiler answer'>click to reveal</span></td></tr>";
-					}
-					text += "</table>";
-
-					if (navigator && navigator.clipboard) text += "<br><hr><div id='copy-text' class='hidden'></div>" + getCopyButton("copy-text");
-					display(text);
-				};
 
 				var showGUMOracleList = function() {
 					display(
@@ -4718,7 +4700,10 @@
 						)
 						+ "<hr>" +
 						getLinks(
-							["Grand oracle", "solo.showGUMOracle('Grand oracle')"]
+						// TODO make it easy to roll multiple items, all results on one page
+							["Grand oracle: Action", "solo.showGUMOracle('Action')"],
+							["Grand oracle: Descriptor", "solo.showGUMOracle('Descriptor')"],
+							["Grand oracle: Subject", "solo.showGUMOracle('Subject')"]
 						)
 					);
 				};
@@ -5881,6 +5866,7 @@
 				
 				// ANCHOR GUM exported functions
 				solo.showGUMOracle = showGUMOracle;
+				solo.showGUMGrandOracle = showGUMGrandOracle;
 				solo.showGUMOracleList = showGUMOracleList;
 				solo.showGUMPlanCheck = showGUMPlanCheck;
 				solo.showGUMPlanCheckList = showGUMPlanCheckList;
@@ -6482,7 +6468,7 @@
 
 			<!-- ANCHOR GUM HTML -->
 			<div id="GUM">
-				<p><a onclick="solo.showGUMOracleList()"> ❌ Oracle</a></p>
+				<p><a onclick="solo.showGUMOracleList()">Oracle</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()">Plan check</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ GM intervention</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Challenge</a></p>
