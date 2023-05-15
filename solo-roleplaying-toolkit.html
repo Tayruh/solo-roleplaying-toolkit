@@ -4755,7 +4755,7 @@
 					var output = "";
 					for (let i = 0; i < aspects.length; i++) {
 						var o = randomItem(gum["PC challenges"][aspects[i]]);
-						output += "<p><b>" + aspects[i] + "</b>: " + o + "</p>";
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
 					}
 					display(output);
 				}
