@@ -4770,6 +4770,11 @@
 					display(output);
 				}
 				
+				var showGUMSceneDesign = function() {
+					var output = randomItem(gum["scene design"]);
+					display("<p>Focal point (what the scene could be about):</p><p>" + output + "</p>");
+				}
+
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -5899,6 +5904,7 @@
 				solo.showGUMIntervention = showGUMIntervention;
 				solo.showGUMChallenge = showGUMChallenge;
 				solo.showGUMCombat = showGUMCombat;
+				solo.showGUMSceneDesign = showGUMSceneDesign;
 
 				// chance
 				solo.showDice = showDice;
@@ -6502,7 +6508,7 @@
 				<p><a onclick="solo.showGUMChallenge()">Challenge</a></p>
 				<p><a onclick="solo.showGUMCombat()">Combat</a></p>
 				<hr>
-				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Scene designer</a></p>
+				<p><a onclick="solo.showGUMSceneDesign()">Scene designer</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Location</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ NPC</a></p>
 				<hr>
