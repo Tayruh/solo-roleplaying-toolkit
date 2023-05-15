@@ -2023,11 +2023,11 @@
 						"Conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Large structure", "Moving objects"]
 
 					},
-					"PC conflict details": {
-						"conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Buildings/large cover", "Moving objects"],
-						"tactical": ["Plenty of cover", "Time limit", "Bystanders in between", "Tactical devices", "Machinery for use", "Immobilizing traps", "Explosive traps", "Vehicles or platform", "Mounted weapons", "Disadvantage start", "At an advantage", "Climbable spot", "Flanking routes", "Doors or triggers", "One side has no cover", "Capture the flag", "Protect the object", "Key spot in the center", "Key spot in the sides", "Protect someone"],
-						"behaviour": ["Aggressive, frontal", "Ambush surprise", "Flanking and split", "Hide to sneak attack", "Buying time", "Protecting someone", "Protecting something", "Keeping distance", "Narrowing distance", "Focus one target", "Spread out", "Protect key member", "Set up a hazard", "Holding position", "Ready to escape", "Fight to death", "Cowardly", "Honorably", "Taunting", "Defensive, careful"],
-						"composition": ["In numbers, but weak", "Immunity to typical damage", "Start buffed/prepared", "They have a healer/supporter", "One of them is well equipped", "One of them uses toxins", "One of them is heavy armored", "Dedicated protector/champion", "Few can fly or swim", "Got very powerful weapon", "Magic or tech member", "Few, but strong", "One very strong, others weak", "Mixed melee and ranged", "All melee", "All ranged", "Can move very fast", "One of them can cripple", "One of them can summon", "Area of effect items"]
+					"PC combat": {
+						"Conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Buildings/large cover", "Moving objects"],
+						"Tactical": ["Plenty of cover", "Time limit", "Bystanders in between", "Tactical devices", "Machinery for use", "Immobilizing traps", "Explosive traps", "Vehicles or platform", "Mounted weapons", "Disadvantage start", "At an advantage", "Climbable spot", "Flanking routes", "Doors or triggers", "One side has no cover", "Capture the flag", "Protect the object", "Key spot in the center", "Key spot in the sides", "Protect someone"],
+						"Behaviour": ["Aggressive, frontal", "Ambush surprise", "Flanking and split", "Hide to sneak attack", "Buying time", "Protecting someone", "Protecting something", "Keeping distance", "Narrowing distance", "Focus one target", "Spread out", "Protect key member", "Set up a hazard", "Holding position", "Ready to escape", "Fight to death", "Cowardly", "Honorably", "Taunting", "Defensive, careful"],
+						"Composition": ["In numbers, but weak", "Immunity to typical damage", "Start buffed/prepared", "They have a healer/supporter", "One of them is well equipped", "One of them uses toxins", "One of them is heavy armored", "Dedicated protector/champion", "Few can fly or swim", "Got very powerful weapon", "Magic or tech member", "Few, but strong", "One very strong, others weak", "Mixed melee and ranged", "All melee", "All ranged", "Can move very fast", "One of them can cripple", "One of them can summon", "Area of effect items"]
 					},
 					"Intervention": [
 						"Remains silent, what do characters do?",
@@ -4760,6 +4760,16 @@
 					display(output);
 				}
 				
+				var showGUMCombat = function() {
+					const aspects = ["Conditions", "Tactical", "Behaviour", "Composition"];
+					var output = "";
+					for (let i = 0; i < aspects.length; i++) {
+						var o = randomItem(gum["PC combat"][aspects[i]]);
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				}
+				
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -5888,6 +5898,7 @@
 				solo.showGUMIssues = showGUMIssues;
 				solo.showGUMIntervention = showGUMIntervention;
 				solo.showGUMChallenge = showGUMChallenge;
+				solo.showGUMCombat = showGUMCombat;
 
 				// chance
 				solo.showDice = showDice;
@@ -6489,7 +6500,7 @@
 				<p><a onclick="solo.showGUMPlanCheckList()">Plan check</a></p>
 				<p><a onclick="solo.showGUMIntervention()">GM intervention</a></p>
 				<p><a onclick="solo.showGUMChallenge()">Challenge</a></p>
-				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Combat</a></p>
+				<p><a onclick="solo.showGUMCombat()">Combat</a></p>
 				<hr>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Scene designer</a></p>
 				<p><a onclick="solo.showGUMPlanCheckList()"> ❌ Location</a></p>
