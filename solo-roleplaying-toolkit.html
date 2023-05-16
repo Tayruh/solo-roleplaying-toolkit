@@ -4701,6 +4701,17 @@
 					display("<p><b>" + getLink(who, "solo.showGUMOracle('" + who + "')") + "</b> " + output + "</p>");
 				};
 
+				var showGUMGrandOracle = function() {
+					const aspects = ["Action", "Descriptor", "Descriptor 2", "Subject"];
+					var output = getLink("Grand oracle", "solo.showGUMGrandOracle()");
+					for (let i = 0; i < aspects.length; i++) {
+						var k = aspects[i].split(" ")[0];
+						var o = randomItem(gum["oracle"][k]);
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				}
+				
 				var showGUMOracleList = function() {
 					display(
 						getLinks(
@@ -4709,13 +4720,7 @@
 							["To another character", "solo.showGUMOracle('To another character')"]
 						)
 						+ "<hr>" +
-						getLinks(
-						// TODO Ergo: make it easy to roll multiple items, all results on one page
-						// also, multiple descriptors should not end up the same
-							["Grand oracle: Action", "solo.showGUMOracle('Action')"],
-							["Grand oracle: Descriptor", "solo.showGUMOracle('Descriptor')"],
-							["Grand oracle: Subject", "solo.showGUMOracle('Subject')"]
-						)
+						getLink("Grand oracle", "solo.showGUMGrandOracle()")
 					);
 				};
 				
@@ -5971,6 +5976,7 @@
 				
 				// ANCHOR GUM exported functions
 				solo.showGUMOracle = showGUMOracle;
+				solo.showGUMGrandOracle = showGUMGrandOracle;
 				solo.showGUMOracleList = showGUMOracleList;
 				solo.showGUMPlanCheck = showGUMPlanCheck;
 				solo.showGUMPlanCheckList = showGUMPlanCheckList;
