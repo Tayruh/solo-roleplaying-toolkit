@@ -4761,9 +4761,13 @@
 				}
 
 				var showGUMIntervention = function() {
-					var output = randomItem(gum["Intervention"]);
-					display("<p><b>Intervention</b>: " + output + "</p>");
-					// TODO: Ergo: automate grand oracle rolls that may be needed
+					var item = randomItem(gum["Intervention"]);
+					var output = "<p><b>Intervention</b>: " + item + "</p>";
+					if (item.indexOf("subject + action") > -1) {
+						output += "Subject: " + randomItem(gum["oracle"]["Subject"]) + "<br>";
+						output += "Action: " + randomItem(gum["oracle"]["Action"]) + "<br>";
+					}
+					display(output);
 				}
 
 				var showGUMChallenge = function() {
