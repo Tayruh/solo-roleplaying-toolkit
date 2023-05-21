@@ -487,7 +487,7 @@
 					"story": {
 						"turns": {
 							11: "A sudden turn in favor of the player character(s) and/or their interests.",
-							22: "Any useful progress or clues in the scene will be offset by ostacles of delays.",
+							22: "Any useful progress or clues in the scene will be offset by obstacles of delays.",
 							33: "Helpful non-player characters suddenly arrive.",
 							44: "Hostile non-player characters suddenly arrive.",
 							55: "An especially unusual item or well-hidden clue is unlocked within the scene.",
@@ -1460,6 +1460,28 @@
 						["Turn Their Move Against Them","Your powers have the exact opposite effect that you are trying to achieve."], 
 						["Complicate Things, Bigtime (add a threat or Nemesis)","Your Mythos calls out to similar legends, bringing the attention of a Rift opposed to you, or Gatekeepers."], 
 						["Complicate Things, Bigtime (alter the setting)","Your Mythos changes your Logos (your appearance, life, or relationships) to better reflect its story."]
+					],
+					"lostgained": [
+						["We lose: A great comrade", "But we gain: New ones"],
+						["We lose: Our faith in the world", "But we gain: A second chance"],
+						["We lose: A valuable resource", "But we gain: The upper hand"],
+						["We lose: A great treasure", "But we gain: A powerful ally"],
+						["We lose: The peace", "But we gain: A higher calling"],
+						["We lose: Our way", "But we gain: A different perspective"],
+						["We lose: Precious time", "But we gain: A great boon"],
+						["We lose: Our reputation", "But we gain: Respect of the people"],
+						["We lose: Our identity", "But we gain: Vast wisdom"],
+						["We lose: Our powers", "But we gain: New skills"],
+						["We lose: Our trusty steed", "But we gain: A stronger bond"],
+						["We lose: The perfect opportunity", "But we gain: A shot at freedom"],
+						["We lose: The battle", "But we gain: Remarkable experience"],
+						["We lose: Their trust", "But we gain: Their love"],
+						["We lose: Our weapons", "But we gain: A better sense of self"],
+						["We lose: Our sense of security", "But we gain: A world to explore"],
+						["We lose: Control of the situation", "But we gain: Knowledge of the situation"],
+						["We lose: Our choice in the matter", "But we gain: Insight on the matter"],
+						["We lose: A loved one", "But we gain: Cherished memories"],
+						["We lose: Our very lives", "But we gain: A lasting legacy"]
 					]
 				};
 
@@ -1918,6 +1940,231 @@
 					"total exits": ["Dead end", "1 additional exit", "2 additional exits"],
 					"terrain": ["Same as current hex", "Same as current hex", "Common terrain", "Common terrain", "Uncommon terrain", "Rare terrain"],
 					"features": ["Notable structure", "Dangerous hazard", "A settlement", "Strange natural feature", "New region (set new terrain types)", "Dungeon Crawler entrance"]
+				}
+
+				// ANCHOR: ✅ GUM tables
+				var gum = {
+					"oracle": {
+						"As the GM": ["Strong no", "Strong no", "No", "No", "No", "No", "No", "No", "Weak no", "Weak no", "Weak yes", "Weak yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Strong yes", "Strong yes"],
+						"In character": ["No, in fact...", "No, in fact...", "No", "No", "No", "No, but...", "No, but...", "Requires skill test", "Requires skill test", "Can't tell for now", "Can't tell for sure", "Requires skill test", "Requires skill test", "Yes, but...", "Yes, but...", "Yes", "Yes", "Yes", "Yes, not only that...", "Yes, not only that..."],
+						"To another character": ["No, in fact...", "No, definitely not.", "No, something's missing...", "No, but hurry up...", "No, it can be dangerous...", "No, I think not...", "I don't think so, not sure.", "Don't know, but I know who...", "I'd be in trouble...", "Don't know, no idea.", "It depends...", "It's complicated...", "Don't know, but I know where...", "It's possible, not sure.", "Yes, I guess so.", "Yes, but be careful...", "Yes, and hurry up...", "Yes, despite...", "Yes, of course.", "Yes, and also..."],
+						"Action": ["Abandon", "Accuse", "Achieve", "Acquire", "Alleviate", "Approach", "Approve", "Arrange", "Assault", "Assist", "Attack", "Avoid", "Believe", "Capture", "Challenge", "Change", "Claim", "Command", "Conclude", "Condemn", "Conduct", "Confront", "Create", "Deceive", "Declare", "Defeat", "Defend", "Demand", "Desire", "Destroy", "Detain", "Detect", "Discover", "Dispatch", "Divide", "Eliminate", "Encourage", "Endanger", "Engage", "Enhance", "Ensure", "Evaluate", "Expect", "Fight", "Focus", "Follow", "Fortify", "Handle", "Harm", "Hinder", "Ignore", "Inform", "Insist", "Interrupt", "Investigate", "Join", "Launch", "Lead", "Learn", "Liberate", "Locate", "Lose", "Move", "Observe", "Obtain", "Offer", "Oppose", "Organize", "Persuade", "Prepare", "Prevent", "Promise", "Protect", "Prove", "Provoke", "Reach", "Recognize", "Reduce", "Remind", "Request", "Require", "Rescue", "Research", "Retain", "Retrieve", "Reveal", "Sabotage", "Scare", "Search", "Secure", "Send", "Serve", "Solve", "Spread", "Spy", "Submit", "Summon", "Trade", "Travel", "Worship"],
+						"Descriptor": ["Abundant", "Accessible", "Annoying", "Artificial", "Broken", "Buried", "Careful", "Cautious", "Chaotic", "Civilized", "Clever", "Cold", "Complicated", "Concealed", "Confidential", "Controlled", "Corrupt", "Damaged", "Dangerous", "Dark", "Decadent", "Delicate", "Destroyed", "Developed", "Different", "Elevated", "Empty", "Enigmatic", "Environmental", "Essential", "Explosive", "Fearsome", "Foolish", "Forbidden", "Forgotten", "Guilty", "Heated", "Helpful", "Hidden", "Holy", "Humid", "Illegal", "Important", "Impossible", "Inactive", "Infested", "Innocent", "Inspiring", "Interrupted", "Irresistible", "Isolated", "Known", "Legendary", "Limited", "Magical", "Major", "Minor", "Missing", "Monstrous", "Native", "Natural", "Necessary", "Negative", "New", "Nimble", "Obscure", "Pathetic", "Political", "Popular", "Positive", "Powerful", "Precarious", "Primitive", "Protected", "Recovered", "Reinforced", "Renown", "Resistant", "Sacred", "Safe", "Scared", "Scattered", "Secret", "Selected", "Special", "Strange", "Strategic", "Strong", "Technological", "Temporary", "Traditional", "Trustworthy", "Unique", "Unknown", "Useful", "Utilized", "Valuable", "Violent", "Weak", "Wonderful"],
+						"Subject": ["Ability", "Agreement", "Alertness", "Ambush", "Annihilation", "Army", "Arrival", "Artifact", "Artifact", "Ascension", "Barricade", "Battle", "Belief", "Building", "Business", "Campaign", "Command", "Conflict", "Consequence", "Council", "Creature", "Culture", "Curse", "Danger", "Death", "Declaration", "Destruction", "Dialogue", "Disease", "Distance", "Distraction", "District", "Enemy", "Energy", "Equipment", "Evil", "Experiment", "Facility", "Faction", "Family", "Fear", "Fortress", "Freedom", "Friend", "Government", "History", "Hope", "Influence", "Information", "Justice", "Knowledge", "Land", "Life", "Location", "Machine", "Meeting", "Message", "Military", "Monster", "Mystery", "Objective", "Offense", "Operation", "Opportunity", "Opposition", "Order", "Organization", "Partnership", "Peace", "People", "Perception", "Person", "Plan", "Politics", "Power", "Prison", "Problem", "Promise", "Rebels", "Reputation", "Resources", "Roads", "Settlement", "Situation", "Soldier", "Sorcery", "Superiority", "Survival", "Technology", "Territory", "Thoughts", "Time", "Transport", "Triumph", "Truth", "Tyranny", "War", "Wealth", "Weapons", "World"]
+					},
+					"plan check": {
+						"Safe": ["suffering a complication", "facing an inconvenience", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune", "enjoying good fortune"], 
+						"Risky": ["canceled because of a problem", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune", "enjoying good fortune"], 
+						"Tense": ["canceled because of a problem", "canceled because of a problem", "suffering a complication", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune"],
+						"Exploding": ["canceled because of a problem", "canceled because of a problem", "canceled because of a problem", "suffering a complication", "suffering a complication", "suffering a complication", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "facing an inconvenience", "given, under a circumstance", "given, under a circumstance", "given, under a circumstance", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "carried on as you expected", "enjoying good fortune"],
+						"Circumstance": ["Curious object", "Tricky location", "Enemy presence", "Unexpected NPC", "Trade opportunity", "Being watched", "Confirm an idea", "Facts contradicted", "Bring world detail", "Deeds of enemy", "Worrying event", "Awe and wonder", "Someone jealous", "Strange smells", "Feel cold, shiver", "Feel warm or fire", "Something changed", "Warning message", "Remote event", "Face world issues"],
+						"Inconvenience": ["Undesired NPC", "Unexpected NPC", "Security, watch", "Government, law", "Displaced, moved", "Blocked, locked", "Distraction, annoying", "Ongoing event", "Changed, altered", "Backstory related", "Leaked, revealed", "Insufficient, lacking", "Trespassing, illegal", "Draw attention", "Not yet ready", "Area conditions", "Resources", "Delayed, late", "Missing, gone", "Aware, expecting"],
+						"Complication": ["Lost trace, target", "At risk, endangered", "Ambush, alarm", "Trap, hazards", "Exposed, revealed", "Late, wasted time", "Missed chance", "Sabotage, hinder", "Damaged, harm", "Manipulation, deception", "Area conditions", "Harder than expected", "Reputation issues", "Bad news", "Damaged, broken", "Mistake, failure", "Useless, insufficient", "Reinforce, fortify", "Captured, taken", "Dispute, fight"],
+						"Problem": ["Lost trace", "Too dangerous", "Tightly defended", "Gone for good", "Got anticipated", "Too late, missed", "Misfortune", "Wrong, bad intel", "Broken, damaged", "No longer valid", "Area is blocked", "Now impossible", "Government, law", "Now unattractive", "Not a good idea", "It was a mistake", "Destroy, sabotage", "Reinforced, fortify", "Claimed, sold", "Change of plans"]
+					},
+					"scene design": [
+						"Conflict (Important fight, boss, relevant encounter, high stakes, or stress)",
+						"Conflict (Filler fight, ambush, attack, interruption, or equivalent trouble)",
+						"Skill test (Hit or miss test, one opportunity, else try something else)",
+						"Skill test (Fast reaction test, might lead to harm, difficult, stressful)",
+						"Skill test (Careful test, obstacle, delicate situation, patience, teamwork)",
+						"Skill test (Smarts, knowledge, analysis, perception, investigate, crafts)",
+						"NPC presence (Someone causing trouble, in your way, or otherwise unhelpful)",
+						"NPC presence (Someone neutral, could know something, otherwise move on)",
+						"NPC presence(Someone helpful, or with right knowledge, indicated person)",
+						"Object (Something to interact with, be taken, or somehow actionable)",
+						"Object (Something here reveals a lead, information, intel, clue or lore)",
+						"Location (Problematic location, hazardous, dangerous, inconvenient place)",
+						"Location (Location itself is the focus, unique place, area of interest, a zone)",
+						"Random event (Event or interruption, could affect plans, keyed scene, important)",
+						"Random event (Redundant event, ambiguous situation, lore, or setting specific)",
+						"Difficult situation (Circumstances are not the expected, something is different)",
+						"Difficult situation (Inconvenience makes things worse, or intel was not accurate)",
+						"Difficult situation (Troublesome complication, unforeseen risk, unexpected trouble)",
+						"Difficult situation (Plan changing problem, completely wrong intel, off the track)",
+						"Discovery (Open scene for investigation, discovery, findings, exploration)"
+					],
+					"location identity": {
+						"Building": ["Fortification", "Bank, institution", "Military, barracks", "Government", "Library, study", "Industrial", "Clinic, healing", "Palace, mansion", "Workshop", "Food place", "Magic, labs", "Prison, jail", "Research, facility", "Cemetery, grave", "House, living", "School, academy", "Trading post", "Church, divine", "Entertainment", "Setting specific"],
+						"Urban": ["Urban center", "Neighborhood", "Tower, skyscraper", "Gardens, botanic", "Bridge, tunnel", "Streets, alleys", "Marketplace", "Building complex", "Construction", "Merchant district", "Noble quarter", "Canal, fountain", "Supply, energy", "Underground", "Slums, crime", "Abandoned, ruins", "Temple, church", "Schools, museum", "Port, customs", "Setting specific"],
+						"Outskirts": ["Military outpost", "Outlaw hideout", "Industry, product", "Farm, crops", "Mineral extract", "Route, roads", "Settlement", "Difficult terrain", "Private property", "Ruins, abandon", "Tower, control", "Encampment", "Fishing, hunting", "Dam, canal", "Traveler's inn", "Hazardous zone", "Moving vehicle", "Isolated building", "Silo, mill, barns", "Setting specific"],
+						"Wilderness": ["Cliffs, hills", "Ocean, waters", "Hot weather", "Cold weather", "Marsh, lake", "Forest, woods", "Jungle, wilds", "Disaster zone", "Plains, grassland", "Caves, mines", "Rocks, cliffs", "Island, reef", "Rivers, creek", "Valley, ravine", "Excavation", "Waterfall, floods", "Sands, desert", "Rocks, peaks", "Snow, ice", "Setting specific"],
+						"Space": ["Space station", "Space debris", "Deep space", "Rocky planet", "Asteroid base", "Raw moon", "Moon base", "Jungle planet", "Orbital ruin", "Orbit satellite", "Ocean planet", "Research base", "Military base", "Ice planet", "Asteroid belt", "Faction ship", "Pirate ship", "Gas giant", "Livable planet", "Refuel station"],
+						"Special": ["High in the skies", "Low or no gravity", "Deep down", "Ruins, abandon", "Alien, weird", "Hi-tech, magical", "Superstructure", "Huge facility", "Floating, elevated", "Fascinate, wonder", "Sacred, holy", "Nature, life", "Graveyard, dead", "Fog, unseen, dark", "Battleground", "Unstable, erratic", "Islands, isolated", "Volcanic, on fire", "Torrential, rain", "Sea, floating"]
+					},
+					"location details": {
+						"Feature": ["Faction", "Legendary", "Inhospitable", "Dangerous", "Secured", "Secretive", "Unstable", "Magic, tech", "Sabotaged", "Disputed", "Destroyed", "Atmosphere", "Bad atmosphere", "Under conflict", "Abandoned", "Forbidden", "Ruin", "Isolated", "Unholy", "Bad reputation"],
+						"Worth": ["Political value", "Sacred, divine", "Unique, curious", "Source of wealth", "Mineral, resource", "Advanced tech", "Classist, elitist", "Strategic place", "Military strategic", "Trade routes", "Strategic nature", "Opportunity", "Industrial power", "Magical, special", "Bottleneck", "Well-connected", "Touristic, value", "Nature, paradise", "Elevated position", "Fertile, land"],
+						"Purpose": ["Communication", "Security, watch", "Defense, military", "Transportation", "Research, study", "Storage, depot", "Medicine, clinic", "Power, energy", "Repair, work", "Hospitality", "Educate, train", "Study, torture", "Entertainment", "Socializing", "Production", "Food and drinks", "Trade, business", "Decision making", "Operations", "Home, survival"],
+						"Inhabitants": ["Civilians, workers", "Military, mercs", "Traders, merchant", "Leader, figure", "Monsters, robots", "Bandits, rebels", "Culture or tribe", "Scholars, educated", "Faction members", "Abandoned", "Famous, heroes", "Animalistic beings", "Machinery", "Dead, undead", "Travelers, mixed", "Selected people", "Poor, outcast", "Rich people", "Noble, loyalty", "Servant, employee"],
+						"Looks": ["Old, obsolete", "New, modern", "Dark, foggy", "Bright, light", "Colorful, alive", "Sad, opaque", "Joyful, cheering", "Simple, minimal", "Bloated, heavy", "Active, busy", "Inactive, unused", "Noisy, sounds", "Silent, peace", "Crowded, packed", "Empty, space", "Stressful, intense", "Relaxing, peace", "Conservative", "Techy, magic", "Unique, special"],
+						"Activity": ["Politics", "Fight", "Discussion", "Plan, prepare", "Trading, deals", "Security, guard", "Special event", "Nothing", "Damage, repair", "Emergency", "Daily activities", "Visits, meeting", "Bad news", "Good news", "Crime", "Treason", "Oppression", "Government", "Searching", "Alert, paranoid"]
+					},
+					"NPC identity": {
+						"Civilian": ["Lowlife", "Beggar", "Farmer", "Innkeeper", "Trader", "Helper", "Guard", "Kid", "Mother", "Father", "Regular", "Worker", "Builder", "Cleaner", "Driver", "Maid", "Servant", "Postman", "Thief", "Setting specific"],
+						"Skilled": ["Healer", "Blacksmith", "Chemist", "Academic", "Accountant", "Agent", "Engineer", "Artist", "Criminal", "Merchant", "Councilor", "Expert", "Repairman", "Activist", "Musician", "Administrator", "Writer", "Acolyte", "Craftsman", "Setting specific"],
+						"Fighting": ["Controller, conjurer", "Warrior, soldier", "Archer, crossbow", "Rogue, hiding", "Sorcerer, hacker", "Acrobatic, fast", "Summon, drone", "Heavily armed", "Grenadier, flasks", "Melee, weapons", "Healer, cleric", "Defender, guard", "Assassin, skilled", "Techie, gadgets", "Unarmed, martial", "Large, big, slow", "Exotic, different", "Mutant, cyborg", "Grapple, disable", "Setting specific"],
+						"Connected": ["Politician", "Advisor", "Smuggler", "Noble, royal", "Diplomat", "Business", "Trustee", "Journalist", "Investigator", "Activist", "Innkeeper", "Storyteller", "Renegade", "Family", "Guard", "Best friend", "Spy, agent", "Fixer, broker", "Whistleblower", "Setting specific"],
+						"VIP": ["Faction leader", "Rich merchant", "Military leader", "Landlord, owner", "Prophet, cultist", "Holy, priest", "Mayor, sheriff", "Criminal leader", "Royalty, noble", "Field expert", "Ruler, governor", "Knight, veteran", "Ambassador", "Magician", "Valued expert", "Companion", "Unique being", "Major enemy", "Personal enemy", "Setting specific"],
+						"Special": ["Monster, beast", "Ethereal, invisible", "Non-intelligent", "Mutant, enhanced", "Mage, warlock", "Flying, fast-move", "Swim, excavate", "Vehicle, mount", "Alive object, Al", "Divine, Deity", "Golem, robot", "Golem, construct", "Virus, bacteria", "Limbs, implants", "Undead, cloned", "Huge, large", "Small, nimble", "Night, dark", "Legend, hero", "Setting specific"],
+						"Who exactly?": ["Shopkeeper, innkeeper, bartender, vendor", "Blacksmith, weapons expert, weapons producer", "Trader, merchant, businessman, salesman", "Tailor, dressmaker, armorer, fashion designer", "Farmer, peasant, countryman, serf, villager", "Sea captain, sailor, pirate, shipmaster", "Noble, aristocrat, patrician, high-class, baron", "Guard, soldier, security, bodyguard", "Courtesan, hooker, prostitute, night worker", "Captain, police, sheriff, sergeant", "Priest, cleric, father, reverend, spiritual figure", "Teacher, educator, trainer, master, tutor", "Shaman, healer, herbalist, druid, gardener", "Driver, pilot, operator, motorist, rider, engineer", "Hunter, tanner, woodsman, predator", "Baker, chef, cook, piemaker, brewer", "Builder, constructor, architect, carpenter", "Apothecary, pharmacist, druggist, chemist", "Steward, representative, official, organizer", "Jeweler, miner, collector, gatherer", "Scribe, writer, translator, journalist, archivist", "Scholar, academic, intellectual, professor", "Banker, businessman, investor, dealer, capitalist", "Wizard, expert, specialist, sorcerer, technician", "Assassin, murderer, killer, gunman, hitman", "Jester, buffoon, clown, comedian, prankster", "Diplomat, agent, ambassador, envoy, emissary", "Clerk, office worker, servant, accountant", "Mercenary, thug, hireling, hitman, bounty hunter", "Musician, artist, designer, sculptor, creator", "Street cleaner, public worker, janitor, porter", "Explorer, scout, gypsy, roamer, traveler", "Doctor, medic, healer, surgeon, physician", "Investigator, detective, agent, operative", "Apprentice, student, novice, pupil, trainee", "Spy, agent, broker, fixer, operative, rogue, hacker", "Soldier, sergeant, commander, leader, lieutenant", "Rogue, scoundrel, rat, rascal, thief, burglar, beggar", "Investigator, inquisitor, interrogator, executioner", "Tax collector, financial agent, accountant", "Tinkerer, enthusiast, builder, repairman", "Knight, ceremonial soldier, honored veteran", "King, emperor, ruler, lord, president, queen, prince", "Monk, prior, brother, abbot, preacher", "Bandit, rebel, outlaw, criminal, gangster", "Fisherman, harbormaster, port worker", "Minstrel, bard, reporter, storyteller, writer, herald", "Gravedigger, necromancer, diener, pathologist", "Cartographer, explorer, navigator, scout", "Animal trainer, ranger, drone rigger, summoner",
+								"Judge, lawyer, attorney, master of law", "Expert, specialist, professional, scientist", "Outsider, immigrant, unfamiliar, strange", "Mysterious, shady, unknown, traveler", "Council, board, delegate, advisor, steward", "Prisoner, convict, hostage, kidnapped", "Engineer, mechanic, armorer, artificer", "Member of a noble or royal family", "Member of a religious organization", "Member of the military or police", "Member of a very rich or renown family", "Member of a political organization", "Member of a strange cult or circle", "Conqueror, conquistador, renown military", "Member of a magic or tech academy", "Member of a technology organization", "Member of a trading company", "Member of a legal or judge organization", "Member of a secret organization", "Member of an enemy faction", "Member of a powerful faction", "Creature, monster, robot, being, drone", "Competitor, opposition, contender", "Someone very scared or in hiding", "Someone very angry looking for revenge", "Someone very desperate and in need", "Someone very powerful and might", "Someone special for powerful person", "Powerful ally, friend, henchmen, supporter", "Powerful enemy, boss, leader, nemesis", "Family member, old friend, family friend", "Strange or unexpected enemy", "Local, original or part of this location", "Very old character or ancient being", "An unimportant character or a nobody", "Strange or unexpected ally", "Someone badly wounded or sick", "Someone who had disappeared", "Someone with a bounty on their head", "Famous adventurer, hero, explorer", "Renegade, traitor, deserter, rebel, runner", "Expelled, banished, deported, refugee", "Street urchin, beggar, vagabond, vagrant", "Renown soldier, fighter, warrior", "Demon hunter, ghost hunter, voodoo", "Witch, demon, ghost, virus, Al", "Mutant, cyborg, robot, shapeshifter", "Politician, court member, chancellor", "Astronaut, astronomer, stargazer", "Oracle, astrologer, clairvoyant, prophet"]
+					},
+					"NPC details": {
+						"Attitude": ["Generous", "Talkative", "Determined", "Motivated", "Optimistic", "Courageous", "Nervous", "Indecisive", "Idealistic", "Annoyed", "Reserved", "Resigned", "Defiant", "Inquisitive", "Cautious", "Threatened", "Uncomfortable", "Avoiding", "Secretive", "Intimidating"],
+						"Wants": ["Wealth", "Attention", "Loyalty", "Survival", "Status", "Happiness", "Growth", "Popularity", "Knowledge", "Acceptance", "Family", "Recover lost", "Recognition", "Everything", "Victory", "Revenge", "Justice", "Specific thing", "Redemption", "Power"],
+						"Edge": ["Intelligence", "Personality", "Connections", "Influence", "Leadership", "Allies", "Wisdom", "Awareness", "Resourceful", "An ability", "Special item", "Knowledge", "Know-how", "Languages", "Coldness", "Vision", "Faith", "Streetwise", "Toughness", "Talent"],
+						"Quirk": ["Reputation", "Weak", "Wanted", "Delusional", "Sick", "Dependents", "Addiction", "Overconfident", "Impulsive", "Secretive", "Curse", "Bad luck", "Blind", "Mute", "Arrogant", "Loyal", "Greedy", "Impulsive", "Mean", "Ugly"],
+						"Looks": ["Piercing", "Special limbs", "Well dressed", "Makeup, tattoo", "Scarred", "On drugs", "Techie", "Athletic", "Tall", "Short", "Exotic", "Beautiful", "Special ethnic", "Strange face", "Facial expression", "Posture", "Cool", "Ragged", "Young", "Old"],
+						"Stuff": ["Defensive item", "Tech gadgets", "Transport", "Followers", "Fancy cloak", "Expensive stuff", "Property", "Books, scrolls", "Business", "Servants", "Staff, wand", "Weapons, lots", "Sword", "Travel items", "Dagger", "Special stones", "Charms, amulet", "A pet, a drone", "Portrait", "Weird device"],
+						"Good motive": ["Seek revenge on a person or enemy", "Escape a difficult situation", "Rescue a loved one", "Fulfill a sacred mission", "Become the leader of a country", "Protect a place of power", "Find way to save the world", "Restore balance to chaotic system", "Acquire wealth and power", "Make a name for themselves", "Uncover the truth of a mystery", "Defeat a powerful enemy", "Find a way to be accepted in society", "Prove their worth to another individual", "Start a rebellion or rebel gang", "Right a wrong from their past", "Reunite with a lost love", "Achieve immortality", "Unlock the secrets of the universe", "Overcome great physical or mental challenges", "Get justice for an injustice", "Protect a special object", "Avenge the death of a loved one", "Pursue knowledge and wisdom", "Bring a group of people together", "End a war or struggle", "Create or live a utopia", "Become a master of a craft", "Resolve a family conflict", "Become a master of a martial art", "Obtain magical powers", "Satisfy a deep curiosity", "Become the ruler of a land", "Live out a prophecy", "Find a forbidden item", "Obtain a secret or information", "Track down a missing person", "Experience great adventure", "Take on an impossible task", "Uncover secrets of the past", "Defeat an ancient enemy", "Fulfill a sacred prophecy", "Restore order from a chaotic situation", "Vanquish a great evil", "Bring justice to wronged innocents", "Find a hidden treasure", "Conquer a great mountain", "Discover the origin of a magical power", "Come to terms with a traumatic experience", "Transform a place of darkness into a place of light",
+								"Bring a couple together", "Find true love or friend", "Follow a personal dream", "Become a master of disguise", "Unearth a terrible conspiracy", "Overcome a seemingly impossible obstacle", "Leave the world: better place", "Share a special knowledge", "Create a masterpiece", "Master a form of magic", "Avenge a great injustice", "Forge a powerful alliance", "Journey to an unknown land", "Retrieve a stolen item", "Unearth an ancient secret", "Return something to its rightful owners", "Shed light on an obscure mystery", "Reconcile with an estranged family member", "Put an end to a hazardous situation", "Achieve a monumental feat", "Help someone in need", "Unearth lost civilization", "Avenge a wronged ancestor", "Help a friend at all costs", "Conquer a great feat of strength", "Overcome a personal fear", "Change a person or group's fate", "Save a species from extinction", "Find peace and purpose", "Disobey an unjust law", "Help a village in crisis", "Put a stop to a villain's plans", "Take a stand against injustice", "Find redemption or innocence", "Compel a powerful force to retreat", "Liberate a people from tyranny", "Find a missing relative", "Rescue a trapped soul", "Become a hero of legend", "Uphold sacred oath", "Uncover the secrets of the afterlife", "Embark on a personal pilgrimage", "Foster global understanding", "Unlock a hidden potential", "Become the confidante of a powerful figure", "Become a legendary warrior", "Overcome a personal trauma", "Overcome a great personal challenge", "Establish peace between two factions", "Become a beacon of hope"],
+						"Evil motive": ["To guard a secret", "To a make a point", "Change fate or destiny", "Sadism, fun, entertainment", "Jealousy, envy, revenge", "To create chaos", "Restore the past", "Control, dominance", "Create a legacy, long-lasting change", "Destroy a legacy, history or culture", "Greed for money", "Greed for resources", "Greed for knowledge", "Greed for magic or superpower", "Greed for political power", "Following a dark path", "Self-preservation, survival", "To create a new order", "Greed for territory", "Evil for its own sake", "Fix a wrong or a broken ideal", "Because of pain, suffering", "To cause pain, suffering", "Mental illness", "Social pressure or anxiety", "Political pressure", "Selfishness, egoism, pride", "Fanaticism, religion, ideal", "Intolerance, oppression", "To deny the truth", "Hatred of social classes", "Hatred of races", "Hatred of religions", "Hatred of ideologies", "Hatred of law and order", "Hatred of the wealthy", "Being forced to do so", "Hatred of authority", "Hatred of the state", "Hatred of tradition", "Hatred of science", "Hatred of progress", "Hatred of technology", "Hatred of change", "Hatred of education", "Hatred of knowledge", "Hatred of art and culture", "Desire to be admired or loved", "Hatred of social norms", "Hate of people in general",
+								"Fear of death", "Fear of the unknown", "Fear of failure", "Fear of the future", "Fear of the past", "Hearing voices", "Doing what is right", "Following orders", "Immortality or longevity", "A need to punish", "A need to control", "A need to subjugate", "A need to be feared", "A need to be respected", "A need to be superior", "A need to be powerful", "A need to be admired", "A need to be superior to others", "Corrupting influence of money", "Corrupting influence of power", "Corrupting influence of ambition", "Corrupting influence of materialism", "Corrupting influence of peer pressure", "Corrupting influence of drugs and alcohol", "Corrupting influence of media or information", "Corrupting influence of popular culture", "Corrupting influence of consumerism", "Corrupting influence of superstition", "Belief in a false god", "Belief in a destructive ideology", "Belief in a dangerous cult", "Desperation, need", "Defy a prophecy", "Fulfill a prophecy", "Compulsion, impulse", "Satisfy addiction, craving", "An attempt to escape reality", "An attempt to escape guilt or shame", "An attempt to cover up a mistake", "An attempt to protect someone or something", "An attempt to force conformity", "An attempt to manipulate or exploit", "An attempt to gain favor or favoritism", "An attempt to take advantage of a vulnerable target", "An attempt to destroy a rival or enemy", "An attempt to satisfy warped sense of justice", "An attempt to remain anonymous", "An attempt to gain notoriety", "An attempt to become infamous", "An attempt to vent anger, frustration or aggression"],
+						"Good action": ["Make an offering to a temple", "Help an enemy make things right", "Give inspiration and courage", "Fix a broken device or object", "Defeat a powerful enemy", "Rescue someone from falling", "Help an elderly or weak person", "Pay tribute to the gods or cult", "Untangle an evil or secret organization", "Rescue someone from a fire", "Help someone injured get to a safe a place", "Show mercy to a defeated enemy", "Bring down a tyrant from power", "Be part a of a long-term project", "Be part of an important battle", "Protect the nature and the living", "Lead a team or squad to victory", "Participate in a find and rescue mission", "Help with clothing and warmth", "Sacrifice a family object for a good cause", "Support or help a desperate family", "Educate and foster a child", "Help defend a town or village", "Defeat bandits and outlaws", "Destroy a valuable but evil artifact", "Listen to someone's problems", "Give council to a king or president", "Protect an envoy or caravan", "Volunteer to an organization", "Stop the spreading of false information", "Forgive someone of a wrong deed", "Defend the king or president", "Discover the truth of a murder", "Donate books or knowledge", "Help with food and shelter", "Sabotage an act of corruption", "Repair critical machinery", "Support with weapons", "Help prepare some defenses", "Participate in a rebellion", "Help avoid a battle or fight", "Uphold the truth and justice", "Give someone a ride or transport", "Confront a terrible evil with courage", "Bring light to a dark place", "Support a minority culture", "Recover a stolen object", "Support a lost or minority cause", "Help a friend or colleague in need", "Bring back hope to the hopeless",
+								"Rescue someone from drowning", "Visit the sick and injured in hospital", "Face a danger to help somebody", "Give an enemy a second chance", "Achieve peace between enemies", "Help make friends of two enemies", "Help with research or investigation", "Scout an undiscovered danger zone", "Support a vulnerable community", "Offer words of encouragement", "Join a minor or losing faction", "Make redemption or ask forgiveness", "Take care of creature or beast", "Endure pain to protect others", "Right a wrong or injustice", "Pay respect to the dead", "Find and rescue a child", "Give away a family relic", "Bring medical supplies to a healer", "Bring murderer to justice", "Stop an enemy from doing harm", "Tell a harmful truth", "Rescue hostages or prisoners", "Help an injured soldier in battle", "Defend someone falsely accused", "Rescue a dying creature", "Participate in a disaster relief effort", "Help with infrastructure repair", "Respond a call of an ally in need", "Donate work supplies and tools", "Solve a complicated problem", "Refuse to take revenge in a hard time", "Make a promise to somebody", "Fight alongside an enemy", "Defend an innocent from harm", "Build a home or community building", "Help lifting curse or witchcraft", "Sacrifice something for greater good", "Fight alongside a friend to the end", "Secure dangerous roads from bandits", "Offer craftsman or specialist training", "Donate to a homeless shelter", "Find books, lore or knowledge", "Help with financial planning", "Defend someone in danger", "Take care of a creature or beast", "Train someone to defend themselves", "Play an important role in war logistics", "Heal or save someone from death", "Donate a horse or a vehicle"],
+						"Evil action": ["Kill, murder, assassinate someone", "Make an act of stealing or robbery", "Intentionally lie in detriment of others", "Conspire to start a war among others", "Raid and burn a village or location", "Sacrifice others for own goals", "Destroy religious artifacts", "Conduct slavery or kidnapping", "Exercise oppression by force", "Betray someone by surprise", "Sabotage own faction operations", "Destroy houses, farms, set on fire", "Unfair actions or choices upon others", "Exercise religious intolerance", "Conduct a violent assault or battle", "Violence, raiding, looting", "Vandalism and destruction", "Torture or extortion for a demand", "Join or recruit for an evil force", "Spying, sabotage, mind control", "Give means of destruction to a faction", "Vandalism and destruction", "Send thugs or assassins to kill", "Accept or exercise bribery", "Sabotage machine or vehicle", "Corrupt the innocent, force ill actions", "Destruction of nature or sources", "Abuse of power, ability or magic", "Exploitation of workforce", "Sabotage city defenses to help attacker", "Pay respect to an evil god or cult", "Destruction of old ruins and remnants", "Be part of kidnapping and trafficking", "State terrorism or vandalism", "Support rises of tyranny or an old evil", "Start an unjustified war or conflict", "Do evil for a supposed greater good", "Usurp a powerful or political position", "Assault a location with innocents", "Allowing or witness unjust suffering", "Conquer, colonize, override culture", "Hunting of creatures, beasts, preys", "Neglect respect of hierarchy or an order", "Squander resources and sabotage", "Refusal to help someone in need", "Manipulating others for benefit", "Operate illegal gambling or business", "Ignore injustice or an ill act", "Seduction for manipulation", "Conduct burglary, bank robbery",
+								"Kill a trader, merchant or businessman", "Kill a governor, noble or politician", "Leave behind an ally in need", "Take wrath or revenge on an innocent soul", "Acts of deception and manipulation", "Creating dispute and conflict among others", "Be a false witness or lie to the law", "Deliberately prevent someone from healing back", "Hindering progress or sabotage a town", "Hide true motives from high powers", "Imprisonment and torture of an innocent", "Forcing of unwanted marriage for power", "Drug trafficking or smuggling", "Refuse to comply to peace or stop a conflict", "Hide a secret that could save lives", "Praising or encouraging evil factions", "Selling secrets, intel, whistleblowing", "Transport hostages or prisoners", "Conduct an ambush or stealth operation", "Order to destroy a group or faction", "Lead a gang, mafia or troublemakers", "Steal from the vulnerable, corruption", "Recover or usurp an evil artifact or power", "Give an artifact to the wrong hands", "Fake an identity or conduct forgery", "Create or summon monsters or creeps", "Develop or research a lethal weapon", "Raise armies, monsters or mercenaries", "Hunt down a minor or weak faction", "Making false promises to people", "Conduct piracy or raid convoys", "Prey down on the weak and vulnerable", "Decide not to save someone from death", "Denying the truth to an unknowing person", "Unfair trading or black market", "Cast away, banish or execute people", "Spread poison, plague or curse", "Refusal to respect faith or culture", "Raise the dead, necromancy", "Conduct dark practices, blood or black magic", "Build secret lairs, illegal facilities", "Destroy lore, history, books, knowledge", "Sabotage someone's attempt to do good", "Break a promise, disappoint someone", "Hunt down a family or legacy", "Refuse to forgive or have piety", "Promote false or malicious information", "Conduct torture and experimentation for science", "Loot from fallen corpses or the dead", "Spread fear and terror to control"],
+					},
+					"PC challenges": {
+						"Skill": ["Situation for what PCs do worst, vulnerability", "Resist, endure, withstand, fortitude test, hold on!", "Push, kick, smash, pull, throw, lift, move", "Get over someone, make them, the hard way", "They are too many, another way, trick them", "Move, quick, run, quickly! watch out!", "Jump, crawl, squeeze, climb, stretch, swim, air", "Only a specialist or expert can do, setting specific", "Better not to be detected, guards, sentinels", "Test of spirit, will, mentality, wits, courage", "Locked out, to steal, watched, protected", "Dodge, evade, run, act quickly, hurry up", "It's here, must be, have you seen, heard that?", "Test of pilot, drive, handle, ride, control, manage", "Low morale, scared, uninspired, unwilling", "Trace, footstep, supplies, survive, fetch, collect", "What is that? Historic, cultural, weird, magical", "It\'s broken, not working, failing, erratic, jammed", "Injured being, person, in pain, hurts, sick, poisoned", "Situation for what PCs do best or are good at"],
+						"Situation": ["Someone watching", "Can hurt, must heal", "Inconveniently placed", "Easier with right tools", "Costs wealth, resources", "Annoying presence", "Easy, simple, solvable", "Hard, difficult, complex", "Can harm reputation", "Difficult terrain", "Time limit, one shot", "Vision difficulties", "Haste is rewarded", "Needs a distraction", "Team effort, needs help", "Dangerous consequences", "Distracting elements", "Lengthy, phased", "Do silently, swiftly", "Atmospheric issues"],
+						"Prompt": ["It's broken, must restore", "What is that smell?", "It's about to fall!", "What are they doing here?", "What is that?", "That is treason!", "What is that sound?", "Did you see that?", "An explosion", "Something starts failing", "Never seen that before", "They need help!", "It's full of traps", "Are they trying to trick us?", "This needs careful study", "This is so weird, magic?", "Someone was here", "They are way too many", "Advanced technology", "This should be stopped"],
+						"Conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Large structure", "Moving objects"]
+
+					},
+					"PC combat": {
+						"Conditions": ["Hard to move terrain", "Atmospheric hazard", "Vision difficulties", "Elevation or levels", "Slow to move terrain", "Many obstacles", "Underground", "Distracting elements", "Destroyed field", "Unstable ground", "Atmospheric issues", "Open spaces", "Large ground", "Something on fire", "Water presence", "Narrow passage", "Impassable areas", "Danger to fall", "Buildings/large cover", "Moving objects"],
+						"Tactical": ["Plenty of cover", "Time limit", "Bystanders in between", "Tactical devices", "Machinery for use", "Immobilizing traps", "Explosive traps", "Vehicles or platform", "Mounted weapons", "Disadvantage start", "At an advantage", "Climbable spot", "Flanking routes", "Doors or triggers", "One side has no cover", "Capture the flag", "Protect the object", "Key spot in the center", "Key spot in the sides", "Protect someone"],
+						"Behaviour": ["Aggressive, frontal", "Ambush surprise", "Flanking and split", "Hide to sneak attack", "Buying time", "Protecting someone", "Protecting something", "Keeping distance", "Narrowing distance", "Focus one target", "Spread out", "Protect key member", "Set up a hazard", "Holding position", "Ready to escape", "Fight to death", "Cowardly", "Honorably", "Taunting", "Defensive, careful"],
+						"Composition": ["In numbers, but weak", "Immunity to typical damage", "Start buffed/prepared", "They have a healer/supporter", "One of them is well equipped", "One of them uses toxins", "One of them is heavy armored", "Dedicated protector/champion", "Few can fly or swim", "Got very powerful weapon", "Magic or tech member", "Few, but strong", "One very strong, others weak", "Mixed melee and ranged", "All melee", "All ranged", "Can move very fast", "One of them can cripple", "One of them can summon", "Area of effect items"]
+					},
+					"Intervention": [
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Sudden change in the location conditions",
+						"Strange sound can be heard",
+						"Gives a single character a chance to shine",
+						"Positive surprise, good news, or luck",
+						"Opportunity to find very interesting loot",
+						"Recent action was a good idea because...",
+						"Active opposition approaches, avoidable",
+						"An object that can be interacted with",
+						"Starts an unavoidable combat (roll)",
+						"Starts an unavoidable combat (roll)",
+						"Starts an unavoidable combat (roll)",
+						"A location detail not seen before",
+						"Brings someone despicable to the scene",
+						"Witness or hear from an enemy evil deed",
+						"NPC requests, or demands something",
+						"Enemies nearby are now aware of PCs",
+						"Brings a very convenient NPC to scene",
+						"Shows an element related to local history",
+						"Brings an imminent risk about to trigger",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Remains silent, what do characters do?",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Invoke random event, roll subject + action",
+						"Sudden change in the location conditions",
+						"Strange whispering can be heard",
+						"An NPC conducts a good action",
+						"Negative surprise, bad news, or bad luck",
+						"Something requiring immediate attention",
+						"Recent action was a bad idea because...",
+						"Puts characters in danger, tension or risk",
+						"Situation that conflicts with PCs interests",
+						"Starts an unavoidable combat (roll)",
+						"Starts an unavoidable combat (roll)",
+						"Starts an unavoidable combat (roll)",
+						"Engages into detailing further the location",
+						"Something fails or behaves erratically",
+						"Witness or hear about enemy next deeds",
+						"NPC makes an offer, or gives something",
+						"Enemies nearby are not yet aware of PCs",
+						"Brings a very inconvenient NPC to scene",
+						"Lays out hazardous traps or an ambush",
+						"Brings an imminent risk about to trigger",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)",
+						"Makes PCs try overcome a skill test (roll)"
+					],
+					"game setup": {
+						"Location": ["Jungle wilderness, humid, rain, rivers, swamp", "An abandoned building, castle, ruins, mansion", "Buzzing metropolis, huge city, crowded place", "Strange cave, underground, underworld, darkness", "Alien, strange, exotic, weird, where are we?", "Research facility, station, lab, magic academy", "Open wilderness, forest, rocky places, cliffs", "Desert, oasis, nomad camps, travelling people", "Huge mountains, snowy peaks, hazardous weather", "Trade routes, famous roads, long journeys, travelling", "Ocean, island, sea, underwater, navigation", "Remote town, village, perhaps abandoned, ghosts", "Manor, a mansion, hotel, resident evil, space station", "Snow, tundra, very cold, freezing conditions", "Neighbor, ghetto, dangerous zone, heavy suburbs", "Secret guild headquarters, facility, station, hideout", "High, flying, tall building, airship, aircraft, spaceship", "Military, barracks, fortress, carrier, tank, submarine", "Special headquarters, selected, sacred, elite, mutants", "Unexplored continent, planet, lands, new world"],
+						"Problem": ["Oppression, tyranny, there's an annoying leader, it is terrible", "High crime, violence, murder, injustice, nobody acting", "Something extremely important or valuable got lost, or stolen", "Common enemy, threat is building up, and is going to affect us all", "There is huge confrontation of forces that compete for power", "Natural disaster, a catastrophe stroke, there are sequels, side-effects", "Plague, curse, damnation, sickness, disease, we can't help it", "Secret organizations, rumors, intelligence, espionage, we're being watched", "What used to work isn't working anymore, failure. damage, are we doomed?", "Since an object was discovered or brought here, everything is wrong", "Conflict, war, we are all affected by it, we need to work together", "Endangered tribe, species, creature, animals, or similar vulnerable group", "Kidnapping, someone disappeared, it matters. They have to be rescued.", "Corruption everywhere, we are is not safe, law is weak, military is non-existent", "Trade route compromised, business is terrible, resources iS gone", "Weird event happened, phenomenon, feels very strange, something not right", "Total extinction, annihilation, what is going on, what are our morals?", "Uprising, rebellion, revolution, freedom, bring the powerful down, lost battles", "Chaos, despair, pandemonium, order no longer, anarchy, lack of authority", "Catastrophe damage control, survival, doing what we can, it is not enough"],
+						"Problem2": ["How is the region ruled? Who is, or are, the rulers?", "Why is it dangerous? What do people do to get by?", "What could be valuable in here, to be such a big issue?", "What occurred recently that such enemy is now a threat?", "Who are the parties? How is this conflict affecting others?", "How are the geography, conditions, magic, or tech?", "If there were hope to cure or treat it, what could it be?", "What are they scared of, that we are being watched?", "What are some critical or limited resources available?", "What could break the balance so suddenly?", "Who is attacking? why? What are the known reasons?", "A minor faction having hard time. Why care?", "Who could be so important that it is our interest to help?", "Weak authority, someone must do something!", "What are the means of living of the population in here?", "Any supernatural forces or major technologies in play?", "Think of a situation of desperate need, and survival", "Which minor factions are fighting a lost battle?", "Pick an area where law has no voice, and will never have", "Bring a dramatic event to the location, which role to play?"],
+						"Call": ["You receive a formal request, a petition, a royal mandate", "Someone invites you to a private meeting, it's important", "Someone made a great sacrifice today; it can't be for nothing", "You found something that could change it everything...", "Something happened that it now became very personal", "Something bad happened, related with the big problem", "It's a life-or-death matter, someone can be in great danger", "Desperate request from someone who really needs it", "It's an order. You might not want to, but you have no choice", "Someone with strong network, connections, makes an offer", "A faction could use your help, they are willing to pay", "Conflict reached a certain state, something has to be done", "You are being watched, following, conspiracy perhaps?", "A paid job, there's a lot of gold/money/wealth involved", "Found a map with instructions, or a secret location", "You were in the wrong place, at the wrong time", "Family petition, either of your own, or an important one", "Found a dead body, very strange, what happened?", "You got attacked, endangered, why? What do they want?", "There is a conflict, perhaps moral, you have to pick side"],
+						"Call2": ["What do rulers or governors want from you?", "Think of fancy, rich, or powerful people", "Someone did their best, but wasn't enough", "What could bring hope to the big problem?", "What are your character backstories?", "Think of today, now, what happened?", "Why PCs are the only ones who can help?", "Bring a minor faction who is deeply affected", "Which faction do your PCs respond to?", "Think of a shady contact, capable to act", "What would your PCs do for a good pay?", "Think of what could be a last chance, ever", "Your PCs are suspects. What did they do?", "Morally not correct, but the pay is worth it", "Think of an interesting ruin, or dungeon", "It begins with a bit of bad luck, what was it?", "Are your PCs close to someone they care?", "A corpse, who (or what) perished?", "Who could attack your PCs?", "Bring two sides with reasonable arguments"],
+						"Mission": ["We have to defeat someone really bad", "We have to defeat a faction, bandits or outlaw", "We have to discover who did something", "We have to sabotage an operation", "We have to retrieve an important object", "We have to stop someone from doing wrong", "We have to look for something in a location", "We have to rescue someone from trouble", "We have to destroy an objective, or location", "We have to spy on someone to confirm", "We have to transport a valuable object", "We have to transport someone safely", "We have to protect a group in disadvantage", "We have to prevent an operation from happening", "We have to secure key location before it's late", "We have to assault a strategic convoy", "We have to attack where they don't expect us", "We have to reveal or divulge the truth", "We have to convince them to change their mind", "We have to fulfill a personal or a backstory goal"],
+						"Catch": ["We don't know where the target is", "The target is constantly moving", "Someone else got involved, but who?", "They know, or are already expecting us", "We've got competition, be careful", "There are traps, it is quite dangerous", "They have large, or powerful army", "Law and government are not in our side", "Family is involved (ours, or other's)", "We are missing some names, information", "We have to keep this very low profile", "No killings (or at least no innocent losses)", "We know where, but it is hard to get there", "They have a complex network, agents", "Someone especially powerful is behind this", "A legendary enemy is on their side", "Location conditions extremely hazardous", "No known vulnerability, or safe approach", "We aren't yet ready, strong, or well-armed", "We are under a time limit, hurry up"],
+						"First lead": ["We've got a lead that points to an unexpected location", "There is someone you have to talk to, but they're in danger", "Someone is about to attack a key location, defend it", "Relevant people are going to have a secret meeting", "Someone died recently, take a look, perhaps there is a lead", "We know someone who can tell you more, but they don't like us", "They did something terrible in a location recently, investigate", "There is a source of information nearby, it can tell us more", "They are sending someone to take measures, stop them", "We received this anonymous note, perhaps you can figure it out?", "We found this item in there, after such thing happened", "We have someone, but he's scared to death, he saw it all", "Talk to a prisoner, or an equivalent uncooperative character", "Certain official records, or an announcement is contradictory", "We have someone willing to betray them, but want something back", "We could conduct an attack, but we need to learn more of the enemy", "Someone disappeared, or gone missing, find him, it's important", "We confirmed the location of a key object, investigate it, or steal it", "They lost control of things, it went loose, we have to stop it", "Someone abandoned a location, but why? Check it out"],
+						"Opposition": ["They have plenty of minions to stop you", "They have the law/police/guards on their side", "They receive government/official support against you", "They made arrangements with contracted goons", "They have agents in disguise on your hunt", "They have voice, eyes and ears, everywhere", "They are rich, and count with plenty resources", "They are politically powerful, you are nobody", "They have agents with special abilities", "They are aware of you, or are expecting you", "You are exceedingly outnumbered by them", "You have a relationship with one of them", "You possess something that is causing them harm", "Your backstory is causing them trouble", "Your backstory is causing you trouble", "You aren't sure how or where they operate", "You have a friend, or family, on their side", "You could use a specific faction's help", "You need a special weapon or item to get to them", "You need contacts or networking to reach them"]
+					},
+					"random": {
+						"good motive": ["Seek revenge on a person or enemy", "Escape a difficult situation", "Rescue a loved one", "Fulfill a sacred mission", "Become the leader of a country", "Protect a place of power", "Find way to save the world", "Restore balance to chaotic system", "Acquire wealth and power", "Make a name for themselves", "Uncover the truth of a mystery", "Defeat a powerful enemy", "Find a way to be accepted in society", "Prove their worth to another individual", "Start a rebellion or rebel gang", "Right a wrong from their past", "Reunite with a lost love", "Achieve immortality", "Unlock the secrets of the universe", "Overcome great physical or mental challenges", "Get justice for an injustice", "Protect a special object", "Avenge the death of a loved one", "Pursue knowledge and wisdom", "Bring a group of people together", "End a war or struggle", "Create or live a utopia", "Become a master of a craft", "Resolve a family conflict", "Become a master of a martial art", "Obtain magical powers", "Satisfy a deep curiosity", "Become the ruler of a land", "Live out a prophecy", "Find a forbidden item", "Obtain a secret or information", "Track down a missing person", "Experience great adventure", "Take on an impossible task", "Uncover secrets of the past", "Defeat an ancient enemy", "Fulfill a sacred prophecy", "Restore order from a chaotic situation", "Vanquish a great evil", "Bring justice to wronged innocents", "Find a hidden treasure", "Conquer a great mountain", "Discover the origin of a magical power", "Come to terms with a traumatic experience", "Transform a place of darkness into a place of light",
+								"Bring a couple together", "Find true love or friend", "Follow a personal dream", "Become a master of disguise", "Unearth a terrible conspiracy", "Overcome a seemingly impossible obstacle", "Leave the world: better place", "Share a special knowledge", "Create a masterpiece", "Master a form of magic", "Avenge a great injustice", "Forge a powerful alliance", "Journey to an unknown land", "Retrieve a stolen item", "Unearth an ancient secret", "Return something to its rightful owners", "Shed light on an obscure mystery", "Reconcile with an estranged family member", "Put an end to a hazardous situation", "Achieve a monumental feat", "Help someone in need", "Unearth lost civilization", "Avenge a wronged ancestor", "Help a friend at all costs", "Conquer a great feat of strength", "Overcome a personal fear", "Change a person or group's fate", "Save a species from extinction", "Find peace and purpose", "Disobey an unjust law", "Help a village in crisis", "Put a stop to a villain's plans", "Take a stand against injustice", "Find redemption or innocence", "Compel a powerful force to retreat", "Liberate a people from tyranny", "Find a missing relative", "Rescue a trapped soul", "Become a hero of legend", "Uphold sacred oath", "Uncover the secrets of the afterlife", "Embark on a personal pilgrimage", "Foster global understanding", "Unlock a hidden potential", "Become the confidante of a powerful figure", "Become a legendary warrior", "Overcome a personal trauma", "Overcome a great personal challenge", "Establish peace between two factions", "Become a beacon of hope"],
+						"bad motive": ["To guard a secret", "To a make a point", "Change fate or destiny", "Sadism, fun, entertainment", "Jealousy, envy, revenge", "To create chaos", "Restore the past", "Control, dominance", "Create a legacy, long-lasting change", "Destroy a legacy, history or culture", "Greed for money", "Greed for resources", "Greed for knowledge", "Greed for magic or superpower", "Greed for political power", "Following a dark path", "Self-preservation, survival", "To create a new order", "Greed for territory", "Evil for its own sake", "Fix a wrong or a broken ideal", "Because of pain, suffering", "To cause pain, suffering", "Mental illness", "Social pressure or anxiety", "Political pressure", "Selfishness, egoism, pride", "Fanaticism, religion, ideal", "Intolerance, oppression", "To deny the truth", "Hatred of social classes", "Hatred of races", "Hatred of religions", "Hatred of ideologies", "Hatred of law and order", "Hatred of the wealthy", "Being forced to do so", "Hatred of authority", "Hatred of the state", "Hatred of tradition", "Hatred of science", "Hatred of progress", "Hatred of technology", "Hatred of change", "Hatred of education", "Hatred of knowledge", "Hatred of art and culture", "Desire to be admired or loved", "Hatred of social norms", "Hate of people in general",
+								"Fear of death", "Fear of the unknown", "Fear of failure", "Fear of the future", "Fear of the past", "Hearing voices", "Doing what is right", "Following orders", "Immortality or longevity", "A need to punish", "A need to control", "A need to subjugate", "A need to be feared", "A need to be respected", "A need to be superior", "A need to be powerful", "A need to be admired", "A need to be superior to others", "Corrupting influence of money", "Corrupting influence of power", "Corrupting influence of ambition", "Corrupting influence of materialism", "Corrupting influence of peer pressure", "Corrupting influence of drugs and alcohol", "Corrupting influence of media or information", "Corrupting influence of popular culture", "Corrupting influence of consumerism", "Corrupting influence of superstition", "Belief in a false god", "Belief in a destructive ideology", "Belief in a dangerous cult", "Desperation, need", "Defy a prophecy", "Fulfill a prophecy", "Compulsion, impulse", "Satisfy addiction, craving", "An attempt to escape reality", "An attempt to escape guilt or shame", "An attempt to cover up a mistake", "An attempt to protect someone or something", "An attempt to force conformity", "An attempt to manipulate or exploit", "An attempt to gain favor or favoritism", "An attempt to take advantage of a vulnerable target", "An attempt to destroy a rival or enemy", "An attempt to satisfy warped sense of justice", "An attempt to remain anonymous", "An attempt to gain notoriety", "An attempt to become infamous", "An attempt to vent anger, frustration or aggression"],
+						"good action": ["Make an offering to a temple", "Help an enemy make things right", "Give inspiration and courage", "Fix a broken device or object", "Defeat a powerful enemy", "Rescue someone from falling", "Help an elderly or weak person", "Pay tribute to the gods or cult", "Untangle an evil or secret organization", "Rescue someone from a fire", "Help someone injured get to a safe a place", "Show mercy to a defeated enemy", "Bring down a tyrant from power", "Be part a of a long-term project", "Be part of an important battle", "Protect the nature and the living", "Lead a team or squad to victory", "Participate in a find and rescue mission", "Help with clothing and warmth", "Sacrifice a family object for a good cause", "Support or help a desperate family", "Educate and foster a child", "Help defend a town or village", "Defeat bandits and outlaws", "Destroy a valuable but evil artifact", "Listen to someone's problems", "Give council to a king or president", "Protect an envoy or caravan", "Volunteer to an organization", "Stop the spreading of false information", "Forgive someone of a wrong deed", "Defend the king or president", "Discover the truth of a murder", "Donate books or knowledge", "Help with food and shelter", "Sabotage an act of corruption", "Repair critical machinery", "Support with weapons", "Help prepare some defenses", "Participate in a rebellion", "Help avoid a battle or fight", "Uphold the truth and justice", "Give someone a ride or transport", "Confront a terrible evil with courage", "Bring light to a dark place", "Support a minority culture", "Recover a stolen object", "Support a lost or minority cause", "Help a friend or colleague in need", "Bring back hope to the hopeless",
+								"Rescue someone from drowning", "Visit the sick and injured in hospital", "Face a danger to help somebody", "Give an enemy a second chance", "Achieve peace between enemies", "Help make friends of two enemies", "Help with research or investigation", "Scout an undiscovered danger zone", "Support a vulnerable community", "Offer words of encouragement", "Join a minor or losing faction", "Make redemption or ask forgiveness", "Take care of creature or beast", "Endure pain to protect others", "Right a wrong or injustice", "Pay respect to the dead", "Find and rescue a child", "Give away a family relic", "Bring medical supplies to a healer", "Bring murderer to justice", "Stop an enemy from doing harm", "Tell a harmful truth", "Rescue hostages or prisoners", "Help an injured soldier in battle", "Defend someone falsely accused", "Rescue a dying creature", "Participate in a disaster relief effort", "Help with infrastructure repair", "Respond a call of an ally in need", "Donate work supplies and tools", "Solve a complicated problem", "Refuse to take revenge in a hard time", "Make a promise to somebody", "Fight alongside an enemy", "Defend an innocent from harm", "Build a home or community building", "Help lifting curse or witchcraft", "Sacrifice something for greater good", "Fight alongside a friend to the end", "Secure dangerous roads from bandits", "Offer craftsman or specialist training", "Donate to a homeless shelter", "Find books, lore or knowledge", "Help with financial planning", "Defend someone in danger", "Take care of a creature or beast", "Train someone to defend themselves", "Play an important role in war logistics", "Heal or save someone from death", "Donate a horse or a vehicle"],
+						"bad action": ["Kill, murder, assassinate someone", "Make an act of stealing or robbery", "Intentionally lie in detriment of others", "Conspire to start a war among others", "Raid and burn a village or location", "Sacrifice others for own goals", "Destroy religious artifacts", "Conduct slavery or kidnapping", "Exercise oppression by force", "Betray someone by surprise", "Sabotage own faction operations", "Destroy houses, farms, set on fire", "Unfair actions or choices upon others", "Exercise religious intolerance", "Conduct a violent assault or battle", "Violence, raiding, looting", "Vandalism and destruction", "Torture or extortion for a demand", "Join or recruit for an evil force", "Spying, sabotage, mind control", "Give means of destruction to a faction", "Vandalism and destruction", "Send thugs or assassins to kill", "Accept or exercise bribery", "Sabotage machine or vehicle", "Corrupt the innocent, force ill actions", "Destruction of nature or sources", "Abuse of power, ability or magic", "Exploitation of workforce", "Sabotage city defenses to help attacker", "Pay respect to an evil god or cult", "Destruction of old ruins and remnants", "Be part of kidnapping and trafficking", "State terrorism or vandalism", "Support rises of tyranny or an old evil", "Start an unjustified war or conflict", "Do evil for a supposed greater good", "Usurp a powerful or political position", "Assault a location with innocents", "Allowing or witness unjust suffering", "Conquer, colonize, override culture", "Hunting of creatures, beasts, preys", "Neglect respect of hierarchy or an order", "Squander resources and sabotage", "Refusal to help someone in need", "Manipulating others for benefit", "Operate illegal gambling or business", "Ignore injustice or an ill act", "Seduction for manipulation", "Conduct burglary, bank robbery",
+								"Kill a trader, merchant or businessman", "Kill a governor, noble or politician", "Leave behind an ally in need", "Take wrath or revenge on an innocent soul", "Acts of deception and manipulation", "Creating dispute and conflict among others", "Be a false witness or lie to the law", "Deliberately prevent someone from healing back", "Hindering progress or sabotage a town", "Hide true motives from high powers", "Imprisonment and torture of an innocent", "Forcing of unwanted marriage for power", "Drug trafficking or smuggling", "Refuse to comply to peace or stop a conflict", "Hide a secret that could save lives", "Praising or encouraging evil factions", "Selling secrets, intel, whistleblowing", "Transport hostages or prisoners", "Conduct an ambush or stealth operation", "Order to destroy a group or faction", "Lead a gang, mafia or troublemakers", "Steal from the vulnerable, corruption", "Recover or usurp an evil artifact or power", "Give an artifact to the wrong hands", "Fake an identity or conduct forgery", "Create or summon monsters or creeps", "Develop or research a lethal weapon", "Raise armies, monsters or mercenaries", "Hunt down a minor or weak faction", "Making false promises to people", "Conduct piracy or raid convoys", "Prey down on the weak and vulnerable", "Decide not to save someone from death", "Denying the truth to an unknowing person", "Unfair trading or black market", "Cast away, banish or execute people", "Spread poison, plague or curse", "Refusal to respect faith or culture", "Raise the dead, necromancy", "Conduct dark practices, blood or black magic", "Build secret lairs, illegal facilities", "Destroy lore, history, books, knowledge", "Sabotage someone's attempt to do good", "Break a promise, disappoint someone", "Hunt down a family or legacy", "Refuse to forgive or have piety", "Promote false or malicious information", "Conduct torture and experimentation for science", "Loot from fallen corpses or the dead", "Spread fear and terror to control"],
+						"who exactly": ["Shopkeeper, innkeeper, bartender, vendor", "Blacksmith, weapons expert, weapons producer", "Trader, merchant, businessman, salesman", "Tailor, dressmaker, armorer, fashion designer", "Farmer, peasant, countryman, serf, villager", "Sea captain, sailor, pirate, shipmaster", "Noble, aristocrat, patrician, high-class, baron", "Guard, soldier, security, bodyguard", "Courtesan, hooker, prostitute, night worker", "Captain, police, sheriff, sergeant", "Priest, cleric, father, reverend, spiritual figure", "Teacher, educator, trainer, master, tutor", "Shaman, healer, herbalist, druid, gardener", "Driver, pilot, operator, motorist, rider, engineer", "Hunter, tanner, woodsman, predator", "Baker, chef, cook, piemaker, brewer", "Builder, constructor, architect, carpenter", "Apothecary, pharmacist, druggist, chemist", "Steward, representative, official, organizer", "Jeweler, miner, collector, gatherer", "Scribe, writer, translator, journalist, archivist", "Scholar, academic, intellectual, professor", "Banker, businessman, investor, dealer, capitalist", "Wizard, expert, specialist, sorcerer, technician", "Assassin, murderer, killer, gunman, hitman", "Jester, buffoon, clown, comedian, prankster", "Diplomat, agent, ambassador, envoy, emissary", "Clerk, office worker, servant, accountant", "Mercenary, thug, hireling, hitman, bounty hunter", "Musician, artist, designer, sculptor, creator", "Street cleaner, public worker, janitor, porter", "Explorer, scout, gypsy, roamer, traveler", "Doctor, medic, healer, surgeon, physician", "Investigator, detective, agent, operative", "Apprentice, student, novice, pupil, trainee", "Spy, agent, broker, fixer, operative, rogue, hacker", "Soldier, sergeant, commander, leader, lieutenant", "Rogue, scoundrel, rat, rascal, thief, burglar, beggar", "Investigator, inquisitor, interrogator, executioner", "Tax collector, financial agent, accountant", "Tinkerer, enthusiast, builder, repairman", "Knight, ceremonial soldier, honored veteran", "King, emperor, ruler, lord, president, queen, prince", "Monk, prior, brother, abbot, preacher", "Bandit, rebel, outlaw, criminal, gangster", "Fisherman, harbormaster, port worker", "Minstrel, bard, reporter, storyteller, writer, herald", "Gravedigger, necromancer, diener, pathologist", "Cartographer, explorer, navigator, scout", "Animal trainer, ranger, drone rigger, summoner",
+								"Judge, lawyer, attorney, master of law", "Expert, specialist, professional, scientist", "Outsider, immigrant, unfamiliar, strange", "Mysterious, shady, unknown, traveler", "Council, board, delegate, advisor, steward", "Prisoner, convict, hostage, kidnapped", "Engineer, mechanic, armorer, artificer", "Member of a noble or royal family", "Member of a religious organization", "Member of the military or police", "Member of a very rich or renown family", "Member of a political organization", "Member of a strange cult or circle", "Conqueror, conquistador, renown military", "Member of a magic or tech academy", "Member of a technology organization", "Member of a trading company", "Member of a legal or judge organization", "Member of a secret organization", "Member of an enemy faction", "Member of a powerful faction", "Creature, monster, robot, being, drone", "Competitor, opposition, contender", "Someone very scared or in hiding", "Someone very angry looking for revenge", "Someone very desperate and in need", "Someone very powerful and might", "Someone special for powerful person", "Powerful ally, friend, henchmen, supporter", "Powerful enemy, boss, leader, nemesis", "Family member, old friend, family friend", "Strange or unexpected enemy", "Local, original or part of this location", "Very old character or ancient being", "An unimportant character or a nobody", "Strange or unexpected ally", "Someone badly wounded or sick", "Someone who had disappeared", "Someone with a bounty on their head", "Famous adventurer, hero, explorer", "Renegade, traitor, deserter, rebel, runner", "Expelled, banished, deported, refugee", "Street urchin, beggar, vagabond, vagrant", "Renown soldier, fighter, warrior", "Demon hunter, ghost hunter, voodoo", "Witch, demon, ghost, virus, Al", "Mutant, cyborg, robot, shapeshifter", "Politician, court member, chancellor", "Astronaut, astronomer, stargazer", "Oracle, astrologer, clairvoyant, prophet"]
+					}
+
 				}
 				
 				// mythic variations and mythic magazine vol.8 & 14
@@ -4305,7 +4552,6 @@
 					display(output);
 				};
 
-
 				///////////////////////////////////////////////////////////////////
 				/* One Page Solo Engine menu */
 
@@ -4449,7 +4695,171 @@
 					display(output);
 				};
 				
+				///////////////////////////////////////////////////////////////////
+				// ANCHOR Show GUM functions
+				/* GUM menu */
+				var showGUMOracle = function(who) {
+					var output = randomItem(gum["oracle"][who])
+					display("<p><b>" + getLink(who, "solo.showGUMOracle('" + who + "')") + "</b> " + output + "</p>");
+				};
+
+				var showGUMGrandOracle = function() {
+					const aspects = ["Action", "Descriptor", "Descriptor 2", "Subject"];
+					var output = getLink("Grand oracle", "solo.showGUMGrandOracle()");
+					for (let i = 0; i < aspects.length; i++) {
+						var k = aspects[i].split(" ")[0];
+						var o = randomItem(gum["oracle"][k]);
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				}
 				
+				var showGUMOracleList = function() {
+					display(
+						getLinks(
+							["As the GM", "solo.showGUMOracle('As the GM')"],
+							["In character", "solo.showGUMOracle('In character')"],
+							["To another character", "solo.showGUMOracle('To another character')"]
+						)
+						+ "<hr>" +
+						getLink("Grand oracle", "solo.showGUMGrandOracle()")
+					);
+				};
+				
+				var showGUMPlanCheck = function(risk) {
+					var output = randomItem(gum["plan check"][risk]);
+					output = "<p>Your plans are " + output + "</p>";
+					const drawers = ["Circumstance", "Inconvenience", "Complication", "Problem"];
+					for (let i = 0; i < drawers.length; i++) {
+						if (output.indexOf(drawers[i].toLowerCase()) > -1) {
+							var o = randomItem(gum["plan check"][drawers[i]]);
+							output += " (" + o + ")";
+						}
+					}
+					display(output);
+				}
+				
+				var showGUMIssues = function(type) {
+					var output = randomItem(gum["plan check"][type]);
+					display("<p><b>" + type + "</b>: " + output + "</p>");
+				}
+
+				var showGUMPlanCheckList = function() {
+					display(
+						getLinks(
+							["Safe", "solo.showGUMPlanCheck('Safe')"],
+							["Risky", "solo.showGUMPlanCheck('Risky')"],
+							["Tense", "solo.showGUMPlanCheck('Tense')"],
+							["Exploding", "solo.showGUMPlanCheck('Exploding')"]
+						)
+						+ "<hr>" +
+						getLinks(
+							["Circumstance", "solo.showGUMIssues('Circumstance')"],
+							["Inconvenience", "solo.showGUMIssues('Inconvenience')"],
+							["Complication", "solo.showGUMIssues('Complication')"],
+							["Problem", "solo.showGUMIssues('Problem')"]
+						)
+					)
+				}
+
+				var showGUMIntervention = function() {
+					var item = randomItem(gum["Intervention"]);
+					var output = "<p><b>Intervention</b>: " + item + "</p>";
+					if (item.indexOf("subject + action") > -1) {
+						output += "Subject: " + randomItem(gum["oracle"]["Subject"]) + "<br>";
+						output += "Action: " + randomItem(gum["oracle"]["Action"]) + "<br>";
+					}
+					display(output);
+				}
+
+				var showGUMChallenge = function() {
+					const aspects = ["Prompt", "Skill", "Situation", "Conditions"];
+					var output = "";
+					for (let i = 0; i < aspects.length; i++) {
+						var o = randomItem(gum["PC challenges"][aspects[i]]);
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				}
+				
+				var showGUMCombat = function() {
+					const aspects = ["Conditions", "Tactical", "Behaviour", "Composition"];
+					var output = "";
+					for (let i = 0; i < aspects.length; i++) {
+						var o = randomItem(gum["PC combat"][aspects[i]]);
+						output += "<p><details><summary>" + aspects[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				}
+				
+				var showGUMSceneDesign = function() {
+					var output = randomItem(gum["scene design"]);
+					display("<p>Focal point (what the scene could be about):</p><p>" + output + "</p>");
+				}
+
+				var showGUMLocation = function(what) {
+					var location = randomItem(gum["location identity"][what]);
+					const details = ["Feature", "Worth", "Purpose", "Inhabitants", "Looks", "Activity"];
+					var output = "<p><b>" + what + "</b>: " + location + "</p>";
+					for (let i = 0; i < details.length; i++) {
+						var o = randomItem(gum["location details"][details[i]]);
+						output += "<p><details><summary>" + details[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				};
+
+				var showGUMLocationList = function() {
+					display(
+						getLinks(
+							["Building", "solo.showGUMLocation('Building')"],
+							["Urban", "solo.showGUMLocation('Urban')"],
+							["Outskirts", "solo.showGUMLocation('Outskirts')"],
+							["Wilderness", "solo.showGUMLocation('Wilderness')"],
+							["Space", "solo.showGUMLocation('Space')"],
+							["Special", "solo.showGUMLocation('Special')"]
+						)
+					);
+				};
+				
+				var showGUMNPC = function(what) {
+					var npc = randomItem(gum["NPC identity"][what]);
+					const details = ["Attitude", "Wants", "Edge", "Quirk", "Looks", "Stuff", "Good motive", "Evil motive", "Good action", "Evil action"];
+					var output = "<p><b>" + what + "</b>: " + npc + "</p>";
+					for (let i = 0; i < details.length; i++) {
+						var o = randomItem(gum["NPC details"][details[i]]);
+						output += "<p><details><summary>" + details[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				};
+
+				var showGUMNPCList = function() {
+					display(
+						getLinks(
+							["Civilian", "solo.showGUMNPC('Civilian')"],
+							["Skilled", "solo.showGUMNPC('Skilled')"],
+							["Fighting", "solo.showGUMNPC('Fighting')"],
+							["Connected", "solo.showGUMNPC('Connected')"],
+							["VIP", "solo.showGUMNPC('VIP')"],
+							["Special", "solo.showGUMNPC('Special')"],
+							["Random", "solo.showGUMNPC('Who exactly?')"]
+						)
+					);
+				};
+				
+				var showGUMGameSetup = function() {
+					const details = ["Location", "Problem", "Call", "Mission", "Catch", "First lead", "Opposition"];
+					var output = "<p><b>Plot generation</b>: </p>";
+					for (let i = 0; i < details.length; i++) {
+						var d = random(1, 20) - 1;
+						var o = gum["game setup"][details[i]][d];
+						if (details[i] === "Problem" || details[i] === "Call") {
+							o += "<br> (" + gum["game setup"][details[i]+"2"][d] + ")";
+						}
+						output += "<p><details><summary>" + details[i] + "</summary>" + o + "</details></p>";
+					}
+					display(output);
+				};
+
 				///////////////////////////////////////////////////////////////////
 				/* Chance menu */
 
@@ -5284,8 +5694,10 @@
 					if (type === "random") type = randomItem(["allies", "situational", "objects", "powers"]);
 
 					var dilemma = randomItem(dilemmas[type]);
+					var dilemma2 = dilemma;
+					if (type === "lostgained") dilemma2 = randomItem(dilemmas[type]);
 
-					display("<p><b>Dilemma:</b> " + dilemma[0] + "</p><p>" + dilemma[1] + "</p>");
+					display("<p><b>Dilemma:</b> " + dilemma[0] + "</p><p>" + dilemma2[1] + "</p>");
 				};
 
 				var showDilemmaList = function() {
@@ -5295,6 +5707,7 @@
 							["Situational & Tactical", "solo.showDilemma('situational')"],
 							["Objects & Gear", "solo.showDilemma('objects')"],
 							["You & Your Powers", "solo.showDilemma('powers')"],
+							["We lost, but we gained", "solo.showDilemma('lostgained')"],
 							["Random", "solo.showDilemma('random')"]
 						)
 					);
@@ -5566,6 +5979,23 @@
 				solo.showOnePageOracle = showOnePageOracle;
 				solo.showOnePageOracleList = showOnePageOracleList;
 				solo.showOnePageGeneration = showOnePageGeneration;
+				
+				// ANCHOR GUM exported functions
+				solo.showGUMOracle = showGUMOracle;
+				solo.showGUMGrandOracle = showGUMGrandOracle;
+				solo.showGUMOracleList = showGUMOracleList;
+				solo.showGUMPlanCheck = showGUMPlanCheck;
+				solo.showGUMPlanCheckList = showGUMPlanCheckList;
+				solo.showGUMIssues = showGUMIssues;
+				solo.showGUMIntervention = showGUMIntervention;
+				solo.showGUMChallenge = showGUMChallenge;
+				solo.showGUMCombat = showGUMCombat;
+				solo.showGUMSceneDesign = showGUMSceneDesign;
+				solo.showGUMLocation = showGUMLocation;
+				solo.showGUMLocationList = showGUMLocationList;
+				solo.showGUMNPC = showGUMNPC;
+				solo.showGUMNPCList = showGUMNPCList;
+				solo.showGUMGameSetup = showGUMGameSetup;
 
 				// chance
 				solo.showDice = showDice;
@@ -5877,6 +6307,7 @@
 										<option value="Calypso">CALYPSO</option>
 										<option value="Libre">LIBRE</option>
 										<option value="IF">IF</option>
+										<option value="GUM">GUM</option>
 									</select>
 									</summary>
 									<div id="system-data"></div>
@@ -6158,6 +6589,21 @@
 					<p><a onclick="solo.showOnePageGeneration('contents')">Contents</a></p>
 					<p><a onclick="solo.showMeaning('Feature:OPSE Features')">Feature</a></p>
 				</details>
+			</div>
+
+			<!-- ANCHOR GUM HTML -->
+			<div id="GUM">
+				<p><a onclick="solo.showGUMOracleList()">Oracle</a></p>
+				<p><a onclick="solo.showGUMPlanCheckList()">Plan check</a></p>
+				<p><a onclick="solo.showGUMIntervention()">GM intervention</a></p>
+				<p><a onclick="solo.showGUMChallenge()">Challenge</a></p>
+				<p><a onclick="solo.showGUMCombat()">Combat</a></p>
+				<hr>
+				<p><a onclick="solo.showGUMSceneDesign()">Scene designer</a></p>
+				<p><a onclick="solo.showGUMLocationList()">Location</a></p>
+				<p><a onclick="solo.showGUMNPCList()">NPC</a></p>
+				<hr>
+				<p><a onclick="solo.showGUMGameSetup()">Game setup</a></p>
 			</div>
 
 			<div id="CRGE">
@@ -6700,6 +7146,54 @@
 					</details>
 				</details>
 			</div>
+			
+			<!-- ANCHOR ✅ GUM description -->
+			<div id="gum-desc">
+				<p>This section is dedicated to tools related to the <i>Game Unfolding Machine</i>.</p>
+				<details><summary>Details</summary>
+					<br>
+					<details><summary><b>Oracle</b></summary>
+						<p>Generate a Yes or No answer to a question, answering either as the GM, in character, or as a NPC.</p>
+						<p>The Grand oracle can also generate descriptive words combinations for inspiration.</p>
+					</details>
+					<br>
+					<details><summary><b>Plan check</b></summary>
+						<p>Check if everything goes according to the plan, and maybe introduce some issues.</p>
+						<p>Probabilities are weighted against your current scene's tension.</p>
+						<p>Alternatively, you can also directly roll for inconveniences if you need some.</p>
+					</details>
+					<br>
+					<details><summary><b>GM intervention</b></summary>
+						<p>When there is a pause in your game, when everything seems to go a bit too well, check if the GM intervenes to spice up things.</p>
+					</details>
+					<br>
+					<details><summary><b>Challenge</b></summary>
+						<p>Generate a random challenge for your player characters, usually a skill test with ideas for condition modifiers.</p>
+					</details>
+					<br>
+					<details><summary><b>Combat</b></summary>
+						<p>Generate random combat situations, conditions, opposition, unexpected turns, etc.</p>
+					</details>
+					<br>
+					<details><summary><b>Scene designer</b></summary>
+						<p>Come up with a new scene situation: it's an opener for the unexpected, bringing a new focus to the story.</p>
+					</details>
+					<br>
+					<details><summary><b>Location</b></summary>
+						<p>Where does it happen? And what details about this place?</p>
+					</details>
+					<br>
+					<details><summary><b>NPC</b></summary>
+						<p>Who is involved? What do we know about them?</p>
+						<p>Also contains GUM's extra random tables for good/evil motivations and actions, and the "who exactly?" big NPC randomizer.</p>
+					</details>
+					<br>
+					<details><summary><b>Game setup</b></summary>
+						<p>How to set up the game and plot generation ideas. Please refer to the GUM manual for usage instructions.</p>
+					</details>
+				</details>
+			</div>
+
 
 			<!-- Libre descriptions -->
 
@@ -7060,6 +7554,8 @@
 					<li><i>1000+ NPC Traits</i> by Johnn Four</li>
 					<li><i>SOLO</i> by Paul Elliott</li>
 					<li><i>Scarlet Heroes</i> by Kevin Crawford</li>
+					<li><i>We Lost, But Gained</i> by Solo RPG Voyager</li>
+					<li><i>Game Unfolding Machine</i> by Jeansen Vaars</li>
 				</ul>
 				
 				<p>The following provide content for the muse meaning tables:</p>
